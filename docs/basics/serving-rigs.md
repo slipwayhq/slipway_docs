@@ -363,7 +363,7 @@ then the device file also contains the information required to identify and auth
 
 The `add-trmnl-device` sub-command is used to add this additional information to a Device file.
 
-See [this page](/docs/using-with-trmnl/using-slipway-rigs-with-trmnl) for more information.
+See [this page](/docs/using-with-trmnl/slipway-for-trmnl-devices) for more information.
 
 ## Serving
 

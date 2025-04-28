@@ -265,7 +265,7 @@ in the output, you would need to declare something like the following in the Com
 }
 ```
 
-See the [Render Component](/docs/standard-components/render-component) page for more details.
+See the [Render Component](/components#slipwayhqrender) section for more details.
 
 :::
 
