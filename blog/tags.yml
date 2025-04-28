@@ -1,0 +1,35 @@
+slipway:
+  label: Slipway
+  permalink: /slipway
+  description: Posts about Slipway
+
+eink:
+  label: Eink
+  permalink: /eink
+  description: Posts about EInk displays
+
+wasm:
+  label: WASM
+  permalink: /wasm
+  description: Posts about WASM
+
+rust:
+  label: Rust
+  permalink: /rust
+  description: Posts about Rust
+
+javascript:
+  label: Javascript
+  permalink: /javascript
+  description: Posts about Javascript
+
+deno:
+  label: Deno
+  permalink: /deno
+  description: Posts about Deno
+
+boa:
+  label: Boa
+  permalink: /boa
+  description: Posts about Boa
+

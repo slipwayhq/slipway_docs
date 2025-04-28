@@ -1,0 +1,91 @@
+{
+  "description": "Renders some text above a chart.",
+  "constants": {
+    "width": 800,
+    "height": 480
+  },
+  "rigging": {
+    "render": {
+      "component": "slipwayhq.render.0.0.1",
+      "callouts": {
+        "echarts": {
+          "component": "slipwayhq.echarts.0.0.1",
+          "allow": [
+            { "permission": "fonts" },
+            { "permission": "registry_components" }
+          ]
+        }
+      },
+      "allow": [
+        { "permission": "fonts" },
+        { "permission": "registry_components" }
+      ],
+      "input": {
+        "card": {
+          "type": "AdaptiveCard",
+          "body": [
+            {
+              "type": "Container",
+              "separator": true,
+              "items": [
+                {
+                  "type": "TextBlock",
+                  "text": "The quick brown fox jumped over the lazy dog. I repeat, the quick brown fox jumped over the lazy dog. Once more, the quick brown fox jumped over the lazy dog.",
+                  "wrap": true
+                }
+              ]
+            },
+            {
+              "type": "Container",
+              "height": "stretch",
+              "items": [
+                {
+                  "type": "Image",
+                  "height": "stretch",
+                  "url": "component://echarts?width=$width&height=$height",
+                  "body": {
+                    "chart": {
+                      "xAxis": {
+                        "type": "category",
+                        "data": [
+                          "Mon",
+                          "Tue",
+                          "Wed",
+                          "Thu",
+                          "Fri",
+                          "Sat",
+                          "Sun"
+                        ]
+                      },
+                      "yAxis": {
+                        "type": "value"
+                      },
+                      "series": [
+                        {
+                          "data": [
+                            150,
+                            230,
+                            224,
+                            218,
+                            135,
+                            147,
+                            260
+                          ],
+                          "type": "line"
+                        }
+                      ]
+                    }
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "canvas": {
+          "width": "$.constants.width",
+          "height": "$.constants.height"
+        }
+      }
+    }
+  }
+}

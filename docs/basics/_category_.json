@@ -1,0 +1,8 @@
+{
+  "label": "Basics",
+  "position": 10,
+  "link": {
+    "type": "generated-index",
+    "description": "Learn all the basic concepts to get up and running with Slipway. While this is just covering the basics, it is still a fair amount of information. Feel free to skim any parts which are not immediately relevant to you."
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "rigging": {
+    "start": {
+      "component": "passthrough",
+      "input": {
+        "line": "The quick"
+      }
+    },
+    "animals": {
+      "component": "passthrough",
+      "input": [ "brown fox", "lazy dog" ]
+    },
+    "first_half": {
+      "component": "passthrough",
+      "input": {
+        "line_1": "$$.start.line",
+        "line_2": "$$.animals[0]"
+      }
+    },
+    "final": {
+      "component": "passthrough",
+      "input": {
+        "line_1": "$$.first_half.line_1",
+        "line_2": "$$.first_half.line_2",
+        "line_3": "jumped over the",
+        "line_4": "$$.animals[0]"
+      }
+    }
+  }
+}
