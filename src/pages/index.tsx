@@ -7,15 +7,17 @@ import HomepageFeatures from '@site/src/components/HomepageFeatures';
 import Heading from '@theme/Heading';
 
 import styles from './index.module.css';
+import useBaseUrl from '@docusaurus/useBaseUrl';
 
 function HomepageHeader() {
   const {siteConfig} = useDocusaurusContext();
+  const logoUrl = useBaseUrl('/img/slipway-logo.svg');
   return (
     <header className={clsx('hero hero--primary', styles.heroBanner)}>
       <div className="container">
         <Heading as="h1" className="hero__title">
           
-        <img alt="Slipway Logo" src="/img/slipway-logo.svg" width="48px"></img>
+        <img alt="Slipway Logo" src={logoUrl} width="48px"></img>
         <span style={{"margin": "0.75rem"}}>Slipway</span>
           
         </Heading>
