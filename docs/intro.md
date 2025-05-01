@@ -5,23 +5,27 @@ sidebar_position: 1
 # Introduction
 
 Slipway lets you quickly create custom dashboards (called Rigs) that can be displayed
-on almost any device with a display.[^1]
+on almost any device with a display.
+For a quick overview of what Slipway is for, and how it works at a high level, see our [landing page](/).
 
-If you have data in one place and want to display it in another place, Slipway is designed to do that with
-minimum fuss and minimum code.
+If you're ready to get started creating your own Rigs and Components, then keep reading to find out
+how it all works.
 
-You can often create these Rigs with just some simple JSON configuration, but if more custom work is required
-then it often only needs a small amount of code, written in a language of your choice.[^2]
+- The [Getting Started](/docs/category/getting-started) section tells you
+[how to install Slipway](/docs/getting-started/installing-slipway),
+and runs you though [creating your first Component and Rig](/docs/getting-started/create-your-first-rig).
+It's a great way to quickly get an idea of how Slipway works in more detail.
 
-This is possible because Slipway leans on an ecosystem of components that take care
-of the complicated, repetitive, or boring tasks. This leaves you to focus only on the code
-or configuration which is specific to your scenario.
+- The [Basics](/docs/category/basics) section then takes you through everything you need to know
+to start producing useful, powerful Rigs, and how to run them and host them for your devices.
 
-Next we'll talk about how this all works.
+- The [Guides](/docs/category/guides) section is a collection of useful docs on everything from debugging rigs
+to hosting on common providers to creating custom component registries.
 
+- The [Advanced Guides](/docs/category/advanced-guides) section gets into the weeds of Rigs and Components.
 
-[^1]: For example: On an eInk screen in your house, on your phone as a widget, on a mission control style monitor wall,
-or even in AR when you look things in your house. Basically anything that can display either
-an image or a web page can display a Slipway Rig.
+For using Rigs with specific devices we provide the following:
 
-[^2]: Slipway currently supports Javascript or any language that compiles to WASM, such as Rust.
+- [Using with TRMNL Devices](/docs/using-with-trmnl/slipway-for-trmnl-devices)
+
+- Using with iOS Widgets (Coming soon)

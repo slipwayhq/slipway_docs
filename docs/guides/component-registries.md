@@ -22,19 +22,24 @@ create a GitHub repository called `slipway_middle_out` and set your Component's
 `publisher` field to `pied_piper` and `name` field to `middle_out`.
 :::
 
-- The `version` field in your Component should match the GitHub Release name, be a 
-valid [semver](https://docs.rs/semver/latest/semver/struct.Version.html#syntax) version number, and be prefixed with a
-with a `v`.
+- The `version` field in your Component should match the GitHub Release name and be a 
+valid [semver](https://docs.rs/semver/latest/semver/struct.Version.html#syntax) version number.
 
 - The released file name should be `<publisher>.<name>.<version>.tar`.
 
 :::info[Example]
-If in the above example we released a version on GitHub named `v1.23.0` then the Component would be automatically available
+If in the above example we released a version on GitHub named `1.23.0` then the Component would be automatically available
 in the Slipway Component Registry using the reference `pied_piper.middle_out.1.23.0`.
 
-The Slipway Component Registry would simply redirect requests to the URL:
+This reference resolves to the registry URL:
+
 ```
-https://github.com/pied-piper/slipway_middle_out/releases/download/v1.23.9/pied_piper.middle_out.1.23.9.tar
+https://registry.slipwayhq.com/components/pied_piper.middle_out.1.23.9.tar
+```
+
+The Slipway Component Registry then simply redirects requests to the URL:
+```
+https://github.com/pied-piper/slipway_middle_out/releases/download/1.23.9/pied_piper.middle_out.1.23.9.tar
 ```
 :::
 
