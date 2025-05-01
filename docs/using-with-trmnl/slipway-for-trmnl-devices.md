@@ -18,14 +18,14 @@ They are a refreshingly open company:
  - If you make your own device, you can use the same [open-source firmware](https://github.com/usetrmnl/firmware)
  that they run on official TRMNL devices.
 
-The TRMNL devices are great, as is their web service which makes it simple to display a great range of plugins on your devices,
-many written by their active community.
+The TRMNL devices are great, as is their web service which makes it simple to display a great range of plugins on your devices, or write your own.
 
-As with anything, the official TRMNL service has been designed has certain pros and cons, and Slipway simply provides a different set of tradeoffs which may or may not appeal to you.
+As with anything, the official TRMNL service has been designed with certain tradeoffs, 
+and Slipway simply provides a different set of tradeoffs which may or may not suit you more.
 
 ## Why use Slipway with TRMNL devices?
 
-Slipway is a system for creating and hosting custom dashboards (what we call Rigs) on everything from simple eInk devices
+Slipway is a system for creating and hosting custom dashboards (that we call Rigs) on everything from simple eInk devices
 (like TRMNL devices) to phones, tablets, or even mission-control style arrays of screens. Basically anything that can display either
 an image or a web page can display a Slipway Rig.
 
@@ -45,15 +45,14 @@ Slipway is designed to be extremely simple to run and cheap to host:
 - It ships as a single binary, and uses only simple configuration files on disk to run.
 - All the configuration files are read-only when deployed, which means there is no live data to back up.
 - There are no databases, message queues, persistent storage, or anything else to manage.
-- All you need is cheap server, a Raspberry Pi is more than enough.
-- Or quickly deploy it in a single container to a service like [Fly.io](https://fly.io/), and it will [probably be free](/docs/guides/hosting-on-fly).
+- All you need is cheap server, or quickly deploy it in a single container to a service like [Fly.io](https://fly.io/), and it will [probably be free](/docs/guides/hosting-on-fly).
 
 ### Up-to-the-second information
 
 The official TRMNL service, and most TRMNL bring-your-own-server implementations, generate screens in the background
 at intervals. When the TRMNL device requests a screen from the server it is directed to the last generated screen.
 Unfortunately this screen may have been generated some time ago and contain stale information, and having
-separate intervals for when the TRMNL device requests a screen from the API, and when those screens are actually 
+separate intervals for when the TRMNL device requests a screen, and when those screens are actually 
 generated, can be confusing.
 
 Slipway generates screens on-demand every time the device requests it, so the information is always up to date.
@@ -79,10 +78,14 @@ Languages have different strengths and weaknesses, as do their ecosystems.
 With Slipway you can mix and match.
 
 Slipway supports multiple renderers, and new renderers can easily be written as Components by anyone.
-Slipway HQ provides Components for rendering [JSX files](https://og-playground.vercel.app/),
-[Adaptive Cards](https://adaptivecards.io/samples/FlightUpdateTable.html)
+Slipway HQ provides Components for rendering
+[Adaptive Cards](https://adaptivecards.io/samples/FlightUpdateTable.html),
+[JSX files](https://og-playground.vercel.app/)
 and [ECharts](https://echarts.apache.org/examples/en/index.html) out of the box,
 and all of these are open source in our [GitHub organization](https://github.com/slipwayhq/).
+
+Our ecosystem is small at the moment, but I'm hoping that with an enthusiastic community it can expand rapidly.
+You can see a [list of current components here](/components), and [some example rigs here](/rigs).
 
 ### Security
 

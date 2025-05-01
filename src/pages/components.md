@@ -2,7 +2,7 @@
 title: Components
 ---
 
-# Components
+# Slipway HQ Components
 
 ## [`slipwayhq.render`](https://github.com/slipwayhq/slipway_render)
 
@@ -30,4 +30,16 @@ Useful for loading files to provide as an input to other Components.
 
 Uses a simple syntax to make changes to JSON. Useful for manipulating the output of one Component before
 passing it in to another Component.
+
+# Community Components
+
+If you've created components of your own, that others might like to use, [let me know](/community) and I can
+feature the best ones here. 
+
+## [`jamesthurley.givenergy_cloud`](https://github.com/jamesthurley/slipway_givenergy_cloud)
+
+Reads solar, battery and power usage information for [GivEnergy](https://givenergy.co.uk/) house batteries and inverters,
+and displays them in a handy chart.
+
+The repository also includes an example Rig.
 
