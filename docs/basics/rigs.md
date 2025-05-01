@@ -279,7 +279,7 @@ TRMNL eInk screen:
   "description": "Renders GivEnergy data with ECharts",
   "rigging": {
     "ge": {
-      "component": "jamesthurley.givenergy_cloud.0.0.1",
+      "component": "jamesthurley.givenergy_cloud.0.5.0",
       "allow": [
         { "permission": "http", "prefix":"https://api.givenergy.cloud/" },
         { "permission": "env", "prefix":"GIVENERGY_" }
@@ -287,7 +287,7 @@ TRMNL eInk screen:
       "input": {}
     },
     "render": {
-      "component": "slipwayhq.echarts.0.0.1",
+      "component": "slipwayhq.echarts.0.5.1",
       "allow": [
         { "permission": "fonts" },
         { "permission": "registry_components", "publisher": "slipwayhq", "name": "svg" },

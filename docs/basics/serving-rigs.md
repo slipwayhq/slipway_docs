@@ -198,7 +198,8 @@ slipway serve . add-rig --name "example_rig"
 
 ## Playlists
 
-Sometimes you want to display a different Rig depending on the time or the day.
+Sometimes you want to display a different Rig depending on the time or the day, or have a Rig auto-refresh
+at certain intervals.
 This is what Playlists are for.
 
 You can use the `add-playlist` sub-command to help with creating a basic Playlist file in the correct location.
@@ -389,12 +390,12 @@ rigs/my_rig.json
 
 And your server was running at:
 ```
-https://localhost:8080/
+http://localhost:8080/
 ```
 
 Then you could view this rig by visiting:
 ```
-https://localhost:8080/rigs/my_rig
+http://localhost:8080/rigs/my_rig
 ```
 
 ## TRMNL API

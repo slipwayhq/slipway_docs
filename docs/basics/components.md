@@ -258,7 +258,7 @@ Internally the rigging is defined as follows:
 ```json
   "rigging": {
     "echarts": {
-      "component": "slipwayhq.echarts_svg.0.0.1",
+      "component": "slipwayhq.echarts_svg.0.5.0",
       "input": {
         "width": "$$.input.width",
         "height": "$$.input.height",
@@ -267,7 +267,7 @@ Internally the rigging is defined as follows:
       }
     },
     "output": {
-      "component": "slipwayhq.svg.0.0.1",
+      "component": "slipwayhq.svg.0.5.0",
       "allow": [
         { "permission": "fonts" }
       ],

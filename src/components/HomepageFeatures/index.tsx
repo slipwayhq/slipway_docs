@@ -47,7 +47,7 @@ const FeatureList: FeatureItem[] = [
     Svg: require('@site/static/img/devices-graphic.svg').default,
     description: (
       <>
-        Display your rigs on any device with a screen,
+        Display your Rigs on any device with a screen,
         including <Link to="/docs/using-with-trmnl/slipway-for-trmnl-devices">eInk screens</Link>,
         phone widgets, monitor arrays , and more.
       </>
