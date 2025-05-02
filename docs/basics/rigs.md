@@ -256,9 +256,10 @@ in the output, you would need to declare something like the following in the Com
     // ...
     "callouts": {
         "echarts": {
-            "component": "slipwayhq.echarts.1.0.0",
+            "component": "slipwayhq.echarts.0.5.1",
             "allow": [
-                { "permission": "fonts" }
+                { "permission": "fonts" },
+                { "permission": "registry_components" }
             ]
         }
     }
