@@ -34,7 +34,7 @@ in the Slipway Component Registry using the reference `pied_piper.middle_out.1.2
 This reference resolves to the registry URL:
 
 ```
-https://registry.slipwayhq.com/components/pied_piper.middle_out.1.23.9.tar
+https://registry.slipway.co/components/pied_piper.middle_out.1.23.9.tar
 ```
 
 The Slipway Component Registry then simply redirects requests to the URL:

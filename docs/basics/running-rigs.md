@@ -53,7 +53,7 @@ For example:
 
 ## `--registry-url`
 
-The Slipway CLI will always fall back to resolving Components from the Slipway Component Registry (https://registry.slipwayhq.com/).
+The Slipway CLI will always fall back to resolving Components from the Slipway Component Registry (https://registry.slipway.co/).
 
 However it has also been designed to make it as simple as possible to host your own Component registries, 
 either on the local file system or with a simple HTTP server.

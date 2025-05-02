@@ -1,4 +1,4 @@
-This is the website and documentation for Slipway, which gets deployed to https://slipwayhq.com/.
+This is the website and documentation for Slipway, which gets deployed to https://slipway.co/.
 
 ### Installation
 
