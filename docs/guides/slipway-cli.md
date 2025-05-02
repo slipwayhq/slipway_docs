@@ -20,9 +20,24 @@ Runs the specified Rig. See the [Running Rigs](/docs/basics/running-rigs) page f
 
 Debugs the specified Rig. See the [Debugging Rigs](/docs/guides/debugging-rigs) page for more information.
 
+### `slipway run-component`
+
+Runs the specified Component by wrapping it in a Rig.
+
+:::tip
+This is very useful for quickly testing a component:
+```sh
+slipway run-component "slipwayhq.fetch.0.5.0" --allow-http --input "{ \"text\": { \"ip\": \"https://icanhazip.com/\" } }"
+```
+
+If you omit the `--input` argument you'll be prompted for an input, which can be easier for large JSON structures.
+:::
+
 ### `slipway debug-component`
 
-Debugs the specified Component by wrapping it in a Rig. See the [Debugging Rigs](/docs/guides/debugging-rigs) page for more information.
+Debugs the specified Component by wrapping it in a Rig.
+Similar to `run-component`, but opens the wrapped component in the debugger.
+See the [Debugging Rigs](/docs/guides/debugging-rigs) page for more information.
 
 ### `slipway init-component`
 

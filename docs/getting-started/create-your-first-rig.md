@@ -106,6 +106,29 @@ however Slipway itself is renderer agnostic and can use any rendering Component.
 For example we could instead supply JSX to a [JSX renderer](https://github.com/slipwayhq/slipway_jsx).
 :::
 
+### Test the Component:
+
+We can quickly test our Component outside of a Rig using the `slipway run-component` command.
+
+Run the following in your terminal:
+```sh
+slipway run-component "file:components/demo.hello_world" --input "{ \"text\": \"Hello there\" }"
+```
+
+You should see the expected output in the terminal:
+```json
+{
+  "body": [
+    {
+      "horizontalAlignment": "center",
+      "text": "Hello there",
+      "type": "TextBlock"
+    }
+  ],
+  "type": "AdaptiveCard",
+  "verticalContentAlignment": "center"
+}
+```
 
 ### Create the Rig:
 :::tip[Note]
