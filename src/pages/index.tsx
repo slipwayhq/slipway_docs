@@ -63,7 +63,7 @@ export default function Home(): ReactNode {
                     </p>
                     <p>
                       If you have data in one place and want to display it in another place, Slipway is designed to do that with
-                      minimum fuss, minimum code, and maximum reuse.
+                      minimum fuss.
                     </p>
                   </div>
                 </div>
@@ -101,8 +101,8 @@ export default function Home(): ReactNode {
                   </div>
                   <div className="card__body">
                     <p>
-                      <Link to="/docs/using-with-trmnl/slipway-for-trmnl-devices">TRMNL</Link> devices
-                      are affordable eInk screens for displaying anything you like.
+                      <Link to="/docs/using-with-trmnl/slipway-for-trmnl-devices">TRMNL devices</Link> are
+                      affordable eInk screens for displaying anything you like.
                     </p>
                     <p>
                       Slipway supports the TRMNL API out of the box, so you quickly get up and running displaying

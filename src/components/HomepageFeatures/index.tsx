@@ -39,6 +39,7 @@ const FeatureList: FeatureItem[] = [
       <>
         Slipway lets you <Link to="/docs/getting-started/create-your-first-rig">quickly</Link> and <Link to="/docs/basics/permissions">securely</Link> run 
         and host Rigs on your local infrastructure or in the cloud, making them available to all your devices.
+        Playlists let you serve different Rigs to a device depending on the day and time.
       </>
     ),
   },
