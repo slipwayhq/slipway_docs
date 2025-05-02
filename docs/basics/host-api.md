@@ -324,7 +324,7 @@ to it.
 
 ```js
 const encoded = slipway_host.encode_bin([1, 2, 3]); // Input can be a Uint8Array or number[]
-const decoded = slipway_host_decode_bin(encoded); // Output is a Uint8Array
+const decoded = slipway_host.decode_bin(encoded); // Output is a Uint8Array
 ```
 
 ### Rust
