@@ -21,10 +21,6 @@ These are primarily used to simplify hosting Slipway on a server, but it can als
 docker run -it -v "$PWD":/app -w /app -p 8080:8080 slipwayhq/slipway:latest
 ```
 
-:::warning[TODO]
-Test this once registry is live.
-:::
-
 ## Compiling from Source
 
 You will need the [Rust toolchain](https://www.rust-lang.org/tools/install) installed to compile from Slipway from source, and optionally the [just](https://github.com/casey/just) task runner.

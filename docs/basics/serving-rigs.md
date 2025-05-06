@@ -86,7 +86,10 @@ See the [Component Registries](/docs/guides/component-registries#custom-componen
 
 ### `timezone`
 
-The timezone which you want to use when evaluating playlists.
+The timezone which you want to use when evaluating playlists, and which is made available to Components.
+The timezone should be a string 
+[identifier](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones) such as `Europe/London`.
+
 The `init` command defaults this to the current system timezone.
 
 ### `rig_permissions`
@@ -355,9 +358,9 @@ and can in turn be used to alter the Rig's behavior.
   }
 }
 ```
-:::info[TODO]
-Passing context through to Rigs is not yet implemented.
-:::
+
+In your Rig you can access the current device context and pass it through to Components by using the `$.context.device`
+[query](/docs/basics/rigs#rigginginput).
 
 If your physical device is a TRMNL device, or will be using the TRMNL API,
 then the device file also contains the information required to identify and authenticate the TRMNL device.

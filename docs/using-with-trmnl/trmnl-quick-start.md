@@ -44,7 +44,7 @@ You will need to be able to see the logs when you add the TRMNL device.
 When you first set up your TRMNL device you're prompted for your WiFi SSID and password,
 and in addition you can optionally enter an API Server URL.
 
-The server URL should be the URL of your Slipway server __with `/trmnl/` appended to the end__.
+The server URL should be the URL of your Slipway server __with `/trmnl` appended to the end__.
 
 :::info[Example]
 If your normal Slipway server URL is:
@@ -54,7 +54,7 @@ https://myslipwayserver.com/
 
 Then you should point your TRMNL device at:
 ```
-https://myslipwayserver.com/trmnl/
+https://myslipwayserver.com/trmnl
 ```
 :::
 
