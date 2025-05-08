@@ -116,6 +116,10 @@ For example, if there was a Rig `rigs/my_rig.json` then you might change this to
 
 See the [Permissions](/docs/basics/permissions) page for more detail about possible permission configuration values.
 
+### `port`
+
+An optional port to serve on. Defaults to `8080`.
+
 ### `hashed_api_keys`
 
 A mapping of key names to hashed API keys.

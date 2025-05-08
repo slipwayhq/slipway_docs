@@ -116,7 +116,7 @@ const config: Config = {
           items: [
             {
               label: 'Zulip',
-              href: 'https://slipwayhq.zulipchat.com',
+              href: 'https://slipway.zulipchat.com',
             },
           ],
         },
