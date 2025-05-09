@@ -275,8 +275,10 @@ First add an API key:
 slipway serve . add-api-key --name "example_key"
 ```
 
-This will add a hashed API key to the `slipway_serve.json` file, and output the unhashed key to the console.
-__Make a note of the unhashed key, as we will use it in a moment.__
+This will add a hashed API key to the `slipway_serve.json` file, and output the unhashed key to the terminal.
+
+
+__Make a note of the unhashed key displayed in the terminal, as we will use it in a moment.__
 
 Next edit `slipway_serve.json` and update the `rig_permissions` as follows:
 ```json title="slipway_serve.json"
@@ -314,16 +316,115 @@ Passing it using the `authorization` header is preferred, but not always possibl
 See the [API Keys](/docs/basics/serving-rigs#api-keys) documentation for more information.
 :::
 
+### Automatic Refresh
+
+The above URL rendered our Rig once and returned it.
+But as we're displaying the time it might be nice to have it refresh automatically.
+
+Stop your Slipway server, if it is still running, with `Ctrl+C` in the terminal.
+
+We'll add a [playlist](/docs/basics/serving-rigs#playlists-1) using the `add-playlist` sub-command,
+which saves us creating the file ourselves:
+```sh
+slipway serve . add-playlist --name every_so_often --rig hello
+```
+
+You'll now find a file in your `playlists` folder called `every_so_often.json`.
+Open this file and it will look like this:
+
+```json title="every_so_often.json"
+{
+  "schedule": [
+    {
+      "refresh": {
+        "minutes": 5
+      },
+      "rig": "hello"
+    }
+  ]
+}
+```
+
+Change `"minutes": 5` to `"seconds": 10` because we don't have all day.
+The file should now look like this:
+```json title="every_so_often.json"
+{
+  "schedule": [
+    {
+      "refresh": {
+        "seconds": 10
+      },
+      "rig": "hello"
+    }
+  ]
+}
+```
+
+Now start your server again:
+
+```sh
+slipway serve .
+```
+
+But this time navigate to the following URL:
+
+```
+http://localhost:8080/playlists/every_so_often?format=html_embed&authorization=<YOUR_API_KEY>
+```
+
+Note that we're now navigating to `/playlists/every_so_often`, and we've added the
+`format=html_embed` query string parameter which tells the server to return an HTML page
+with an embedded image, rather than just returning the image directly.
+
+Now the page will automatically refresh itself every 10 seconds, thanks to the following
+in the HTML's `<head>` section:
+```
+<meta http-equiv="refresh" content="5">
+```
+
+:::info[Aside]
+Slipway isn't really intended for rapid refreshing, more for refreshes on the scale of
+minutes, or perhaps even hours or days. However for the purposes of this tutorial we
+won't make you wait that long.
+:::
+
+At the moment it refreshes 10 seconds after the browser receives its payload, and there may
+be some drift over time as each screen takes a moment to render, exaggerated because we're not
+pre-compiling the `slipwayhq.render` WASM component in this tutorial.
+
+But what if we wanted it to refresh precisely every 10th second of each minute?
+We can use [`cron`](https://crontab.guru/) syntax to specify this:
+
+```json title="every_so_often.json"
+{
+  "schedule": [
+    {
+      "refresh": {
+        "cron": "*/10 * * * * *"
+      },
+      "rig": "hello"
+    }
+  ]
+}
+```
+
+Save the file and your page should start refreshing roughly every 0th, 10th, 20th, 30th, 40th and 50th second
+of each minute (give or take a second), and it won't drift.
+
+In the real world you'd use this to schedule refreshes precisely on the hour, or every 15th minute of every hour, etc.
+This is very useful for knowing when the screen was last generated, and when it will next update.
+
+Playlists can also be used to display different Rigs depending on the time of day, or day of week.
+And they also work perfectly with [TRMNL devices](/docs/using-with-trmnl/slipway-for-trmnl-devices), controlling
+exactly when the eInk screen should refresh, and what it should display.
+
 ## What Next?
 
-You've now created a basic Component and a Rig, but neither are exactly useful, displaying the same output each time the
-Rig is run.
-
-What if we want to display rich, dynamic data?
-And what if we want our devices to display the output of different Rigs depending on the current day and time?
+You've now created a basic Component and a Rig, but neither are super useful, unless you want a slow refreshing eInk clock.
 
 Clicking "Next" below will take you through the Basics section of the documentation, which will 
-show you how to do *actually useful* things in Slipway, such as creating Rigs and Components which fetch 
-data and plot charts, and how to securely get the outputs of those Rigs onto your devices.
+show you how to do more interesting things in Slipway, such as creating Rigs and Components which fetch 
+data and plot charts, how to compose multiple components onto a single screen,
+and how to display get the outputs of Rigs onto your devices.
 
 If you want to use Slipway with [TRMNL devices](/docs/using-with-trmnl/slipway-for-trmnl-devices), you might also want to complete the [TRMNL Quick Start](/docs/using-with-trmnl/trmnl-quick-start).

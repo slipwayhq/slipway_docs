@@ -40,7 +40,7 @@ https://my-slipway-server.fly.dev/devices/my_device?format=html
 ```
 
 We've set the [`format` query string parameter](/docs/basics/serving-rigs#format) to `html` so that Slipway will return an HTML page containing a single image,
-which is the screen we want to display.
+which is the screen we want to display. You could also try using `format=html_embed` which uses an embedded image (via a `data://` URL).
 
 Next, set the `Headers` field to:
 ```

@@ -17,15 +17,6 @@ in just a few minutes.
 Next, in your Rig file, change the canvas width and height to match your TRMNL device
 (there are better, more dynamic ways to do this, but for now this is sufficient).
 
-You can then create a playlist by running:
-```sh
-slipway serve . add-playlist --name my_playlist --rig hello
-```
-
-This will add a [playlist](/docs/basics/serving-rigs#playlists-1) to your server configuration at `playlists/my_playlist.json`.
-If you inspect that file you'll see it always displays the Rig named `hello` (from the quick start), and refreshes 
-[at an interval](/docs/basics/serving-rigs#refresh) which you may want to change.
-
 You should now be ready to proceed with the TRMNL Quick Start below.
 :::
 
@@ -78,45 +69,50 @@ To allow this device, run the following command from your Slipway serve root:
 
     slipway serve . add-trmnl-device \
         --name "<NAME>" \
-        --id "01:03:40:83" \
+        --hashed-id "some_long_random_hash" \
         --hashed-api-key "some_long_random_hash" \
         --playlist <PLAYLIST>
 
 Then re-deploy the server if necessary.
 ```
+
+You should now run the command specified in your server logs (not the one above, which doesn't include
+the correct hashes for your device), replacing `<NAME>` with the name you'd like to give your device,
+and replacing `<PLAYLIST>` with the name of the playlist you'd like the device to use.
+
 :::info
-Both the device name and the playlist should be made up of only lowercase alphanumeric characters and underscores.
+Both the device name and the playlist name should be made up of only
+lowercase alphanumeric characters and underscores, `so_something_like_this`.
 :::
 
-You should now run the command specified in your sever logs, replacing `<NAME>` with the name you'd like to give your device
-(e.g. `trmnl_device_1`), and replacing `<PLAYLIST>` with the name of the playlist you'd like the device to use.
-If you followed the instructions at the beginning of this Quick Start, it will be `my_playlist`.
-Running this command will perform the necessary configuration file changes to your server.
+If you followed the instructions at the beginning of this Quick Start, the playlist name will be `every_so_often`.
+Running this command will perform the necessary configuration file changes to add the device to your server.
 
 After adding the device you'll need to restart the server (if running locally) or redeploy the server
-(if it is hosted, for example by running `fly deploy`).
+(if it is hosted, for example by running `fly deploy` if you're using [Fly.io](/docs/guides/hosting-on-fly)).
+
+:::info[Why?]
+Because the Slipway server never modifies its own configuration files you always make any changes
+you want yourself and then redeploy.
+
+Although this process might seem a bit manual, it has some big advantages.
+
+Because you know the live server never changes, you don't need to worry about backing it up:
+Your local copy of the configuration files represents the latest state.
+
+Because we only store the [hashed versions of API keys](/docs/guides/secrests-and-hashed-api-keys)
+in the configuration files, they are safe to upload to version control systems such as GitHub.
+
+By storing your configuration files in a version control system you can easily track how your server configuration
+changes over time, and roll back to a previous configuration if necessary.
+
+If your live server ever dies you can quickly re-deploy from your local configuration files with no data loss.
+If you ever want to move hosts, just tear down the current server and deploy a new one.
+:::
 
 Once that is done you should be able to press the button on the back of your TRMNL device to
 manually trigger a refresh, watch the page being generated in your Slipway logs, and finally see the screen
 appear on your TRMNL device.
-
-:::info[Why?]
-Although this process might seem a bit manual, it has some big advantages.
-
-By manually adding the device to your Slipway Server configuration files and then re-deploying,
-it allows the deployed configuration files to be immutable on the live server.
-
-This means you don't need to worry about backing up your live server, as your local configuration files always
-represent the latest state. If you want to re-deploy elsewhere, simply tear down
-your live server and re-deploy from your local configuration files.
-
-In addition, because we only store [hashed API keys](/docs/guides/secrests-and-hashed-api-keys) in the configuration files,
-they are safe to upload to version control systems such as GitHub.
-
-By storing your configuration files in a version control system you can easily track how your server configuration
-changes over time, and even if your live server is destroyed you can quickly redeploy
-with no data loss from your Git repo.
-:::
 
 :::tip
 As an extra step, when using Slipway with TRMNL devices it is recommended to also add a 
