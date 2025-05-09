@@ -51,14 +51,14 @@ For example:
 --log-level debug
 ```
 
-## `--registry-url`
+## `--registry`
 
 The Slipway CLI will always fall back to resolving Components from the Slipway Component Registry (https://registry.slipway.co/).
 
 However it has also been designed to make it as simple as possible to host your own Component registries, 
 either on the local file system or with a simple HTTP server.
 
-The `--registry-url` argument can be specified zero or more times to include additional paths or URLs to search for Components.
+The `--registry` argument can be specified zero or more times to include additional paths or URLs to search for Components.
 They will be searched in the order given, until the Component is found, before falling back to the default registry.
 
 See the [Component Registries](/docs/guides/component-registries#custom-component-registries) page for more information.

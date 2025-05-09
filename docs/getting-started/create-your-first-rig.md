@@ -76,6 +76,11 @@ and the Component can output any JSON.
 Create a file called `run.js` containing the following Javascript:
 ```js title="run.js"
 export function run(input) {
+  const timezone = process.env.TZ;
+  const now = Temporal.Now.plainDateTimeISO(timezone);
+  const time = `${padded(now.hour)}:${padded(now.minute)}:${padded(now.second)}`;
+  let outputText = `${input.text}\n${time}`;
+
   return {
       "type": "AdaptiveCard",
       "verticalContentAlignment": "center",
@@ -83,16 +88,21 @@ export function run(input) {
           {
               "type": "TextBlock",
               "horizontalAlignment": "center",
-              "text": input.text
+              "text": outputText
           }
       ]
   };
+}
+
+function padded(num) {
+  return num.toString().padStart(2, '0');
 }
 ```
 
 The `run.js` file contains the Javascript that will be executed for the Component.
 In this case it returns a simple [Adaptive Cards](https://adaptivecards.io/) definition
-that will render the text supplied in the input centered horizontally and vertically.
+that will render the text supplied in the input centered horizontally and vertically,
+along with the current time.
 
 :::info
 Slipway validates the input to your Component before calling the `run` function,
@@ -220,16 +230,17 @@ Launching rigs/hello.json
 └─□ output     ┆                       ┆             
 
 Running "hello_world"...
+Component "hello_world" finished running.
 
-■ hello_world  ┆  6fde7398 ➜ 3ecd566b  ┆   23 bytes ➜ 142 bytes  ┆  4ms of 20ms
-└─◩ output     ┆  1a26a008             ┆  187 bytes            
+■ hello_world  ┆  6fde7398 ➜ 6cfa9a4b  ┆   23 bytes ➜ 152 bytes  ┆  2ms of 3ms
+└─◩ output     ┆  fa87a452             ┆  197 bytes            
 
 Running "output"...
-
+Component "output" finished running.
 No more components to run.
 
-■ hello_world  ┆  6fde7398 ➜ 3ecd566b  ┆   23 bytes ➜ 142 bytes  ┆  4ms  of 20ms
-└─■ output     ┆  1a26a008 ➜ f37ba1b8  ┆  187 bytes ➜ 416.71 kb  ┆  41ms of 1s
+■ hello_world  ┆  6fde7398 ➜ 6cfa9a4b  ┆   23 bytes ➜ 152 bytes  ┆  2ms of 3ms
+└─■ output     ┆  fa87a452 ➜ 8c13d949  ┆  197 bytes ➜   1.95 mb  ┆  7ms of 454ms
 ```
 
 If your terminal doesn't support displaying images, you can add a `-o results` argument to write the outputs
@@ -252,7 +263,8 @@ First we initialize the configuration files for the built in HTTP server:
 slipway serve . init
 ```
 
-This will create a `slipway_serve.json` file and a number of additional (empty) folders, used for configuring features such as Playlists and Devices.
+This will create a `slipway_serve.json` file, a `Dockerfile` (to make hosting easy) and a number of
+additional (empty) folders which are used for configuring features such as Playlists and Devices.
 
 The defaults should be basically fine for this example.
 There are just a couple of additions we need to make.
@@ -264,7 +276,7 @@ slipway serve . add-api-key --name "example_key"
 ```
 
 This will add a hashed API key to the `slipway_serve.json` file, and output the unhashed key to the console.
-Make a note of the unhashed key, as we will use it in a moment.
+__Make a note of the unhashed key, as we will use it in a moment.__
 
 Next edit `slipway_serve.json` and update the `rig_permissions` as follows:
 ```json title="slipway_serve.json"
@@ -290,7 +302,7 @@ A server will start on port 8080. In your browser you can navigate to the follow
 replacing `<YOUR_API_KEY>` with the unhashed key displayed in the console when you ran the `add-api-key`
 sub-command above:
 ```
-http://localhost:8080/rigs/hello?authentication=<YOUR_API_KEY>
+http://localhost:8080/rigs/hello?authorization=<YOUR_API_KEY>
 ```
 
 The image we saw earlier should appear in your web browser. In your terminal where you ran `slipway serve .` you should
@@ -298,7 +310,7 @@ be able to see the logs of the Rig being generated. Each time you refresh the br
 
 :::warning
 Passing the API key as a query string parameter is not generally recommended for security reasons. 
-Passing it using the `authentication` header is preferred, but not always possible.
+Passing it using the `authorization` header is preferred, but not always possible.
 See the [API Keys](/docs/basics/serving-rigs#api-keys) documentation for more information.
 :::
 

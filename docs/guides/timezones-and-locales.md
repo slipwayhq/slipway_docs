@@ -2,13 +2,14 @@
 sidebar_position: 90
 ---
 
-# Timezones
+# Timezones and Locales
 
-When running Rigs through [`slipway run`](/docs/basics/running-rigs) the system timezone is used as the "user" timezone.
+When running Rigs through [`slipway run`](/docs/basics/running-rigs) the system timezone and locale are used.
 
-When running Rigs through [`slipway serve`](/docs/basics/serving-rigs) the user timezone is taken 
+When running Rigs through [`slipway serve`](/docs/basics/serving-rigs) the user timezone and locale are taken 
 from the [timezone field](/docs/basics/serving-rigs#timezone)
-of the `slipway_serve.json` configuration file, falling back to the system timezone if it is not found.
+and the [locale field](/docs/basics/serving-rigs#locale)
+of the `slipway_serve.json` configuration file, falling back to the system timezone or locale if either is not found.
 
 The timezone is used when evaluating [playlists](/docs/basics/serving-rigs#playlists-1), and is also made available to Components
 through the `TZ` environment variable _within_ the Component (in other words it is not a host environment variable, which
@@ -23,6 +24,9 @@ const tz = process.env.TZ;
 console.log(`Current Date/Time: ${Temporal.Now.plainDateTimeISO(tz).toString()}`);
 ```
 
-In addition to being made available to Components through the `TZ` environment variable, it is also added to the Rig's
-`context`, and can be accessed by using the `$.context.timezone`
-[query](/docs/basics/rigs#rigginginput).
+The locale is also made available to Components
+through the `LC` and `LC_ALL` environment variable _within_ the Component.
+
+In addition to being made available to Components through the `TZ` and `LC` environment variables, they is also added to the Rig's
+`context`, and can be accessed by using the `$.context.timezone` or `$.context.locale`
+[queries](/docs/basics/rigs#rigginginput).

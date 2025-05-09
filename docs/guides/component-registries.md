@@ -48,7 +48,7 @@ https://github.com/pied-piper/slipway_middle_out/releases/download/1.23.9/pied_p
 Slipway has been designed to make it as simple as possible to host your own Component registries, 
 either on the local file system or with a simple HTTP server.
 
-When running [`slipway run`](/docs/basics/running-rigs) you can pass in zero or more `--registry-url` arguments to include additional paths or URLs to search for Components.
+When running [`slipway run`](/docs/basics/running-rigs) you can pass in zero or more `--registry` arguments to include additional paths or URLs to search for Components.
 
 The `registry_urls` field in the `slipway_serve.json` file serves the same purpose when running [`slipway serve`](/docs/basics/serving-rigs).
 
@@ -60,23 +60,23 @@ The registry paths can be URLs pointing to TAR files, or local paths pointing to
 For example:
 
 ```sh title="An HTTP registry serving TAR files from the root"
---registry-url "https://my-registry.com/{publisher}.{name}.{version}.tar"
+--registry "https://my-registry.com/{publisher}.{name}.{version}.tar"
 ```
 
 ```sh title="An HTTP registry serving TAR files from a folder structure"
---registry-url "https://my-registry.com/components/{publisher}/{name}/{publisher}.{name}.{version}.tar"
+--registry "https://my-registry.com/components/{publisher}/{name}/{publisher}.{name}.{version}.tar"
 ```
 
 ```sh title="An absolute local path to a folder of TAR files"
---registry-url "file:///components/{publisher}.{name}.{version}.tar"
+--registry "file:///components/{publisher}.{name}.{version}.tar"
 ```
 
 ```sh title="A relative local path to a folder of TAR files"
---registry-url "file:components/{publisher}.{name}.{version}.tar"
+--registry "file:components/{publisher}.{name}.{version}.tar"
 ```
 
 ```sh title="A relative local path to components in folders, ignoring versions"
---registry-url "file:components/{publisher}.{name}"
+--registry "file:components/{publisher}.{name}"
 ```
 
 :::info[Example: Developing Multiple Components]
@@ -93,7 +93,7 @@ Assuming you run the test Rigs from the root of the repository you're testing,
 you could run them with the following argument:
 
 ```sh
---registry-url "file:../slipway_{name}/components/{publisher}.{name}"
+--registry "file:../slipway_{name}/components/{publisher}.{name}"
 ```
 
 This will try and locate each Component in the `components` folder of the relevant locally cloned repository.

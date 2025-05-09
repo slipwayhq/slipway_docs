@@ -262,7 +262,7 @@ To run this we have to change the `slipway` command slightly to:
 - Allow registry components, rather than local components.
 
 ```sh
-slipway run rig.json --registry-url file:components/{publisher}.{name}.{version}.tar --allow-registry-components
+slipway run rig.json --registry file:components/{publisher}.{name}.{version}.tar --allow-registry-components
 ```
 
 Slipway will try any registries supplied on the command line in order, and ultimately will fall back to the default Slipway registry. This allows us to test local components as if they were deployed, with minimal changes to our rigs once the components have actually been deployed.
@@ -271,7 +271,7 @@ If you add `--log-level debug` to the list of arguments you will see some extra 
 
 Local registries are particularly useful while developing multiple components, for example you could specify the registry URL as:
 ```sh
---registry-url file:../slipway_{name}/components/{publisher}.{name}.{version}.tar
+--registry file:../slipway_{name}/components/{publisher}.{name}.{version}.tar
 ```
 
 The above will cause Slipway to find components in their respective project folders, searching from the parent folder.

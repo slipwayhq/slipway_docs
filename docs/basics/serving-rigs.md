@@ -58,6 +58,7 @@ The `init` command will produce a basic version of this file which will look som
     "file:./components/{publisher}.{name}"
   ],
   "timezone": "Europe/London",
+  "locale": "en-GB",
   "rig_permissions": {},
   "hashed_api_keys": {}
 }
@@ -86,11 +87,23 @@ See the [Component Registries](/docs/guides/component-registries#custom-componen
 
 ### `timezone`
 
-The timezone which you want to use when evaluating playlists, and which is made available to Components.
+The timezone which you want to use when evaluating playlists, and which is made available to Components
+in the `TZ` environment variable.
 The timezone should be a string 
 [identifier](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones) such as `Europe/London`.
 
 The `init` command defaults this to the current system timezone.
+
+See [here](/docs/guides/timezones-and-locales) for more information.
+
+### `locale`
+
+The locale, which is made available to Components in the `LC` or `LC_ALL` environment variables.
+The local should be a string identifier such as `en-US`.
+
+The `init` command defaults this to the current system locale.
+
+See [here](/docs/guides/timezones-and-locales) for more information.
 
 ### `rig_permissions`
 
