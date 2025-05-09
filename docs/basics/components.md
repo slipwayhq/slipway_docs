@@ -16,7 +16,7 @@ code and access their own input unless given additional permissions.
 With appropriate permissions they become much more powerful, as we'll describe below.
 
 A component is structured as either a folder or a TAR file that contains a `slipway_component.json` configuration file,
-and any other supporting files required for the Component's execution.
+and any other supporting files required for the Component's execution, such as a `run.js` or a `run.wasm` file.
 
 ## Configuration
 
@@ -198,10 +198,41 @@ the Component using its handle.
 
 Note that the Component itself will still need to be [granted permission](/docs/basics/permissions.md) to use these components by the Rig.
 
-### `constants` and `rigging`
+### `rigging`
 
-If the Component is a Fragment Component (discussed [further down](#fragment-components)), then it can use the `constants` and `rigging` fields in the
-same way that a [Rig](/docs/basics/rigs) uses them, to compose together other components.
+A Component can contain it's own rigging in addition to, or instead of, code to run.
+This rigging behaves similarly to the rigging of a [Rig](/docs/basics/rigs).
+The Component's code, if any, is executed first, followed by the rigging.
+
+If the Component contains rigging, then the [output schema](#input-and-output) should reflect the output
+of the rigging, as it is the result of executing the rigging which is returned from the Component.
+
+The rigging can access the Component's input through a virtual component handle called `input`.
+For example the query `$.input.width` would fetch the value of the input `width` property.
+
+The rigging can access the result of the Component's `run` function through the `run` property
+on the `input` virtual component handle.
+For example the query `$.input.run.width` would access the `width` property from the result that was
+returned by the Component's `run` function.
+
+:::info[Example]
+A common pattern is where a Component's `run` function fetches, formats and returns some data, 
+and the rigging then passes that data through an appropriate renderer to produce a [Canvas](/docs/guides/canvases).
+
+For example, the Component's `run` function may fetch solar data for a house and output an
+[ECharts definition](https://echarts.apache.org/examples/en/index.html).
+The Component's rigging will then pass the resulting ECharts definition through to the 
+[`slipwayhq.echarts`](https://github.com/slipwayhq/slipway_echarts) Component,
+so that the Component returns a rendered chart.
+:::
+
+### `constants`
+
+Optional. This can contain any arbitrary data structure.
+
+It is a convenient place to put static data which will be referenced by multiple Components
+within the Component's own rigging.
+
 
 ## The Host API
 
@@ -315,6 +346,9 @@ export async function run(input) {
 }
 ```
 
+Javascript Components can also contain [rigging](#rigging), which will executed after the Javascript `run` function has completed.
+The rigging will have access to the result of the Javascript `run` function through the `$.input.run` query.
+
 ### WASM Components
 
 A WASM (WebAssembly) Component contains a `run.wasm` file which sits alongside the `slipway_component.json` file.
@@ -358,3 +392,7 @@ Given these tradeoffs, the recommendation is:
 :::
 
 See the [Guides](/docs/category/guides) section for more in-depth information on creating WASM Components.
+
+
+WASM Components can also contain [rigging](#rigging), which will executed after the WASM `run` function has completed.
+The rigging will have access to the result of the WASM `run` function through the `$.input.run` query.

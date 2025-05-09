@@ -99,7 +99,7 @@ Rigs, viewing and modifying each Component's input and output.
 More information about this can be found on the [Debugging Rigs](/docs/guides/debugging-rigs) page.
 
 However sometimes you don't want to manually step through each Component in a large Rig, or perhaps the Component
-you want to investigate is within a [Fragment Component](/docs/basics/components#fragment-components), which is opaque to the debugger.
+you want to investigate is [within the rigging of another Component](/docs/basics/components#rigging), which makes it is opaque to the debugger.
 
 The `--output-debug-rig` argument allows you to output a new Rig which is the flattened version of the
 Rig being run.

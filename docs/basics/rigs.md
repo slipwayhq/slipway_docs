@@ -35,7 +35,7 @@ It is only there to help users who are looking at the Rig.
 ## `constants`
 
 Optional. This can contain any arbitrary data structure.
-It is a convenient place to put static data which will be required by multiple Components.
+It is a convenient place to put static data which will be referenced by multiple Components.
 
 ## `rigging`
 

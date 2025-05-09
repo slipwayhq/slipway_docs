@@ -429,18 +429,21 @@ If your terminal doesn't support inline images, or you want to save it as a file
 
 Finally, when you want to exit the debugger, simply type `exit`.
 
-## Debug Rigs
+## Generated Debug Rigs
 
-Sometimes when you want to debug a Rig, the problematic Component is hidden inside
-a [Fragment Component](/docs/basics/components#fragment-components), which is opaque to the debugger.
-Other times the Component might be being run through [the Host API](/docs/basics/host-api#run-components).
+Sometimes you want to debug a Component but the problematic Component is being run from inside
+[the rigging of another Component](/docs/basics/components#rigging-and-constants).
+Other times the Component might be being run by another Component through [the Host API](/docs/basics/host-api#run-components).
 
-We could create a new Rig to try and isolate the problematic Component, and debug that, but it can be time consuming.
+The `slipway debug` command isn't able to step inside Components to run these deeply embedded Components in isolation.
+We could create a new Rig to try and isolate the problematic Component, and debug that instead, but doing that can be time consuming
+and challenging.
 
-Instead can generate a "debug" Rig, which flattens the entire Rig, including all Component executions made within Fragments
-and through the Host API, into a series of root level Component calls with their inputs fully resolved to JSON.
+Instead can generate a "debug" Rig.
+This flattens the entire Rig, including all Component executions made within other Components,
+into a series of root level Component calls with their inputs fully resolved to JSON.
 
-To demonstrate this, lets create a Rig which uses both Fragment components and callouts to the Host API:
+To demonstrate this, let's create a Rig which uses both Fragment components and callouts to the Host API:
 
 ::json[Test]{file=debug_rig_example.json}
 

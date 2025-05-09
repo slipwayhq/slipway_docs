@@ -27,6 +27,13 @@ They can be re-usable and shared publicly, or they can be entirely custom and pr
 Re-usable components are what make Slipway so powerful, and allow others to quickly create their own
 custom Rigs with very little code.
 
+## Canvas
+
+A "canvas" in Slipway is a specially formatted JSON snippet which represents an image.
+Components which render images will output their results in the canvas format, and Slipway recognizes the format and understands that it should be displayed as an image.
+
+You can see what this JSON looks like [here](/docs/guides/canvases).
+
 ## Slipway Host
 The program which is executing the Rig. The host handles tasks such as:
 - Determining which components to run next.
