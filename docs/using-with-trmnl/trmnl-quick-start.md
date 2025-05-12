@@ -28,7 +28,7 @@ If you're running locally, the logs will be output to your terminal window.
 If you've deployed the server to [Fly.io](/docs/guides/hosting-on-fly) you can watch the logs by running `fly logs`.
 
 :::tip
-You will need to be able to see the logs when you add the TRMNL device.
+You will need to be able to monitor the logs when you add the TRMNL device.
 :::
 
 ## Connecting your TRMNL device
@@ -52,17 +52,18 @@ The advantages of this method are:
 When you first set up your TRMNL device you're prompted for your WiFi SSID and password,
 and in addition you can optionally enter an API Server URL.
 
-The server URL should be the URL of your Slipway server __with `/trmnl` appended to the end__.
+To connect directly to your Slipway server, the server URL should be
+specified as the URL of your Slipway server __with `/trmnl` appended to the end__.
 
 :::info[Example]
 If your normal Slipway server URL is:
 ```
-https://myslipwayserver.com/
+https://my-slipway-server.com/
 ```
 
 Then you should point your TRMNL device at:
 ```
-https://myslipwayserver.com/trmnl
+https://my-slipway-server.com/trmnl
 ```
 :::
 
@@ -75,15 +76,15 @@ The advantages of this method are:
 
  - Firmware Updates: Because you're connecting via TRMNL's infrastructure, they can send your device
  firmware updates as new versions are released.
- - Management: You can still manage aspects of your device through TRMNL's website, for example monitoring its battery life.
+ - Management: You can still manage your device through TRMNL's website, for example monitoring its battery life.
  - Plugin ecosystem: By configuring TRMNL playlists can have your device displaying native TRMNL plugins sometimes, and Slipway plugins
  at other times, giving you access to both ecosystems.
 
 When you set up your TRMNL device, let it connect to the default TRMNL servers as normal.
 
 On the TRMNL website, add the [Redirect plugin](https://help.usetrmnl.com/en/articles/11035846-redirect) to a playlist
-on your device. If you want to proceed to the next step right away (adding your device to the Slipway server) then
-make sure the plugin will be the active plugin right now.
+on your device. If you want to proceed to the next step of this TRMNL Quick Start right away
+then make sure the plugin will be the active plugin for your device right now.
 
 To configure the Redirect plugin, put the address of the TRMNL `display` API endpoint in the "Web Address" field.
 This will be the domain where your server is hosted, followed by `/trmnl/api/display`.
@@ -91,12 +92,12 @@ This will be the domain where your server is hosted, followed by `/trmnl/api/dis
 :::info[Example]
 If your normal Slipway server URL is:
 ```
-https://myslipwayserver.com/
+https://my-slipway-server.com/
 ```
 
 Then you should point the Redirect plugin at:
 ```
-https://myslipwayserver.com/trmnl/api/display
+https://my-slipway-server.com/trmnl/api/display
 ```
 :::
 
@@ -157,16 +158,16 @@ you want yourself.
 Although this process might seem a bit manual, it has some big advantages.
 
 - Because you know the live server never changes, you don't need to worry about backing it up:
-Your local copy of the configuration files always represents the latest state.
+Your local copy of the configuration files always represents the latest state of your server.
+
+If your live server ever dies you can quickly re-deploy from your local configuration files with no data loss.
+If you ever want to move hosts, just tear down the current server and deploy a new one.
 
 - Because we only store the [hashed versions of API keys](/docs/guides/secrests-and-hashed-api-keys)
 in the configuration files, they are safe to upload to version control systems such as GitHub.
 
 By storing your configuration files in a version control system you can easily track how your server
 changes over time, and roll back to a previous configuration if necessary.
-
-If your live server ever dies you can quickly re-deploy from your local configuration files with no data loss.
-If you ever want to move hosts, just tear down the current server and deploy a new one.
 :::
 
 Once that is done you should be able to press the button on the back of your TRMNL device to

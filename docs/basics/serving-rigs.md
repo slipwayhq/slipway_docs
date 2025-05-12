@@ -362,6 +362,13 @@ At its simplest, a device simply references a playlist:
 }
 ```
 
+If your physical device is a TRMNL device, or will be using the TRMNL API,
+then the device file also contains the information required to identify and authenticate the TRMNL device.
+
+The `add-trmnl-device` sub-command is used to add this additional information to a Device file.
+
+See [this page](/docs/using-with-trmnl/slipway-for-trmnl-devices) for more information.
+
 ### Device Context
 
 Devices can also specify `context`, which can be used to supply arbitrary data to Rigs about the device,
@@ -380,13 +387,6 @@ and can in turn be used to alter the Rig's behavior.
 
 In your Rig you can access the current device context and pass it through to Components by using the `$.context.device`
 [query](/docs/basics/rigs#rigginginput).
-
-If your physical device is a TRMNL device, or will be using the TRMNL API,
-then the device file also contains the information required to identify and authenticate the TRMNL device.
-
-The `add-trmnl-device` sub-command is used to add this additional information to a Device file.
-
-See [this page](/docs/using-with-trmnl/slipway-for-trmnl-devices) for more information.
 
 ## Serving
 

@@ -8,7 +8,7 @@ Fly.io is an extremely straightforward way to host Slipway, and can often be don
 
 At time of writing Fly had a policy of not charging you anything if your monthly
 bill comes to below $5[^pricing], which (especially if you use their option to shut down idle servers) 
-it quite likely will.
+it quite likely will for a Slipway server.
 For my personal Slipway server it costs less than $1/month, which means they don't charge me anything.
 
 [^pricing]: It is possible this has changed since this article was written, please do your own research.
