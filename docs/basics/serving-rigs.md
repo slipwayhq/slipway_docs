@@ -362,6 +362,8 @@ At its simplest, a device simply references a playlist:
 }
 ```
 
+### Device Context
+
 Devices can also specify `context`, which can be used to supply arbitrary data to Rigs about the device,
 and can in turn be used to alter the Rig's behavior.
 

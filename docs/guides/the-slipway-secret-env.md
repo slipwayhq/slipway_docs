@@ -24,13 +24,13 @@ by the caller, putting it in the `authorization` query string parameter of the g
 However using an API key in a query string parameter is not best practice for security.
 
 If you set the `SLIPWAY_SECRET` environment variable, then instead of re-using the request's API key
-Slipway will generate a secure, short lived URL that is only valid for a short period of time (one minute
+Slipway will generate a URL with an access signature which that is only valid for a short period of time (one minute
 at time of writing).
 This is more secure: It doesn't risk exposing any API keys, and even if the URL was to leak or be intercepted
 it is useless once it expires.
 
 :::tip
-The `SLIPWAY_SECRET` environment variable should be set to long, hard to guess string.
+The `SLIPWAY_SECRET` environment variable should be set to a long, hard to guess string.
 It should be treated with the same level of security as a password or an encryption key.
 
 The simplest way to generate a secure value for `SLIPWAY_SECRET` is to run:

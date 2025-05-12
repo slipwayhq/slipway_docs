@@ -11,18 +11,32 @@ Slipway is a single binary application, which makes installing it (and uninstall
 You can download Slipway from our [releases](https://github.com/slipwayhq/slipway/releases) page on GitHub.
 Simply download the appropriate `.tar.gz` file for your platform, extract the binary, and ensure it is on path.
 
-:::info[Terminal Image Support]
-The MacOS (`apple-darwin`) and x64 Linux GNU builds support [Sixel](https://en.wikipedia.org/wiki/Sixel),
-a protocol for displaying images supported by many terminals.
-Currently the MUSL Linux builds do not (although they still support images in Kitty and iTerm).
+There are some platform specific instructions below.
 
-When running Slipway on the command line, Slipway uses Sixel to display your generated dashboards directly in the terminal.
-This is useful for getting an idea of how your dashboards will look without having to open a separate image file, 
-or view the dashboards in a browser, but it is not essential to use Slipway.
+### MacOS
 
-We recommend using the Linux GNU or MacOS builds when possible, for the best experience.
-For Slipway servers, the MUSL builds are sufficient.
-:::
+The MacOS build uses [Sixel](https://en.wikipedia.org/wiki/Sixel) for displaying images in the terminal.
+You will need to have this installed with `brew` or you will get 
+the error `Library not loaded: /opt/homebrew/opt/libsixel/lib/libsixel.1.dylib`.
+
+To install `libsixel` run the following:
+```
+brew install libsixel
+```
+
+### Windows
+
+We don't currently produce native Windows builds, however the Linux builds should work in WSL.
+
+### Linux
+
+We produce two Linux builds: `Gnu` and `MUSL`.
+
+The `Gnu` builds use [Sixel](https://en.wikipedia.org/wiki/Sixel) for displaying images in the terminal
+and provides the greatest compatibility for terminal images, and gives the best experience using Slipway.
+
+The `MUSL` builds do not use Sixel, but should still support images in Kitty.
+If you're running Slipway on a server then terminal images aren't important and the MUSL build should be fine.
 
 
 ## Docker
