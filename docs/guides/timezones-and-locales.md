@@ -27,6 +27,9 @@ console.log(`Current Date/Time: ${Temporal.Now.plainDateTimeISO(tz).toString()}`
 The locale is also made available to Components
 through the `LC` and `LC_ALL` environment variable _within_ the Component.
 
-In addition to being made available to Components through the `TZ` and `LC` environment variables, they is also added to the Rig's
-`context`, and can be accessed by using the `$.context.timezone` or `$.context.locale`
+## Rig Context
+
+In addition to being made available to Components through the `TZ` and `LC` environment variables, the timezone and locale
+are  also added to the Rig's `context`, and can be accessed by using 
+the `$.context.timezone` or `$.context.locale`
 [queries](/docs/basics/rigs#rigginginput).
