@@ -432,7 +432,7 @@ Finally, when you want to exit the debugger, simply type `exit`.
 ## Generated Debug Rigs
 
 Sometimes you want to debug a Component but the problematic Component is being run from inside
-[the rigging of another Component](/docs/basics/components#rigging-and-constants).
+[the rigging of another Component](/docs/basics/components#rigging).
 Other times the Component might be being run by another Component through [the Host API](/docs/basics/host-api#run-components).
 
 The `slipway debug` command isn't able to step inside Components to run these deeply embedded Components in isolation.

@@ -85,7 +85,7 @@ and [ECharts](https://echarts.apache.org/examples/en/index.html) out of the box,
 and all of these are open source in our [GitHub organization](https://github.com/slipwayhq/).
 
 Our ecosystem is small at the moment, but I'm hoping that with an enthusiastic community it can expand rapidly.
-You can see a [list of current components here](/components), and [some example rigs here](/rigs).
+You can see a [list of current components here](/components).
 
 ### Security
 
