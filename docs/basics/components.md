@@ -299,7 +299,7 @@ Internally the rigging is defined as follows:
       }
     },
     "output": {
-      "component": "slipwayhq.svg.0.5.0",
+      "component": "slipwayhq.svg.0.6.0",
       "allow": [
         { "permission": "fonts" }
       ],

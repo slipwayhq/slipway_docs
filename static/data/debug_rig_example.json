@@ -6,7 +6,7 @@
   },
   "rigging": {
     "render": {
-      "component": "slipwayhq.render.0.5.0",
+      "component": "slipwayhq.render.0.6.0",
       "callouts": {
         "echarts": {
           "component": "slipwayhq.echarts.0.5.1",
