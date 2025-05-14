@@ -33,7 +33,18 @@ const config: Config = {
     locales: ['en'],
   },
 
-  plugins: [require.resolve('docusaurus-lunr-search')],
+  plugins: [
+    require.resolve('docusaurus-lunr-search'),
+    [
+      "@dipakparmar/docusaurus-plugin-umami",
+      /** @type {import('@dipakparmar/docusaurus-plugin-umami').Options} */
+      ({
+        websiteID: "11e7c6fc-c2af-44c6-868f-c1c05a9c57c0",
+        analyticsDomain: "analytics.umami.is",
+        dataDomains: "slipway.co,www.slipway.co,slipwayhq.com,www.slipwayhq.com"
+      }),
+    ]
+  ],
   
   presets: [
     [
