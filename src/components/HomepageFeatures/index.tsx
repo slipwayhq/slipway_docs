@@ -50,7 +50,7 @@ const FeatureList: FeatureItem[] = [
       <>
         Display your Rigs on any device with a screen,
         including <Link to="/docs/using-with-trmnl/slipway-for-trmnl-devices">eInk screens</Link>,
-        phone widgets, monitor arrays , and more.
+        phone widgets, monitor arrays, and more.
       </>
     ),
   },

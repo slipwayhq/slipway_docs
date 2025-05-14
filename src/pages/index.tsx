@@ -64,7 +64,8 @@ export default function Home(): ReactNode {
                     </div>
                     <div className="card__body">
                       <p>
-                        Slipway lets you quickly create custom dashboards (called Rigs) that can be displayed
+                        Slipway lets you <Link to="/docs/getting-started/create-your-first-rig">quickly</Link> create 
+                        custom dashboards (called Rigs) that can be displayed
                         on almost any device with a screen. Browsers, phone widgets, eInk screens, and more.
                       </p>
                       <p>
@@ -83,7 +84,7 @@ export default function Home(): ReactNode {
                     </div>
                     <div className="card__body">
                       <p>
-                        By utilizing an ecosystem of  <Link to="/components">Components</Link> you can often create custom Rigs with just some JSON and
+                        By utilizing an ecosystem of <Link to="/components">Components</Link> you can often create custom Rigs with just some JSON and
                         a small amount of code.
                       </p>
                       <p>
