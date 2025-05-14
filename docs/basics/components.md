@@ -269,7 +269,8 @@ A Fragment Component has no executable code, but instead just specifies some rig
 
 It allows you to bundle multiple Components together into a single Component.
 
-Within the rigging, a Fragment Component input comes from an implicit Component with the Handle `input`, and the output of the Fragment
+Within the rigging, a Fragment Component input comes from an implicit Component with the Handle `input`, 
+and the output of the Fragment
 will be the output of the Component with the Handle `output`.
 
 :::info[Example]

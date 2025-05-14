@@ -89,7 +89,6 @@ const config: Config = {
           label: 'Documentation',
         },
         //{to: '/blog', label: 'Blog', position: 'left'},
-        {to: '/rigs', label: 'Rigs', position: 'left'},
         {to: '/components', label: 'Components', position: 'left'},
         {to: '/community', label: 'Community', position: 'left'},
         {to: '/hosting', label: 'Hosting', position: 'left'},
