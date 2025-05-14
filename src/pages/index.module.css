@@ -21,3 +21,11 @@
   align-items: center;
   justify-content: center;
 }
+
+.multiDeviceSvg {
+  width: 100%;
+}
+
+.heroSecondaryCard[data-theme='light'] {
+  background-color: hsl(0, 0%, 98%);
+}

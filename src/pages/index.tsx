@@ -25,8 +25,7 @@ function HomepageHeader() {
           Write once, display anywhere.
         </p>
         <p>
-          Slipway is an open source framework for displaying useful information on your devices,
-          from eInk screens to phones to monitor walls.
+          Slipway is an open source framework for displaying useful information on your devices.
         </p>
         <div className={styles.buttons}>
           <Link
@@ -42,73 +41,137 @@ function HomepageHeader() {
 
 export default function Home(): ReactNode {
   const {siteConfig} = useDocusaurusContext();
+  const Svg: React.ComponentType<React.ComponentProps<'svg'>> = require('@site/static/img/slipway-multi-device.svg').default;
   return (
     <Layout
       title={`${siteConfig.title}`}
       description={siteConfig.tagline}>
       <HomepageHeader />
       <main>
-        <section className="container margin-top--lg">
-          <div className="row">
-          <div className={clsx('col col--4 margin-top--lg')}>
-              <div className="card-demo">
-                <div className="card">
-                  <div className="card__header">
-                    <h3>Display Anywhere, Easily</h3>
+        <section className={clsx('hero hero--secondary', styles.heroSecondary)}>
+          <div className="container">
+            <div className="row">
+              <div className="col col--12">
+                <Svg className={styles.multiDeviceSvg} height="100%" role="img"/>
+              </div>
+            </div>
+            <div className="row">
+              <div className={clsx('col col--4 margin-top--lg')}>
+                <div className="card-demo">
+                  <div className={clsx('card', styles.heroSecondaryCard)}>
+                    <div className="card__header">
+                      <h3>Display anywhere</h3>
+                    </div>
+                    <div className="card__body">
+                      <p>
+                        Slipway lets you quickly create custom dashboards (called Rigs) that can be displayed
+                        on almost any device with a screen. Browsers, phone widgets, eInk screens, and more.
+                      </p>
+                      <p>
+                        If you have data in one place and want to display it in another place, Slipway is designed to do that
+                        quickly and with minimum fuss.
+                      </p>
+                    </div>
                   </div>
-                  <div className="card__body">
-                    <p>
-                      Slipway lets you quickly create custom dashboards (called Rigs) that can be displayed
-                      on almost any device with a display.
-                    </p>
-                    <p>
-                      If you have data in one place and want to display it in another place, Slipway is designed to do that with
-                      minimum fuss.
-                    </p>
+                </div>
+              </div>
+              <div className={clsx('col col--4 margin-top--lg')}>
+                <div className="card-demo">
+                  <div className={clsx('card', styles.heroSecondaryCard)}>
+                    <div className="card__header">
+                      <h3>Reusable Components</h3>
+                    </div>
+                    <div className="card__body">
+                      <p>
+                        By utilizing an ecosystem of  <Link to="/components">Components</Link> you can often create custom Rigs with just some JSON and
+                        a small amount of code.
+                      </p>
+                      <p>
+                        If someone else has already done what you need, you might not
+                        even need any code.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className={clsx('col col--4 margin-top--lg')}>
+                <div className="card-demo">
+                  <div className={clsx('card', styles.heroSecondaryCard)}>
+                    <div className="card__header">
+                      <h3>Information when you need it</h3>
+                    </div>
+                    <div className="card__body">
+                      <p>
+                        Using playlists, you can schedule Rigs to be displayed at different times of the day,
+                        or on different days of the week.
+                      </p>
+                      <p>
+                        Perhaps in the morning you want today's calendar alongside train departures, 
+                        in the afternoon your house solar stats, and perhaps some movie recommendations
+                        in the evening? No problem.
+                      </p>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-            <div className={clsx('col col--4 margin-top--lg')}>
-              <div className="card-demo">
-                <div className="card">
-                  <div className="card__header">
-                    <h3>Minimum Code, Maximum Reuse</h3>
-                  </div>
-                  <div className="card__body">
-                    <p>
-                      Slipway supports an ecosystem of Components that take care of the complicated, repetitive,
-                      or boring tasks, such as rendering, formatting or fetching data from common APIs.
-                    </p>
-                    <p>
-                      You can often create Rigs in pure JSON, composing together existing Components,
-                      but if a custom Component is required then it often only needs a small amount of code,
-                      written in a language of your choice.
-                    </p>
-                    <p>
-                      Slipway lets you write Components in Javascript or any language that compiles to WASM, such as Rust,
-                      and mix and match them in your Rigs.
-                    </p>
+            <div className="row">
+              <div className={clsx('col col--4 margin-top--lg')}>
+                <div className="card-demo">
+                  <div className={clsx('card', styles.heroSecondaryCard)}>
+                    <div className="card__header">
+                      <h3>Designed for simple self hosting</h3>
+                    </div>
+                    <div className="card__body">
+                      <p>
+                        Slipway has been designed to make self hosting as simple, hassle
+                        free, <Link to="/docs/basics/permissions">and safe</Link> as possible.
+                      </p>
+                      <p>
+                        All you need is a cheap, basic server. There are no databases or other dependencies.
+                        Slipway is deployed as a single binary with some static configuration,
+                        or as a single Docker image.
+                      </p>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-            <div className={clsx('col col--4 margin-top--lg')}>
-              <div className="card-demo">
-                <div className="card">
-                  <div className="card__header">
-                    <h3>Supports TRMNL Devices</h3>
+              <div className={clsx('col col--4 margin-top--lg')}>
+                <div className="card-demo">
+                  <div className={clsx('card', styles.heroSecondaryCard)}>
+                    <div className="card__header">
+                      <h3>Language and renderer agnostic</h3>
+                    </div>
+                    <div className="card__body">
+                      <p>
+                        Slipway lets you write Components in Javascript or any language that compiles to WASM, such as Rust,
+                        and mix and match within your Rigs.
+                      </p>
+                      <p>
+                        Renderers are also just Components. Currently Slipway supports rendering using JSX, SVG, ECharts,
+                        Adaptive Cards, or a mix of all of them.
+                      </p>
+                    </div>
                   </div>
-                  <div className="card__body">
-                    <p>
-                      <Link to="/docs/using-with-trmnl/slipway-for-trmnl-devices">TRMNL devices</Link> are
-                      affordable eInk screens for displaying anything you like.
-                    </p>
-                    <p>
-                      Slipway supports the TRMNL API out of the box, so you quickly get up and running displaying
-                      your Rigs on your TRMNL devices, taking advantage of Slipway's flexible scheduling, playlists
-                      and on-demand rendering.
-                    </p>
+                </div>
+              </div>
+              <div className={clsx('col col--4 margin-top--lg')}>
+                <div className="card-demo">
+                  <div className={clsx('card', styles.heroSecondaryCard)}>
+                    <div className="card__header">
+                      <h3>Supports TRMNL out of the box</h3>
+                    </div>
+                    <div className="card__body">
+                      <p>
+                        <Link to="/docs/using-with-trmnl/slipway-for-trmnl-devices">TRMNL devices</Link> are
+                        affordable eInk screens for displaying anything you like.
+                      </p>
+                      <p>
+                        Slipway supports the TRMNL API out of the box, so you can quickly get up and running displaying
+                        your Rigs on your TRMNL devices while taking advantage of Slipway's flexible scheduling, playlists
+                        and on-demand rendering.
+                      </p>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -116,6 +179,15 @@ export default function Home(): ReactNode {
           </div>
         </section>
         <HomepageFeatures />
+        <section className={clsx('hero hero--secondary', styles.heroSecondary)}>
+          <div className="container" style={{"textAlign": "center"}}>
+            <Link
+              className="button button--secondary button--lg"
+              to="/docs/intro">
+              Quick Start ⏱️
+            </Link>
+          </div>
+        </section>
       </main>
     </Layout>
   );

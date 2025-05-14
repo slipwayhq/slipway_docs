@@ -26,6 +26,6 @@ to hosting on common providers to creating custom component registries.
 
 For using Rigs with specific devices we provide the following:
 
+- [Using with Browsers](/docs/using-with-browsers)
+- [Using with iOS Devices](/docs/using-with-ios/widgy-widgets-app)
 - [Using with TRMNL Devices](/docs/using-with-trmnl/slipway-for-trmnl-devices)
-
-- Using with iOS Widgets (Coming soon)
