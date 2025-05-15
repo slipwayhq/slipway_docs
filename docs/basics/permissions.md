@@ -57,7 +57,7 @@ If the action is allowed at every link in the permissions chain, then Slipway al
 Permissions are either configured in JSON (as part of the [Rig](/docs/basics/rigs) 
 or [Component](/docs/basics/components) configuration files,
 or as part of the [`slipway serve`](/docs/basics/serving-rigs) config), or on the command line
-when calling [`silpway run`](/docs/basics/running-rigs).
+when calling [`slipway run`](/docs/basics/running-rigs).
 
 When specifying permissions on the command line, you can specify the same command line argument multiple
 times to accumulate permissions. For example:
