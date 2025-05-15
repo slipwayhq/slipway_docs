@@ -254,6 +254,13 @@ In this case there will only be one output, `results/output.png`, which should l
 
 ![Docs Version Dropdown](./img/getting_started_rig_output.png)
 
+:::info[Terminal image quality]
+Keep in mind that the image rendered in the terminal, while a very useful approximation of the actual image,
+will be lower quality (and often a distorted aspect ratio) compared to the image you'd see on your device,
+or if you use the `-o` argument to write the result to disk. This is just due to the limitations of rendering
+images in the terminal.
+:::
+
 ## Hosting Your Rig
 
 Now we have a Rig, it's easy to host it so that it can be served over a network.
