@@ -44,17 +44,23 @@ fly launch
 ```
 
 :::info[Machine Sizes]
-You'll probably want to select a machine size based on your desired performance and [the cost](https://fly.io/docs/about/pricing/).
-You can change the machine size at any time.
+Selecting a machine size will depend on your desired performance and [the cost](https://fly.io/docs/about/pricing/).
+The shared CPU machines are quite slow, but often sufficient.
+You can change the machine size at any time if your priorities change.
 
-Keep in mind there is a good chance your machines will spend a lot of time shut down, so your costs will likely be much less than
+There is a good chance your machines will spend a lot of time shut down, so your costs will likely be much less than
 what you see on the pricing page (but make sure you test this yourself).
 
-For reference, I currently run Slipway on the following spec machine, priced (at time of writing) $3.89/month depending on the region:
+For reference, I've previously run Slipway on the following spec machine, priced (at time of writing) $3.89/month depending on the region:
 ```
 size = 'shared-cpu-2x'
 memory = '512mb'
 ```
+
+More recently I've tried more memory (`memory = '1gb'`) to eek out some extra performance when using the JSX renderer
+(which is written in Javascript, and so not as performant as the WASM renderers).
+
+On this spec my Rig still runs about 3x slower compared to my M3 Macbook Air, but it's sufficient for my needs.
 :::
 
 :::tip
