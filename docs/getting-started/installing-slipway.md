@@ -20,24 +20,37 @@ You will need to have this installed with `brew` or you will get
 the error `Library not loaded: /opt/homebrew/opt/libsixel/lib/libsixel.1.dylib`.
 
 To install `libsixel` run the following:
-```
+```sh
 brew install libsixel
 ```
-
-### Windows
-
-We don't currently produce native Windows builds, however the Linux builds should work in WSL.
 
 ### Linux
 
 We produce two Linux builds: `Gnu` and `MUSL`.
 
-The `Gnu` builds use [Sixel](https://en.wikipedia.org/wiki/Sixel) for displaying images in the terminal
-and provides the greatest compatibility for terminal images, and gives the best experience using Slipway.
+#### Gnu Builds
+The `Gnu` builds use [Sixel](https://en.wikipedia.org/wiki/Sixel) for displaying images in the terminal.
+This build provides the greatest compatibility for terminal images, which in turn give the best experience using Slipway.
 
-The `MUSL` builds do not use Sixel, but should still support images in Kitty.
-If you're running Slipway on a server then terminal images aren't important and the MUSL build should be fine.
+If you see the error `error while loading shared libraries: libsixel.so.1` then you will need to install 
+`libsixel-bin` using `apt-get` or similar. For example
+```sh
+sudo apt-get update
+sudo apt-get install -y libsixel-bin
+```
 
+#### MUSL Builds
+The `MUSL` builds do not use Sixel, but should still support images in terminals such as Kitty or even Windows Terminal.
+If you're running Slipway on a server then terminal images aren't important and the MUSL build should be fine, of if
+you know you don't need Sixel then the MUSL build is a good choice for wide compatibility with Linux distributions.
+
+#### Other Issues
+If you encounter other issues you may also need to ensure you have `libssl-dev` and `fontconfig` installed.
+
+### Windows
+
+We don't currently produce native Windows builds, however the Linux builds work fine in WSL.
+Windows Terminal seems to display images fine using the MUSL Linux build.
 
 ## Docker
 
@@ -84,10 +97,6 @@ ln -sf $(pwd)/src/target/release/slipway ~/bin/slipway
 ```
 
 From there you should be able to run the Slipway CLI as normal.
-
-### Build issues
-
-On Linux you may also need to install `libssl-dev`,  `libsixel-bin` and `fontconfig` using `apt-get` or similar.
 
 ## Testing your installation
 

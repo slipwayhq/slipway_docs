@@ -379,7 +379,7 @@ with an embedded image, rather than just returning the image directly.
 Now the page will automatically refresh itself every 10 seconds, thanks to the following
 in the HTML's `<head>` section:
 ```
-<meta http-equiv="refresh" content="5">
+<meta http-equiv="refresh" content="10">
 ```
 
 :::info[Aside]
@@ -389,8 +389,8 @@ won't make you wait that long.
 :::
 
 At the moment it refreshes 10 seconds after the browser receives its payload, and there may
-be some drift over time as each screen takes a moment to render, exaggerated because we're not
-pre-compiling the `slipwayhq.render` WASM component in this tutorial.
+be some drift over time as each screen takes a moment to render, exaggerated because
+the `slipwayhq.render` WASM component is being JIT compiled in this tutorial.
 
 But what if we wanted it to refresh precisely every 10th second of each minute?
 We can use [`cron`](https://crontab.guru/) syntax to specify this:
