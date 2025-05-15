@@ -88,3 +88,32 @@ From there you should be able to run the Slipway CLI as normal.
 ### Build issues
 
 On Linux you may also need to install `libssl-dev`,  `libsixel-bin` and `fontconfig` using `apt-get` or similar.
+
+## Testing your installation
+
+Running the following command will test that slipway can download and run components:
+```sh
+slipway run-component "slipwayhq.modify.0.5.0" \
+    --input "{\"data\":{\"foo\":1},\"instructions\":[{\"type\":\"set\",\"path\":\"foo\",\"value\":2}]}"
+```
+
+It should report that the Component produced the output:
+```json
+{
+  "data": {
+    "foo": 2
+  }
+}
+```
+
+Running the following will test if terminal images are working:
+```
+slipway run-component "slipwayhq.render.0.6.0" \
+    --allow-fonts \
+    --input "{\"canvas\":{\"width\":100,\"height\":100},\"card\":{\"type\":\"AdaptiveCard\",\"verticalContentAlignment\":\"center\",\"body\":[{\"type\":\"TextBlock\",\"horizontalAlignment\":\"center\",\"text\":\"hello\"}]}}"
+```
+
+It should display the Component output as a white square containing the text "hello".
+
+If your terminal doesn't display the image, you can add the `--output .` argument to write
+the output image to the current directory.

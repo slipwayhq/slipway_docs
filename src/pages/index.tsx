@@ -66,7 +66,7 @@ export default function Home(): ReactNode {
                       <p>
                         Slipway lets you <Link to="/docs/getting-started/create-your-first-rig">quickly</Link> create 
                         custom dashboards (called Rigs) that can be displayed
-                        on almost any device with a screen. Browsers, phone widgets, eInk screens, and more.
+                        on almost any device with a screen. View them in browsers, as phone widgets, on eInk screens, and more.
                       </p>
                       <p>
                         If you have data in one place and want to display it in another place, Slipway is designed to do that
@@ -85,11 +85,12 @@ export default function Home(): ReactNode {
                     <div className="card__body">
                       <p>
                         By utilizing an ecosystem of <Link to="/components">Components</Link> you can often create custom Rigs with just some JSON and
-                        a small amount of code.
+                        a small amount of code. If someone else has already done what you need, you might not
+                        even need any code.
                       </p>
                       <p>
-                        If someone else has already done what you need, you might not
-                        even need any code.
+                        Rigs compose components together, allowing you to mix and match information to create dashboards
+                        that are tailored to your needs.
                       </p>
                     </div>
                   </div>
@@ -108,8 +109,8 @@ export default function Home(): ReactNode {
                       </p>
                       <p>
                         Perhaps in the morning you want today's calendar alongside train departures, 
-                        in the afternoon your house solar stats, and perhaps some movie recommendations
-                        in the evening? No problem.
+                        in the afternoon your house solar stats, and in the evening some movie recommendations.
+                        Playlists make that trivial.
                       </p>
                     </div>
                   </div>
