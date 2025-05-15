@@ -86,7 +86,7 @@ Languages have different strengths and weaknesses, as do their ecosystems.
 With Slipway you can mix and match.
 
 Slipway supports multiple renderers, and new renderers can easily be written as Components by anyone.
-Slipway HQ provides Components for rendering
+Slipway provides Components for rendering
 [Adaptive Cards](https://adaptivecards.io/samples/FlightUpdateTable.html),
 [JSX files](https://og-playground.vercel.app/), SVG
 and [ECharts](https://echarts.apache.org/examples/en/index.html) out of the box,
