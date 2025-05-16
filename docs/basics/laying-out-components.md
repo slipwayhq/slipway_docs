@@ -1,5 +1,5 @@
 ---
-sidebar_position: 5
+sidebar_position: 70
 ---
 
 # Laying out Components
@@ -140,8 +140,8 @@ This lets Slipway know in advance what Components are potentially going to be us
 so it can ensure it's got them all cached locally.
 
 It also passes through any relevant permissions to `slipwayhq.echarts`.
-In this case we pass through both the `fonts` permission, because like the `render`
-Component the `echarts` Component needs to be able to access fonts so it can render text,
+In this case we pass through both the `fonts` permission, because 
+the `echarts` Component needs to be able to access fonts so it can render text,
 and the `registry_components` permission, because the `echarts` component internally uses
 other components such as [`slipwayhq.svg`](https://github.com/slipwayhq/slipway_svg) to render the chart.
 
@@ -151,7 +151,7 @@ Next, in place of the image URLs, we specify component URLs:
 ```
 
 The `component://echarts` part of the URL tells Slipway that we want to execute the
-component callout called `echarts`, which we mapped above to `slipwayhq.echarts.0.5.1`.
+component callout called `echarts`, which we mapped in the `callouts` section to `slipwayhq.echarts.0.5.1`.
 
 The `?width=$width&height=$height` is the earlier Render Component magic, where it substitutes
 `$width` and `$height` with the actual calculated measured dimensions.
@@ -173,7 +173,7 @@ in the exact, pixel perfect size required to be slotted into the Adaptive Cards 
 
 ![Rig output](/img/docs/laying-out-components-40.png)
 
-Obviously in reality any ECharts input would be dynamically generated, probably by another
+Obviously in reality any ECharts input JSON would be dynamically generated, probably by another
 Component.
 
 Or you might instead insert a [GitHub commit graph](https://github.com/jamesthurley/slipway_github_commit_graph), 
