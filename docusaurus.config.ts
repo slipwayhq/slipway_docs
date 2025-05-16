@@ -149,7 +149,7 @@ const config: Config = {
     prism: {
       // Themes: https://github.com/FormidableLabs/prism-react-renderer/tree/master/packages/prism-react-renderer/src/themes
       theme: prismThemes.vsLight,
-      darkTheme: prismThemes.vsDark,
+      darkTheme: prismThemes.vsDark
     },
   } satisfies Preset.ThemeConfig,
 };

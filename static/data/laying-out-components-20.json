@@ -1,0 +1,69 @@
+{
+  "rigging": {
+    "render": {
+      "component": "slipwayhq.render.0.6.1",
+      "allow": [
+        {
+          "permission": "fonts"
+        }
+      ],
+      "input": {
+        "canvas": {
+          "width": 800,
+          "height": 480
+        },
+        "card": {
+          "type": "AdaptiveCard",
+          "body": [
+            {
+              "type": "TextBlock",
+              "text": "Let's insert two components below this line.",
+              "wrap": true
+            },
+            {
+              "type": "ColumnSet",
+              "height": "stretch",
+              "columns": [
+                {
+                  "type": "Column",
+                  "style": "good",
+                  "width": "stretch"
+                },
+                {
+                  "type": "Column",
+                  "style": "attention",
+                  "width": "stretch"
+                }
+              ]
+            }
+          ]
+        },
+        // highlight-start
+        "host_config": {
+          "spacing": {
+            "default": 40
+          },
+          "fontTypes": {
+            "default": {
+              "fontSizes": {
+                "default": 30
+              }
+            }
+          },
+          "containerStyles": {
+            "good": {
+              "backgroundColor": "#c5c",
+              "borderColor": "#00f",
+              "borderThickness": 4
+            },
+            "attention": {
+              "backgroundColor": "#f5a",
+              "borderThickness": 0
+            }
+          }
+        }
+        // highlight-end
+      }
+    }
+  }
+}

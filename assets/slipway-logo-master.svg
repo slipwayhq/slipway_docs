@@ -29,9 +29,9 @@
      showborder="false"
      showgrid="false"
      showguides="true"
-     inkscape:zoom="1.0067444"
-     inkscape:cx="612.86657"
-     inkscape:cy="343.68206"
+     inkscape:zoom="0.71187581"
+     inkscape:cx="818.2607"
+     inkscape:cy="428.44552"
      inkscape:window-width="2144"
      inkscape:window-height="1633"
      inkscape:window-x="848"
@@ -82,13 +82,13 @@
     <text
        xml:space="preserve"
        style="font-size:50.8px;font-family:'Arial Rounded MT Bold';-inkscape-font-specification:'Arial Rounded MT Bold, ';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#262626;stroke:#262626;stroke-width:0.529167;stroke-linecap:round"
-       x="191.27048"
+       x="201.5201"
        y="67.126732"
        id="text2"><tspan
          sodipodi:role="line"
          id="tspan2"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:50.8px;font-family:'Arial Rounded MT Bold';-inkscape-font-specification:'Arial Rounded MT Bold, ';stroke-width:0.529167"
-         x="191.27048"
+         x="201.5201"
          y="67.126732">Slipway</tspan></text>
   </g>
   <g
@@ -98,7 +98,7 @@
     <g
        id="g2"
        inkscape:label="logo"
-       transform="translate(0,5.5515917)">
+       transform="translate(3.9421624,5.5515917)">
       <rect
          style="fill:#262626;fill-opacity:1;stroke:none;stroke-width:1.665"
          id="rect8"

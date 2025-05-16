@@ -1,0 +1,162 @@
+{
+  "rigging": {
+    "render": {
+      "component": "slipwayhq.render.0.6.1",
+      "allow": [
+        {
+          "permission": "fonts"
+        },
+        // highlight-start
+        {
+          "permission": "registry_components"
+        }
+        // highlight-end
+      ],
+      // highlight-start
+      "callouts": {
+        "echarts": {
+          "component": "slipwayhq.echarts.0.5.1",
+          "allow": [
+            {
+              "permission": "fonts"
+            },
+            {
+              "permission": "registry_components"
+            }
+          ]
+        }
+      },
+      // highlight-end
+      "input": {
+        "canvas": {
+          "width": 800,
+          "height": 480
+        },
+        "card": {
+          "type": "AdaptiveCard",
+          "body": [
+            {
+              "type": "TextBlock",
+              "text": "Let's insert two components below this line.",
+              "wrap": true
+            },
+            {
+              "type": "ColumnSet",
+              "height": "stretch",
+              "columns": [
+                {
+                  "type": "Column",
+                  "width": "stretch",
+                  "items": [
+                    {
+                      "type": "Image",
+                      "height": "stretch",
+                      // highlight-start
+                      "url": "component://echarts?width=$width&height=$height",
+                      "body": {
+                        "chart": {
+                          "polar": {
+                            "radius": [
+                              30,
+                              "80%"
+                            ]
+                          },
+                          "angleAxis": {
+                            "max": 4,
+                            "startAngle": 75
+                          },
+                          "radiusAxis": {
+                            "type": "category",
+                            "data": [
+                              "a",
+                              "b",
+                              "c",
+                              "d"
+                            ]
+                          },
+                          "tooltip": {},
+                          "series": {
+                            "type": "bar",
+                            "data": [
+                              2,
+                              1.2,
+                              2.4,
+                              3.6
+                            ],
+                            "coordinateSystem": "polar",
+                            "label": {
+                              "show": true,
+                              "position": "middle",
+                              "formatter": "{b}: {c}"
+                            }
+                          }
+                        }
+                      }
+                      // highlight-end
+                    }
+                  ]
+                },
+                {
+                  "type": "Column",
+                  "width": "stretch",
+                  "items": [
+                    {
+                      "type": "Image",
+                      "height": "stretch",
+                      // highlight-start
+                      "url": "component://echarts?width=$width&height=$height",
+                      "body": {
+                        "chart": {
+                          "tooltip": {
+                            "trigger": "axis"
+                          },
+                          "legend": {
+                            "data": ["Step Start", "Step Middle", "Step End"]
+                          },
+                          "grid": {
+                            "left": "3%",
+                            "right": "4%",
+                            "bottom": "3%",
+                            "containLabel": true
+                          },
+                          "xAxis": {
+                            "type": "category",
+                            "data": ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
+                          },
+                          "yAxis": {
+                            "type": "value"
+                          },
+                          "series": [
+                            {
+                              "name": "Step Start",
+                              "type": "line",
+                              "step": "start",
+                              "data": [120, 132, 101, 134, 90, 230, 210]
+                            },
+                            {
+                              "name": "Step Middle",
+                              "type": "line",
+                              "step": "middle",
+                              "data": [220, 282, 201, 234, 290, 430, 410]
+                            },
+                            {
+                              "name": "Step End",
+                              "type": "line",
+                              "step": "end",
+                              "data": [450, 432, 401, 454, 590, 530, 510]
+                            }
+                          ]                          
+                        }
+                      }
+                      // highlight-end
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      }
+    }
+  }
+}

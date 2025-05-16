@@ -24,12 +24,19 @@ export default function jsonDirective() {
         const raw = fs.readFileSync(jsonPath, 'utf8');
 
         const title = node.attributes?.title || file;
+        const highlight = node.attributes?.highlight; // e.g. "2,4-5"
+
+        // Build meta string for code block
+        let meta = `showLineNumbers title="${title}"`;
+        if (highlight) {
+          meta += ` {${highlight}}`;
+        }
 
         // Replace the directive with a fenced code node
         node.type = 'code';
         node.lang = 'json';
         node.value = raw;
-        node.meta  = `title="${title}"`; 
+        node.meta  = meta; 
         delete node.name;
       }
     });
