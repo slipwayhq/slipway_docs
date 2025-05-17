@@ -50,7 +50,7 @@ We'll do that next.
 ### A Simple Layout
 
 Let's start with a simple Rig, which we'll call `example.json`, which has a text block
-at the top and space for two components side by side underneath:
+at the top and space for two Components side by side underneath:
 
 ::json{file=laying-out-components-10.json title=example.json}
 
@@ -119,7 +119,7 @@ component{=render:slipwayhq.render}: Loaded image from URL: https://picsum.photo
 
 ### Adding Components
 
-When the Render Component loads the image, like any other component it must go through
+When the Render Component loads the image, like any other Component it must go through
 the [Host API's `fetch` method](/docs/basics/host-api#fetch).
 
 The fetch method doesn't just support `https://` URLs.
@@ -136,7 +136,7 @@ and then we'll explain the bits we've changed:
 ::json{file=laying-out-components-40.json title=example.json}
 
 First, we've given the Render Component permission to load other registry components.
-This is needed so it can actually call out to the `slipwayhq.echarts` component that we're going to
+This is needed so it can actually call out to the `slipwayhq.echarts` Component that we're going to
 use to render some charts.
 
 Next, we've added a `callout` definition to our Render Component.
@@ -146,33 +146,33 @@ so it can ensure it's got them all cached locally.
 It also passes through any relevant permissions to `slipwayhq.echarts`.
 In this case we pass through both the `fonts` permission, because 
 the `echarts` Component needs to be able to access fonts so it can render text,
-and the `registry_components` permission, because the `echarts` component internally uses
-other components such as [`slipwayhq.svg`](https://github.com/slipwayhq/slipway_svg) to render the chart.
+and the `registry_components` permission, because the `echarts` Component internally uses
+other Components such as [`slipwayhq.svg`](https://github.com/slipwayhq/slipway_svg) to render the chart.
 
-Next, in place of the image URLs, we specify component URLs:
+Next, in place of the image URLs, we specify Component URLs:
 ```
 "url": "component://echarts?width=$width&height=$height"
 ```
 
 The `component://echarts` part of the URL tells Slipway that we want to execute the
-component callout called `echarts`, which we mapped in the `callouts` section to `slipwayhq.echarts.0.5.1`.
+Component callout called `echarts`, which we mapped in the `callouts` section to `slipwayhq.echarts.0.5.1`.
 
 The `?width=$width&height=$height` is the earlier Render Component magic, where it substitutes
 `$width` and `$height` with the actual calculated measured dimensions.
 
 There is some extra Slipway magic here as well, which is that when fetching a `component://` URL,
-the query string arguments are _applied to the component input_.
+the query string arguments are _applied to the Component input_.
 In this case it means that Slipway will set the `width` and `height` properties at
 the root of the input to the calculated width and height.
 
 You can actually specify more complex arguments here, such as `foo.bar.bat=55` and Slipway
-will apply 55 to that path in the component's input JSON.
+will apply 55 to that path in the Component's input JSON.
 
 The final trick here is we provide the rest of the input for the ECharts Component
 using the `body` parameter that sits alongside the `url` parameter in the Adaptive Cards
 image.
 
-All of this combined means that the EChart component gets asked to generate a chart
+All of this combined means that the EChart Component gets asked to generate a chart
 in the exact, pixel perfect size required to be slotted into the Adaptive Cards layout.
 
 ![Rig output](/img/docs/laying-out-components-40.png)
