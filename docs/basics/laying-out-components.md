@@ -79,6 +79,10 @@ Running this new rig will produce the following:
 
 ![Rig output](/img/docs/laying-out-components-20.png)
 
+This is quite useful because you could potentially define different host configs for each device
+using the [device context](/docs/basics/serving-rigs#device-context), and then the same
+Rig could be used for each of them, with the final rendering being appropriate for each device.
+
 However as I clearly have no taste let's leave the host config out so that the defaults are used.
 
 ### Adding Images
