@@ -243,11 +243,11 @@ No more components to run.
 └─■ output     ┆  fa87a452 ➜ 8c13d949  ┆  197 bytes ➜   1.95 mb  ┆  7ms of 454ms
 ```
 
-If your terminal doesn't support displaying images, you can add a `-o results` argument to write the outputs
-to a `results` folder:
+If your terminal doesn't support displaying images, you can add a `-o output.png` argument to write the output
+to the `output.png` file:
 
 ```sh
-slipway run -o results --allow-all --registry "file:./components/{publisher}.{name}" rigs/hello.json
+slipway run -o output.png --allow-all --registry "file:./components/{publisher}.{name}" rigs/hello.json
 ```
 
 In this case there will only be one output, `results/output.png`, which should look something like this:

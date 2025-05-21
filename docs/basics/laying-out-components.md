@@ -57,10 +57,10 @@ at the top and space for two Components side by side underneath:
 If you save this locally then you can run it using:
 
 ```
-slipway run --allow-all -o output example.json
+slipway run --allow-all -o output.png example.json
 ```
 
-We've specified `-o output` which tells Slipway to save the Rig output into the `output` folder.
+We've specified `-o output.png` which tells Slipway to save the Rig output into the file `output.png`.
 You'll see something like this:
 
 ![Rig output](/img/docs/laying-out-components-10.png)

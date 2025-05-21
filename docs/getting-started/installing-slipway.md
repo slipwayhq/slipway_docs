@@ -124,5 +124,5 @@ slipway run-component "slipwayhq.render.0.6.1" \
 
 It should display the Component output as a white square containing the text "hello".
 
-If your terminal doesn't display the image, you can add the `--output .` argument to write
-the output image to the current directory.
+If your terminal doesn't display the image, you can add the `-o output.png` argument to write
+the output image to an `output.png` file.

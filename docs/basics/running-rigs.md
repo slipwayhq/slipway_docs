@@ -83,12 +83,31 @@ By default the `slipway run` command will output the result of any leaf-node com
 A leaf-node Component is a Component whose output is not used as the input to any other Component.
 :::
 
-If you want the outputs saved to a file instead, you can use the `--output` argument to specify 
-an output folder to which of all leaf-node Component outputs should be saved.
+If you want the outputs saved to disk instead, you can use the `--output` argument.
+This is often useful to see the full fidelity output of a Rig, as the images rendered in the terminal
+are usually a lower quality.
+
+If you specify an output folder, then all leaf-node Component outputs will be saved to that folder.
 
 For example:
 ```
 --output ./rig_outputs
+```
+
+If you specify a file with a `.png` extension, then the Component determined to be the output Component will
+have its canvas saved to the file.
+
+For example:
+```
+--output ./rig_output.png
+```
+
+If you specify a file with a `.json` extension, then the Component determined to be the output Component will
+have its raw JSON output saved to the file.
+
+For example:
+```
+--output ./rig_output.json
 ```
 
 ## `--output-debug-rig`
