@@ -183,7 +183,7 @@ For example if your Component calls out to the `slipwayhq.echarts` Component you
 ```json
   "callouts": {
     "echarts": {
-      "component": "slipwayhq.echarts.0.5.1",
+      "component": "slipwayhq.echarts.0.5.4",
       "allow": [
         { "permission": "fonts" },
         { "permission": "registry_components" }
@@ -193,7 +193,7 @@ For example if your Component calls out to the `slipwayhq.echarts` Component you
 ```
 
 In the above example the [Component Handle](/docs/basics/terminology#component-handle) `echarts` has been given to the reference
-`slipwayhq.echarts.1.0.0`. With this specified, the Component will be able to use the [Host API](/docs/basics/host-api) to execute
+`slipwayhq.echarts.0.5.4`. With this specified, the Component will be able to use the [Host API](/docs/basics/host-api) to execute
 the Component using its handle.
 
 Note that the Component itself will still need to be [granted permission](/docs/basics/permissions.md) to use these components by the Rig.
@@ -279,7 +279,7 @@ The [`slipwayhq.echarts`](https://github.com/slipwayhq/slipway_echarts) Componen
 a rendered chart as an output. However internally it is a Fragment Component which rigs together two other Components:
 
 - First it passes the ECharts definition
-to the [`slipwayhq.echarts_svg`](https://github.com/slipwayhq/slipway_echarts_svg) Component.
+to the `slipwayhq.echarts__svg` Component.
 This is a Javascript Component which uses the ECharts Javascript library to generate an SVG.
 
 - Next it passes the output of that Component to the input of the [`slipwayhq.svg`](https://github.com/slipwayhq/slipway_svg) Component.
@@ -291,7 +291,7 @@ Internally the rigging is defined as follows:
 ```json
   "rigging": {
     "echarts": {
-      "component": "slipwayhq.echarts_svg.0.5.0",
+      "component": "slipwayhq.echarts__svg.0.5.4",
       "input": {
         "width": "$$.input.width",
         "height": "$$.input.height",
@@ -300,7 +300,7 @@ Internally the rigging is defined as follows:
       }
     },
     "output": {
-      "component": "slipwayhq.svg.0.6.0",
+      "component": "slipwayhq.svg.0.6.1",
       "allow": [
         { "permission": "fonts" }
       ],

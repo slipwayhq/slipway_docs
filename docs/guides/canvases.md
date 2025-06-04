@@ -18,6 +18,12 @@ The canvas format is very simple. It is a `canvas` property whose value is an ob
 The `data` property is the RGBA bytes of the image encoded as a string using the
 [Slipway Host API's `encode_bin` method](/docs/basics/host-api#binary-encoding-and-decoding).
 
+:::warning
+The RGBA bytes are assumed to have
+[premultiplied alpha](https://en.wikipedia.org/wiki/Alpha_compositing#Straight_versus_premultiplied), 
+so they can be accurately composited.
+:::
+
 ## Output Schema
 
 The output schema in a [`slipway_component.json`](/docs/basics/components#configuration) file for a Component which

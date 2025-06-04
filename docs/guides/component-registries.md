@@ -43,6 +43,41 @@ https://github.com/pied-piper/slipway_middle_out/releases/download/1.23.9/pied_p
 ```
 :::
 
+### Namespaces
+
+Sometimes you want to create a set of Components which are all related, and having to put them
+all in different GitHub repositories is a pain.
+
+You can get around this by _namespacing_ the Components.
+
+If your Component name contains a double underscore (`__`) then the part of the name before
+the double underscore will be considered the _namespace_ of that Component, and the part after
+is called the _localname_.
+
+For example, if your Component reference was `pied_piper.compression__middle_out.1.23.0`, then
+the namespace is `compression` and the localname is `middle_out`.
+The full component name is still `compression__middle_out`.
+
+The Slipway Component Registry understands that if the Component name contains a namespace then
+it will be located in the GitHub repository named after the _namespace_ rather than the full component name.
+
+The reference resolves to the registry URL you'd expect:
+
+```
+https://registry.slipway.co/components/pied_piper.compression__middle_out.1.23.9.tar
+```
+
+But this time the Slipway Component Registry redirects to the URL:
+```
+https://github.com/pied-piper/slipway_compression/releases/download/1.23.9/pied_piper.middle_out.1.23.9.tar
+```
+
+This allows you to group related components together in a single GitHub repository and still publish them
+to the Slipway Component Registry.
+
+In addition, when supplying your own registry urls you can use the `{namespace}` and `{localname}` interpolation strings
+to reference the Component name parts, and if no namespace exists both will behave the same as `{name}`.
+
 ## Custom Component Registries
 
 Slipway has been designed to make it as simple as possible to host your own Component registries, 
@@ -52,8 +87,10 @@ When running [`slipway run`](/docs/basics/running-rigs) you can pass in zero or 
 
 The `registry_urls` field in the `slipway_serve.json` file serves the same purpose when running [`slipway serve`](/docs/basics/serving-rigs).
 
-The registry paths given can contain `{publisher}`, `{name}` and `{version}` interpolation strings and these will be replaced by the 
-actual Component publisher, name and version which is being searched for.
+The registry paths given can contain `{publisher}`, `{name}` and `{version}` interpolation strings and these will be replaced by the actual Component publisher, name and version which is being searched for.
+
+In addition, as mentioned above, you can use the `{namespace}` and `{localname}` interpolation strings
+to reference the Component name parts, and if no namespace exists both will behave the same as `{name}`.
 
 The registry paths can be URLs pointing to TAR files, or local paths pointing to either folders or TAR files.
 
@@ -93,7 +130,7 @@ Assuming you run the test Rigs from the root of the repository you're testing,
 you could run them with the following argument:
 
 ```sh
---registry "file:../slipway_{name}/components/{publisher}.{name}"
+--registry "file:../slipway_{namespace}/components/{publisher}.{name}"
 ```
 
 This will try and locate each Component in the `components` folder of the relevant locally cloned repository.

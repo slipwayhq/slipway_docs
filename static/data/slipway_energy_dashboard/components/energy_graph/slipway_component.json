@@ -1,0 +1,70 @@
+{
+  "publisher": "jamesthurley",
+  "name": "energy_dashboard__energy_graph",
+  "version": "1.0.0",
+  "input": {
+    "properties": {
+      "width": {
+        "type": "uint32"
+      },
+      "height": {
+        "type": "uint32"
+      },
+      "power": {
+        "elements": {
+          "ref": "power"
+        }
+      }
+    },
+    "optionalProperties": {
+      "theme": {
+        "optionalProperties": {
+          "solar_color": { "type": "string" },
+          "grid_color": { "type": "string" },
+          "battery_color": { "type": "string" },
+          "axis_color": { "type": "string" }
+        }
+      }
+    },
+    "definitions": {
+      "power": {
+        "properties": {
+          "time": {
+            "type": "string"
+          },
+          "battery": {
+            "type": "float64"
+          },
+          "battery_percent": {
+            "type": "float64"
+          },
+          "consumption": {
+            "type": "float64"
+          },
+          "grid": {
+            "type": "float64"
+          },
+          "solar": {
+            "type": "float64"
+          }
+        }
+      }
+    }
+  },
+  "output": "canvas",
+  "rigging": {
+    "output": {
+      "component": "slipwayhq.echarts.0.5.4",
+      "allow": [
+        { "permission": "fonts" },
+        { "permission": "registry_components", "publisher": "slipwayhq" }
+      ],
+      "input": {
+        "width": "$$.input.width",
+        "height": "$$.input.height",
+        "chart": "$$.input.run.chart",
+        "apply": "$$.input.run.apply"
+      }
+    }
+  }
+}

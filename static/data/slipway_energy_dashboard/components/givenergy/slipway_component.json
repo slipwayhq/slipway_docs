@@ -1,0 +1,97 @@
+{
+  "publisher": "jamesthurley",
+  "name": "energy_dashboard__givenergy",
+  "version": "1.0.0",
+  "input": {
+    "optionalProperties": {
+      "inverter_id": {
+        "type": "string"
+      },
+      "api_token": {
+        "type": "string"
+      }
+    }
+  },
+  "output": {
+    "properties": {
+      "today": {
+        "ref": "day"
+      },
+      "yesterday": {
+        "ref": "day"
+      }
+    },
+    "definitions": {
+      "day": {
+        "properties": {
+          "power": {
+            "elements": {
+              "ref": "power"
+            }
+          },
+          "day": {
+            "ref": "totals"
+          },
+          "total": {
+            "ref": "totals"
+          }
+        }
+      },
+      "power": {
+        "properties": {
+          "time": {
+            "type": "string"
+          },
+          "battery": {
+            "type": "float64"
+          },
+          "battery_percent": {
+            "type": "float64"
+          },
+          "consumption": {
+            "type": "float64"
+          },
+          "grid": {
+            "type": "float64"
+          },
+          "solar": {
+            "type": "float64"
+          }
+        }
+      },
+      "totals": {
+        "properties": {
+          "ac_charge": {
+            "type": "float64"
+          },
+          "battery": {
+            "properties": {
+              "charge": {
+                "type": "float64"
+              },
+              "discharge": {
+                "type": "float64"
+              }
+            }
+          },
+          "consumption": {
+            "type": "float64"
+          },
+          "grid": {
+            "properties": {
+              "export": {
+                "type": "float64"
+              },
+              "import": {
+                "type": "float64"
+              }
+            }
+          },
+          "solar": {
+            "type": "float64"
+          }
+        }
+      }
+    }
+  }
+}

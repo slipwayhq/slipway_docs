@@ -256,7 +256,7 @@ in the output, you would need to declare something like the following in the Com
     // ...
     "callouts": {
         "echarts": {
-            "component": "slipwayhq.echarts.0.5.1",
+            "component": "slipwayhq.echarts.0.5.4",
             "allow": [
                 { "permission": "fonts" },
                 { "permission": "registry_components" }
@@ -288,11 +288,10 @@ TRMNL eInk screen:
       "input": {}
     },
     "render": {
-      "component": "slipwayhq.echarts.0.5.1",
+      "component": "slipwayhq.echarts.0.5.4",
       "allow": [
         { "permission": "fonts" },
-        { "permission": "registry_components", "publisher": "slipwayhq", "name": "svg" },
-        { "permission": "registry_components", "publisher": "slipwayhq", "name": "echarts_svg" }
+        { "permission": "registry_components", "publisher": "slipwayhq"}
       ],
       "input": {
         "width": 800,

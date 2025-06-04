@@ -117,7 +117,7 @@ It should report that the Component produced the output:
 
 Running the following will test if terminal images are working:
 ```
-slipway run-component "slipwayhq.render.0.6.1" \
+slipway run-component "slipwayhq.render.0.7.0" \
     --allow-fonts \
     --input "{\"canvas\":{\"width\":100,\"height\":100},\"card\":{\"type\":\"AdaptiveCard\",\"verticalContentAlignment\":\"center\",\"body\":[{\"type\":\"TextBlock\",\"horizontalAlignment\":\"center\",\"text\":\"hello\"}]}}"
 ```

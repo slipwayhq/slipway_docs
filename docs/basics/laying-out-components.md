@@ -52,7 +52,7 @@ We'll do that next.
 Let's start with a simple Rig, which we'll call `example.json`, which has a text block
 at the top and space for two Components side by side underneath:
 
-::json{file=laying-out-components-10.json title=example.json}
+::insert{file=laying-out-components-10.json title=example.json}
 
 If you save this locally then you can run it using:
 
@@ -73,7 +73,7 @@ are controlled by a ["host config"](https://learn.microsoft.com/en-us/adaptive-c
 
 We can specify a basic host config to change some of these:
 
-::json{file=laying-out-components-20.json title=example.json}
+::insert{file=laying-out-components-20.json title=example.json}
 
 Running this new rig will produce the following:
 
@@ -91,7 +91,7 @@ As a next step, let's put some images in those boxes and get rid of the backgrou
 We'll use a service called [Lorum Picsum](https://picsum.photos/) to serve us some arbitrary images.
 We also need to give the Render Component permission to make HTTP requests to that domain.
 
-::json{file=laying-out-components-30.json title=example.json}
+::insert{file=laying-out-components-30.json title=example.json}
 
 Running this new rig will produce the following (but likely with other random images):
 
@@ -133,7 +133,7 @@ Let's show the final Rig, which is going to render two charts using the
 [slipwayhq.echarts](https://github.com/slipwayhq/slipway_echarts) Component,
 and then we'll explain the bits we've changed:
 
-::json{file=laying-out-components-40.json title=example.json}
+::insert{file=laying-out-components-40.json title=example.json}
 
 First, we've given the Render Component permission to load other registry components.
 This is needed so it can actually call out to the `slipwayhq.echarts` Component that we're going to
@@ -155,7 +155,7 @@ Next, in place of the image URLs, we specify Component URLs:
 ```
 
 The `component://echarts` part of the URL tells Slipway that we want to execute the
-Component callout called `echarts`, which we mapped in the `callouts` section to `slipwayhq.echarts.0.5.1`.
+Component callout called `echarts`, which we mapped in the `callouts` section to `slipwayhq.echarts.0.5.4`.
 
 The `?width=$width&height=$height` is the earlier Render Component magic, where it substitutes
 `$width` and `$height` with the actual calculated measured dimensions.

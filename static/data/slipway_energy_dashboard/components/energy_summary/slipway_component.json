@@ -1,0 +1,87 @@
+{
+  "publisher": "jamesthurley",
+  "name": "energy_dashboard__energy_summary",
+  "version": "1.0.0",
+  "input": {
+    "properties": {
+      "width": {
+        "type": "uint32"
+      },
+      "height": {
+        "type": "uint32"
+      },
+      "data": {
+        "properties": {
+          "ac_charge": {
+            "type": "float64"
+          },
+          "battery": {
+            "properties": {
+              "charge": {
+                "type": "float64"
+              },
+              "discharge": {
+                "type": "float64"
+              }
+            }
+          },
+          "consumption": {
+            "type": "float64"
+          },
+          "grid": {
+            "properties": {
+              "export": {
+                "type": "float64"
+              },
+              "import": {
+                "type": "float64"
+              }
+            }
+          },
+          "solar": {
+            "type": "float64"
+          }
+        }
+      }
+    },
+    "optionalProperties": {
+      "title": {
+        "type": "string"
+      },
+      "theme": {
+        "optionalProperties": {
+          "solar_color": { "type": "string" },
+          "grid_export_color": { "type": "string" }
+        }
+      }
+    }
+  },
+  "output": "canvas",
+  "callouts": {
+    "icons": {
+      "component": "jamesthurley.energy_flow_chart.1.0.0"
+    }
+  },
+  "rigging": {
+    "output": {
+      "component": "slipwayhq.render.0.7.0",
+      "allow": [
+        { "permission": "fonts" },
+        { "permission": "registry_components", "publisher": "slipwayhq" }
+      ],
+      "callouts": {
+        "svg": {
+          "component": "slipwayhq.svg.0.6.1",
+          "allow": [
+            { "permission": "fonts" }
+          ]
+        }
+      },
+      "input": {
+        "canvas": "$$.input.run.canvas",
+        "card": "$$.input.run.card",
+        "debug": true
+      }
+    }
+  }
+}
