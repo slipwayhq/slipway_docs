@@ -1,5 +1,5 @@
 {
-  "log_level": "info",
+  "log_level": "debug",
   "registry_urls": [
     "file:../../../../slipway_render/components/{publisher}.{name}",
     "file:../../../../slipway_svg/components/{publisher}.{name}",

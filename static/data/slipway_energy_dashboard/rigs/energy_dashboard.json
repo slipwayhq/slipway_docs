@@ -39,8 +39,8 @@
             { "permission": "registry_components" }
           ]
         },
-        "energy_summary": {
-          "component": "slipwayhq.energy_dashboard__energy_summary.1.0.0",
+        "energy_lifetime": {
+          "component": "slipwayhq.energy_dashboard__energy_lifetime.1.0.0",
           "allow": [
             { "permission": "fonts" },
             { "permission": "registry_components" }
@@ -130,7 +130,7 @@
             {
               "type": "Image",
               "height": "40px",
-              "url": "component://energy_summary?width=$width&height=$height",
+              "url": "component://energy_lifetime?width=$width&height=$height",
               "body": {
                 "data": "$$.givenergy.today.total"
               }

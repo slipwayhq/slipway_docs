@@ -1,6 +1,6 @@
 {
   "publisher": "jamesthurley",
-  "name": "energy_dashboard__energy_flow_chart",
+  "name": "energy_dashboard__energy_lifetime",
   "version": "1.0.0",
   "input": {
     "properties": {
@@ -12,18 +12,13 @@
       },
       "data": {
         "properties": {
-          "consumption": {
-            "type": "float64"
-          },
           "grid": {
             "properties": {
               "export": {
                 "type": "float64"
-              },
-              "import": {
-                "type": "float64"
               }
-            }
+            },
+            "additionalProperties": true
           },
           "solar": {
             "type": "float64"
@@ -33,13 +28,13 @@
       }
     },
     "optionalProperties": {
+      "title": {
+        "type": "string"
+      },
       "theme": {
         "optionalProperties": {
           "solar_color": { "type": "string" },
-          "grid_import_color": { "type": "string" },
-          "grid_export_color": { "type": "string" },
-          "used_color": { "type": "string" },
-          "house_color": { "type": "string" }
+          "grid_export_color": { "type": "string" }
         }
       }
     }
@@ -47,15 +42,16 @@
   "output": "canvas",
   "rigging": {
     "output": {
-      "component": "slipwayhq.svg.0.6.1",
+      "component": "slipwayhq.jsx.0.5.3",
       "allow": [
-        { "permission": "fonts" }
+        { "permission": "fonts" },
+        { "permission": "registry_components", "publisher": "slipwayhq" }
       ],
       "input": {
         "width": "$$.input.width",
         "height": "$$.input.height",
-        "svg": "$$.input.run.svg",
-        "scale": true
+        "data": "$$.input.run.data",
+        "jsx": "$$.input.run.jsx"
       }
     }
   }
