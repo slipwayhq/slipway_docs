@@ -1,4 +1,3 @@
-// plugins/json-directive/index.js
 import fs from 'fs';
 import path from 'path';
 import {visit} from 'unist-util-visit';
@@ -8,23 +7,26 @@ export default function jsonDirective() {
 
   return (tree) => {
     visit(tree, (node) => {
-      // Only look at container directives: :::json foo.json
+      // Only look at container directives: ::insert{file=foo.json}
       if (
         node.type === 'containerDirective' 
         || node.type === 'leafDirective'
       ) {
-        if (node.name !== 'json') return;
+        if (node.name !== 'insert') return;
 
         const file = node.attributes?.file;
         if (!file) return;
 
-        const jsonPath = path.join(dataDir, file);
-        if (!fs.existsSync(jsonPath)) return;
+        const fullPath = path.join(dataDir, file);
+        if (!fs.existsSync(fullPath)) return;
 
-        const raw = fs.readFileSync(jsonPath, 'utf8');
+        const raw = fs.readFileSync(fullPath, 'utf8');
 
         const title = node.attributes?.title || file;
         const highlight = node.attributes?.highlight; // e.g. "2,4-5"
+
+        // Get file extension to determine language
+        const ext = path.extname(file).slice(1).toLowerCase();
 
         // Build meta string for code block
         let meta = `showLineNumbers title="${title}"`;
@@ -34,7 +36,7 @@ export default function jsonDirective() {
 
         // Replace the directive with a fenced code node
         node.type = 'code';
-        node.lang = 'json';
+        node.lang = ext;
         node.value = raw;
         node.meta  = meta; 
         delete node.name;

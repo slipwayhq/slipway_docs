@@ -1,7 +1,7 @@
 {
   "rigging": {
     "render": {
-      "component": "slipwayhq.render.0.6.1",
+      "component": "slipwayhq.render.0.7.0",
       "allow": [
         {
           "permission": "fonts"

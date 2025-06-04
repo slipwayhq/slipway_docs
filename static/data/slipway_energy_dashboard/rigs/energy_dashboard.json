@@ -1,0 +1,143 @@
+{
+  "rigging": {
+    "givenergy": {
+      "component": "jamesthurley.energy_dashboard__givenergy.1.0.0",
+      "allow": [
+        {
+          "permission": "env",
+          "prefix": "GIVENERGY_"
+        },
+        {
+          "permission": "http",
+          "prefix": "https://api.givenergy.cloud/"
+        }
+      ],
+      "input": {}
+    },
+    "render": {
+      "component": "slipwayhq.render.0.7.0",
+      "allow": [
+        {
+          "permission": "fonts"
+        },
+        {
+          "permission": "registry_components"
+        }
+      ],
+      "callouts": {
+        "energy_flow_chart": {
+          "component": "slipwayhq.energy_dashboard__energy_flow_chart.1.0.0",
+          "allow": [
+            { "permission": "fonts" },
+            { "permission": "registry_components" }
+          ]
+        },
+        "energy_dashboard": {
+          "component": "slipwayhq.energy_dashboard__energy_graph.1.0.0",
+          "allow": [
+            { "permission": "fonts" },
+            { "permission": "registry_components" }
+          ]
+        },
+        "energy_summary": {
+          "component": "slipwayhq.energy_dashboard__energy_summary.1.0.0",
+          "allow": [
+            { "permission": "fonts" },
+            { "permission": "registry_components" }
+          ]
+        }
+      },
+      "input": {
+        "canvas": {
+          "width": 480,
+          "height": 800
+        },
+        "card": {
+          "type": "AdaptiveCard",
+          "body": [
+            {
+              "type": "Container",
+              "style": "warning",
+              "bleed": true,
+              "items": [
+                {
+                  "type": "TextBlock",
+                  "size": "extraLarge",
+                  "text": "Today's date here",
+                  "wrap": true
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "Last updated time here",
+                  "wrap": true
+                }
+              ]
+            },
+            {
+              "type": "Container",
+              "height": "stretch",
+              "items": [
+                {
+                  "type": "Image",
+                  "height": "stretch",
+                  "url": "component://energy_flow_chart?width=$width&height=$height",
+                  "body": {
+                    "data": "$$.givenergy.today.day"
+                  }
+                }
+              ]
+            },
+            {
+              "type": "Container",
+              "bleed": true,
+              "height": "stretch",
+              "items": [
+                {
+                  "type": "Image",
+                  "height": "stretch",
+                  "url": "component://energy_dashboard?width=$width&height=$height",
+                  "body": {
+                    "power": "$$.givenergy.today.power"
+                  }
+                }
+              ]
+            },
+            {
+              "type": "ColumnSet",
+              "height": "stretch",
+              "columns": [
+                {
+                  "type": "Column",
+                  "width": "stretch",
+                  "items": [
+                    {
+                      "type": "TextBlock",
+                      "text": "Energy rates here"
+                    }
+                  ]
+                },
+                {
+                  "type": "Column",
+                  "items": [
+                    {
+                      "type": "TextBlock",
+                      "text": "Yesterday's costs"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "Image",
+              "height": "40px",
+              "url": "component://energy_summary?width=$width&height=$height",
+              "body": {
+                "data": "$$.givenergy.today.total"
+              }
+            }
+          ]
+        }
+      }
+    }
+  }
+}

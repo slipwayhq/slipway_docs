@@ -157,7 +157,7 @@ We will call our Rig `hello` by creating a file called `hello.json` in the `rigs
       }
     },
     "output": {
-      "component": "slipwayhq.render.0.6.1",
+      "component": "slipwayhq.render.0.7.0",
       "input": {
         "card": "$$.hello_world",
         "canvas": {

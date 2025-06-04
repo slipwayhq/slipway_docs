@@ -55,7 +55,8 @@ The `init` command will produce a basic version of this file which will look som
   "log_level": "info",
   "registry_urls": [
     "file:./components/{publisher}.{name}.{version}.tar",
-    "file:./components/{publisher}.{name}"
+    "file:./components/{publisher}.{name}",
+    "file:./components/{localname}"
   ],
   "timezone": "Europe/London",
   "locale": "en-GB",

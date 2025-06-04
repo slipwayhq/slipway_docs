@@ -1,0 +1,25 @@
+{
+  "log_level": "info",
+  "registry_urls": [
+    "file:../../../../slipway_render/components/{publisher}.{name}",
+    "file:../../../../slipway_svg/components/{publisher}.{name}",
+    "file:./components/{publisher}.{name}.{version}.tar",
+    "file:./components/{publisher}.{name}",
+    "file:./components/{localname}"
+  ],
+  "timezone": "Europe/London",
+  "locale": "en-GB",
+  "rig_permissions": {
+    "energy_dashboard": {
+      "allow": [
+        {
+          "permission": "all"
+        }
+      ],
+      "deny": []
+    }
+  },
+  "hashed_api_keys": {
+    "key1": "8e1a6bfc4cd250b0d687abe26c251941c132f136fbb4e113a5b02b9e10b05041"
+  }
+}

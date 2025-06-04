@@ -58,7 +58,7 @@ const config: Config = {
           //   'https://github.com/slipwayhq/slipway_docs/tree/main/packages/create-docusaurus/templates/shared/',
           remarkPlugins: [
             require('remark-directive'),
-            require('./plugins/json-directive/index.js'),
+            require('./plugins/insert-directive/index.js'),
           ],
         },
         blog: {
@@ -75,6 +75,10 @@ const config: Config = {
           onInlineTags: 'warn',
           onInlineAuthors: 'warn',
           onUntruncatedBlogPosts: 'warn',
+          remarkPlugins: [
+            require('remark-directive'),
+            require('./plugins/insert-directive/index.js'),
+          ],
         },
         theme: {
           customCss: './src/css/custom.css',
@@ -99,7 +103,7 @@ const config: Config = {
           position: 'left',
           label: 'Documentation',
         },
-        //{to: '/blog', label: 'Blog', position: 'left'},
+        {to: '/blog', label: 'Blog', position: 'left'},
         {to: '/components', label: 'Components', position: 'left'},
         {to: '/community', label: 'Community', position: 'left'},
         {to: '/hosting', label: 'Hosting', position: 'left'},
@@ -133,10 +137,10 @@ const config: Config = {
         {
           title: 'More',
           items: [
-            // {
-            //   label: 'Blog',
-            //   to: '/blog',
-            // },
+            {
+              label: 'Blog',
+              to: '/blog',
+            },
             {
               label: 'GitHub',
               href: 'https://github.com/slipwayhq/slipway',

@@ -1,0 +1,74 @@
+{
+  "publisher": "jamesthurley",
+  "name": "energy_dashboard__energy_flow_chart",
+  "version": "1.0.0",
+  "input": {
+    "properties": {
+      "width": {
+        "type": "uint32"
+      },
+      "height": {
+        "type": "uint32"
+      },
+      "data": {
+        "properties": {
+          "ac_charge": {
+            "type": "float64"
+          },
+          "battery": {
+            "properties": {
+              "charge": {
+                "type": "float64"
+              },
+              "discharge": {
+                "type": "float64"
+              }
+            }
+          },
+          "consumption": {
+            "type": "float64"
+          },
+          "grid": {
+            "properties": {
+              "export": {
+                "type": "float64"
+              },
+              "import": {
+                "type": "float64"
+              }
+            }
+          },
+          "solar": {
+            "type": "float64"
+          }
+        }
+      }
+    },
+    "optionalProperties": {
+      "theme": {
+        "optionalProperties": {
+          "solar_color": { "type": "string" },
+          "grid_import_color": { "type": "string" },
+          "grid_export_color": { "type": "string" },
+          "used_color": { "type": "string" },
+          "house_color": { "type": "string" }
+        }
+      }
+    }
+  },
+  "output": "canvas",
+  "rigging": {
+    "output": {
+      "component": "slipwayhq.svg.0.6.1",
+      "allow": [
+        { "permission": "fonts" }
+      ],
+      "input": {
+        "width": "$$.input.width",
+        "height": "$$.input.height",
+        "svg": "$$.input.run.svg",
+        "scale": true
+      }
+    }
+  }
+}

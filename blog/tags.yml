@@ -33,3 +33,8 @@ boa:
   permalink: /boa
   description: Posts about Boa
 
+
+examples:
+  label: Examples
+  permalink: /examples
+  description: Example Rigs and Components
