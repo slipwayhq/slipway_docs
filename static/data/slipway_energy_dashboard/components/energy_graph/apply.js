@@ -11,12 +11,3 @@ chart.xAxis.axisLabel.formatter = function (value) {
   hours = hours === 0 ? 12 : hours;
   return `${hours}${am_pm}`;
 };
-
-// chart.yAxis[0].axisLabel.formatter = function (value) {
-
-//   if (value !== chart.yAxis[0].max) {
-//     return '';
-//   }
-
-//   return `${value}kW`;
-// };

@@ -14,11 +14,11 @@ by George Cave and it inspired me to do more.
 
 His post is worth a read, but basically his dashboard looks like this:
 
-![George Cave Energy Dashboard](/img/blog/eink-energy-dashboard-george-cave.png)
+![George Cave Energy Dashboard](/img/blog/eink-energy-dashboard-george-cave.jpg)
 
 Whereas my existing dashboard looks like this:
 
-![George Cave Energy Dashboard](/img/blog/eink-energy-dashboard-version-1.png)
+![George Cave Energy Dashboard](/img/blog/eink-energy-dashboard-version-1.jpg)
 
 George is using an eInk display which can display red and yellow in addition to black and white, 
 which helps a lot with the vibrancy,
@@ -285,7 +285,7 @@ If other people want to use this dashboard and have other data providers, they c
 - `energy_graph`: The chart showing solar generation, energy usage and battery level.
 - `tariff_rate_graph`: The chart showing today's tariff rates throughout the day.
 - `energy_cash_flow`: The graphic showing what we spent importing and what we were paid exporting.
-- `energy_summary`: The final graphic showing the lifetime energy generated and exported.
+- `energy_lifetime`: The final graphic showing the lifetime energy generated and exported.
 
 This is quite a lot of Components, but some are going to be trivial.
 I won't go through each one in detail, but I will link to the source of each so you can explore them for yourself.
@@ -330,7 +330,7 @@ slipway_energy_dashboard
    │  └─ slipway_component.json
    ├─ givenergy
    │  └─ slipway_component.json
-   ├─ energy_summary
+   ├─ energy_lifetime
    │  └─ slipway_component.json
    ├─ octopus
    │  └─ slipway_component.json
@@ -510,19 +510,142 @@ I also added some optional properties to theme the chart.
 ::insert{file=slipway_energy_dashboard/components/energy_graph/slipway_component.json}
 </details>
 
+The `run.js` is primarily just constructing the ECharts definition, along with the battery icon
+generating code at the bottom.
+
 <details>
   <summary>Show `run.js`</summary>
 ::insert{file=slipway_energy_dashboard/components/energy_graph/run.js}
 </details>
 
-I also couldn't quite match George's X axis style without using a javascript function
-as the label formatter.
-But I could only pass Echarts definitions to the `slipwayhq.echarts` Component as JSON,
-so I had to release a new version of `slipwayhq.echarts` which would optionally take 
-some Javascript that would be run within the component, allowing you to attach Javascript
-formatters or whatever else you need.
+I found that I couldn't quite match George's X axis style, which was delightfully minimalist,
+without using a javascript function as the label formatter.
+However I could only pass JSON Echarts definitions to the `slipwayhq.echarts` Component.
+
+To get around this I had to release a new version of `slipwayhq.echarts` which would optionally take 
+some "apply" Javascript that would be executed within the component. I could then pass in some code
+to attach the Javascript formatters to the chart definition once it was inside the `slipwayhq.echarts`
+component:
 
 <details>
   <summary>Show `apply.js`</summary>
 ::insert{file=slipway_energy_dashboard/components/energy_graph/apply.js}
+</details>
+
+## The `energy_flow_chart` Component
+
+To create this Component I first approximated George's diagram in [InkScape](https://inkscape.org/).
+I then exported it to a plain SVG, and then ran it through [SVGOMG](https://jakearchibald.github.io/svgomg/)
+to simplify it and make it suitable for human editing.
+
+![Inkscape Screenshot](/img/blog/eink-energy-dashboard-inkscape.png)
+
+After that I spent far to long simplifying it even further, in particular adjusting the transforms to be sane values,
+as straight out of InkScape it had groups with large negative translations with their inner elements having
+large positive translations to compensate. AI helped a lot here to automate adjusting paths.
+
+Next I needed to template the SVG files so I could color the various parts as per the theme specified by the
+user, and insert the actual numbers from the data.
+
+I considered using a templating engine, but I wanted the SVG to still be viewable as a normal SVG so that
+I could easily tweak it and immediately see the result. That meant colors had to be valid, rather than,
+for example, `{solar_color}`.
+
+In the end I settled on using special colors like `#00ff00fe` that I could search and replace
+with user specified colors, and strings like `{s}` that I could search and replace with actual numbers.
+
+I was slightly concerned that as I replaced each color in turn, one of the colors I inserted would clash with
+one of the `template` colors. To make this unlikely I used an alpha value of `fe` in all of the template colors.
+That alpha value would still let me preview the template, but it was unlikely to be specified as part of
+a theme by any sane user.
+
+The result was very pleasing, and the Component turned out to be extremely trivial to write despite having the fancy
+graphics, and despite it being the one I was most concerned about at the beginning.
+
+![Energy Flow Chart](/img/blog/eink-energy-dashboard-energy-flow-chart.png)
+
+The Javascript for this Component simply loads the SVG template, replaces the template values, and returns the result.
+
+::insert{file=slipway_energy_dashboard/components/energy_flow_chart/run.js}
+
+The `slipway_component.json` handles passing the resulting SVG on to the `slipwayhq.svg` component to be rendered.
+
+The input schema is the relevant subset of the single day summary output by the `givenergy` Component, along
+with the width and height of the image we need to render.
+
+<details>
+  <summary>Show `slipway_component.json`</summary>
+::insert{file=slipway_energy_dashboard/components/energy_flow_chart/slipway_component.json}
+</details>
+
+For completeness, I'll include the final SVG template here as well:
+
+<details>
+  <summary>Show `flow.svg`</summary>
+::insert{file=slipway_energy_dashboard/components/energy_flow_chart/flow.svg}
+</details>
+
+## The `energy_lifetime` Component
+
+After the previous Component this one should be trivial, right?
+
+Surprisingly, it posed some challenges.
+
+My first thought was to do it all in SVG, but the issue is that SVG requires each piece of text to be spaced
+absolutely. However I can't have one long piece of text as I need icons to the left of solar and export values.
+That means I have to place the "Lifetime:" text separately from each of the solar and export text.
+It's hard to do that when I don't know what font the user will want to use, or have available on their system.
+It would be quite easy to end up with janky spacing, or even worse, overlapping text. This is simply a limitation
+of SVG.
+
+My second thought was to use a mix of Adaptive Cards and SVG, however I quickly hit upon a limitation of Adaptive Cards
+which is that it isn't very good at putting text of different sizes on one line, as it has no way to line up the baselines.
+
+This is what that ended up looking like, with the debug bounding boxes enabled:
+
+![Adaptive Cards Energy Lifetime](/img/blog/eink-energy-dashboard-lifetime-ac-debug.png)
+
+You can see it is also centering the text vertically including the descender space.
+Font alignment is complicated!
+
+So with SVG we get janky horizontal alignment. With Adaptive Cards we get janky vertical alignment.
+
+How about JSX? I tend to pick JSX last because it's quite a slow renderer relative to SVG or Adaptive Cards,
+because it's written using the Javascript [Satori](https://github.com/vercel/satori) library (the SVG and Adaptive
+Cards renderers are Rust compiled to WASM).
+
+However, JSX did give me rather a nice result with minimum fuss:
+
+![JSX Energy Lifetime](/img/blog/eink-energy-dashboard-lifetime-jsx.png)
+
+To give some hard numbers on `slipwayhq.jsx` being a relatively slow renderer:
+On my M3 Macbook Air the `energy_flow_chart` renders in about 4ms using the `slipwayhq.svg`
+renderer, where as this visually simpler Component takes about 400ms, 100x longer, using the `slipwayhq.jsx`
+renderer. This is more in line with the the `energy_graph` Component we did first, which also takes about 400ms,
+and is also using a Javascript library for rendering (`slipwayhq.echarts`).
+
+However, for now I think this is a good compromise.
+
+Once again the actual Javascript is quite simple.
+I do a few calculations at the top to decide if I should display in `mWh` or `kWh`, and then
+load the JSX, swap out the colors, and return the resulting JSX and the data for it to bind to:
+
+<details>
+  <summary>Show `run.js`</summary>
+::insert{file=slipway_energy_dashboard/components/energy_lifetime/run.js}
+</details>
+
+The `slipway_component.json` defines a subset of the givenergy data as its input schema,
+and passes the output through the `slipwayhq.jsx` renderer.
+
+<details>
+  <summary>Show `slipway_component.json`</summary>
+::insert{file=slipway_energy_dashboard/components/energy_lifetime/slipway_component.json}
+</details>
+
+And this is what the JSX looks like:
+
+<details>
+  <summary>Show `lifetime.jsx`</summary>
+::insert{file=slipway_energy_dashboard/components/energy_lifetime/lifetime.jsx}
 </details>
