@@ -1,5 +1,9 @@
 {
   "rigging": {
+    "now": {
+      "component": "jamesthurley.energy_dashboard__current_time.1.0.0",
+      "input": {}
+    },
     "givenergy": {
       "component": "jamesthurley.energy_dashboard__givenergy.1.0.0",
       "allow": [
@@ -66,9 +70,17 @@
             { "permission": "fonts" },
             { "permission": "registry_components" }
           ]
+        },
+        "energy_cash_flow": {
+          "component": "slipwayhq.energy_dashboard__energy_cash_flow.1.0.0",
+          "allow": [
+            { "permission": "fonts" },
+            { "permission": "registry_components" }
+          ]
         }
       },
       "input": {
+        "debug": false,
         "canvas": {
           "width": 480,
           "height": 800
@@ -84,33 +96,31 @@
                 {
                   "type": "TextBlock",
                   "size": "extraLarge",
-                  "text": "Today's date here",
+                  "text": "$$.now.formatted_date",
                   "wrap": true
                 },
                 {
                   "type": "TextBlock",
-                  "text": "Last updated time here",
+                  "spacing": "small",
+                  "size": "medium",
+                  "text": "$$.now.formatted_time",
                   "wrap": true
                 }
               ]
             },
             {
-              "type": "Container",
-              "height": "stretch",
-              "items": [
-                {
-                  "type": "Image",
-                  "height": "stretch",
-                  "url": "component://energy_flow_chart?width=$width&height=$height",
-                  "body": {
-                    "data": "$$.givenergy.today.day"
-                  }
-                }
-              ]
+              "type": "Image",
+              "height": "180px",
+              "spacing": "large",
+              "url": "component://energy_flow_chart?width=$width&height=$height",
+              "body": {
+                "data": "$$.givenergy.today.day"
+              }
             },
             {
               "type": "Container",
               "bleed": true,
+              "spacing": "large",
               "height": "stretch",
               "items": [
                 {
@@ -141,18 +151,35 @@
                       "spacing": "small",
                       "url": "component://tariff_rate_graph?width=$width&height=$height",
                       "body": {
-                        "prices": "$$.octopus_tariff.prices"
+                        "prices": "$$.octopus_tariff.today"
                       }
                     }
                   ]
                 },
                 {
                   "type": "Column",
+                  "width": "140px",
+                  "verticalContentAlignment": "top",
                   "items": [
                     {
                       "type": "TextBlock",
                       "size": "large",
                       "text": "Yesterday"
+                    },
+                    {
+                      "type": "Image",
+                      "height": "stretch",
+                      "spacing": "small",
+                      "url": "component://energy_cash_flow?width=$width&height=90",
+                      "body": {
+                        "power": "$$.givenergy.yesterday.power",
+                        "day": "$$.givenergy.yesterday.day",
+                        "prices": "$$.octopus_tariff.yesterday",
+                        "generation_price": 25.84,
+                        "theme": {
+                          "line_padding": 30
+                        }
+                      }
                     }
                   ]
                 }

@@ -676,3 +676,63 @@ ChatGPT to generate the function for me.
 ::insert{file=slipway_energy_dashboard/components/octopus_tariff/run.js}
 </details>
 
+## The `tariff_rate_graph` Component
+
+Once again, most of the time here was spent fiddling with the ECharts definition
+to get it looking close to George's chart. I made a few changes, partly because
+I'm not on the Agile tariff so have different requirements, but I'm happy
+with the end result:
+
+![Tariff Rate Graph](/img/blog/eink-energy-dashboard-tariff-rate-graph.png)
+
+The title in the screenshot isn't part of the Component.
+I decided to put it in the Rig instead, as it felt like part of the
+Rig styling than something every user of the Component would want.
+
+The `slipway_component.json` is pretty standard. It takes the half-hourly pricing 
+data and some optional theming parameters, and passes the `run.js` output to the
+`slipwayhq.echarts` renderer.
+
+<details>
+  <summary>Show `slipway_component.json`</summary>
+::insert{file=slipway_energy_dashboard/components/tariff_rate_graph/slipway_component.json}
+</details>
+
+The `run.js` is just some data wrangling and EChart definition construction.
+
+<details>
+  <summary>Show `run.js`</summary>
+::insert{file=slipway_energy_dashboard/components/tariff_rate_graph/run.js}
+</details>
+
+And once again I'm passing code from `apply.js` through to the ECharts
+Component so that I can attach more complex formatters to the ECharts definition.
+
+<details>
+  <summary>Show `apply.js`</summary>
+::insert{file=slipway_energy_dashboard/components/tariff_rate_graph/apply.js}
+</details>
+
+One vaguely interesting point here is that I wanted to change the color of the bars
+based on whether they were above or below the average tariff price, which meant
+the `color` function in `apply.js` needed access to the average value, or at least the desired color
+for each bar.
+
+Because the `apply.js` is run inside the ECharts component I can't hoist in variables like I
+would if I was attaching it as a lambda function from `run.js`, so instead 
+I set the series data in `run.js` to an object that contains the desired bar color:
+
+```js
+const average = prices.reduce((sum, val) => sum + val, 0) / prices.length;
+const enrichedPrices = prices.map(price => ({
+  value: price,
+  color: price >= average ? barHighColor : barLowColor,
+}));
+```
+
+Then in `apply.js` I can simply pull the color out of that enriched data:
+```js
+chart.series[0].itemStyle.color = function (params) {
+  return params.data.color || "black";
+};
+```

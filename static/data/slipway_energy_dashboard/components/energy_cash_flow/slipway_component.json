@@ -2,6 +2,93 @@
   "publisher": "jamesthurley",
   "name": "energy_dashboard__energy_cash_flow",
   "version": "1.0.0",
-  "input": {},
-  "output": {}
+  "input": {
+    "properties": {
+      "width": {
+        "type": "uint32"
+      },
+      "height": {
+        "type": "uint32"
+      },
+      "prices": {
+        "elements": {
+          "properties": {
+            "time": {
+              "type": "string"
+            },
+            "price": {
+              "type": "float64"
+            }
+          }
+        }
+      },
+      "power": {
+        "elements": {
+          "properties": {
+            "grid": {
+              "type": "float64"
+            }
+          },
+          "additionalProperties": true
+        }
+      },
+      "day": {
+        "properties": {
+          "grid": {
+            "properties": {
+              "export": {
+                "type": "float64"
+              }
+            },
+            "additionalProperties": true
+          },
+          "solar": {
+            "type": "float64"
+          }
+        },
+        "additionalProperties": true
+      }
+    },
+    "optionalProperties": {
+      "export_price": {
+        "type": "float64"
+      },
+      "generation_price": {
+        "type": "float64"
+      },
+      "theme": {
+        "optionalProperties": {
+          "import_color": {
+            "type": "string"
+          },
+          "export_color": {
+            "type": "string"
+          },
+          "generation_color": {
+            "type": "string"
+          },
+          "line_padding": {
+            "type": "uint32"
+          }
+        }
+      }
+    }
+  },
+  "output": "canvas",
+  "rigging": {
+    "output": {
+      "component": "slipwayhq.svg.0.6.1",
+      "allow": [
+        {
+          "permission": "fonts"
+        }
+      ],
+      "input": {
+        "width": "$$.input.width",
+        "height": "$$.input.height",
+        "svg": "$$.input.run.svg",
+        "scale": true
+      }
+    }
+  }
 }
