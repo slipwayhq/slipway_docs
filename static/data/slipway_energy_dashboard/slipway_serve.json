@@ -1,6 +1,8 @@
 {
   "log_level": "info",
   "registry_urls": [
+    "file:../../../../slipway_render/components/{publisher}.{name}",
+    "file:../../../../slipway_svg/components/{publisher}.{name}",
     "file:./components/{publisher}.{name}.{version}.tar",
     "file:./components/{publisher}.{name}",
     "file:./components/{localname}"

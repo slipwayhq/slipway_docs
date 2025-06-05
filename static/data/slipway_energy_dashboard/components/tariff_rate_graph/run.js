@@ -21,14 +21,13 @@ function buildChart(data, theme) {
   let currentTime = findCurrentTimeInterval(times);
 
   const average = prices.reduce((sum, val) => sum + val, 0) / prices.length;
-
   const enrichedPrices = prices.map(price => ({
     value: price,
     color: price >= average ? barHighColor : barLowColor,
   }));
 
   let definition = {
-    grid: { top: 10, bottom: 25, left: 10, right: 10 },
+    grid: { top: 12, bottom: 22, left: 0, right: 0 },
     xAxis: {
       type: "category",
       data: times,

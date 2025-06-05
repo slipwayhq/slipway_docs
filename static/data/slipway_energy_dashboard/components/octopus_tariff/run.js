@@ -57,15 +57,17 @@ export async function run(input) {
 
   const productData = JSON.parse(productResponse.body);
 
-  let results = productData.results;
+  const results = productData.results;
   if (!results || !results.length) {
     throw new Error("No standard unit rates found for the given tariff code.");
   }
 
-  let todaysHalfHourPrices = getTodaysHalfHourPrices(results, process.env.TZ);
+  const today = getDayHalfHourPrices(results, process.env.TZ, false);
+  const yesterday = getDayHalfHourPrices(results, process.env.TZ, true);
 
   return {
-    prices: todaysHalfHourPrices
+    today,
+    yesterday,
   }
 }
 
@@ -76,7 +78,7 @@ export async function run(input) {
  * @param {string}        tz      – IANA zone, e.g. "Europe/London"
  * @returns {Array<{ time: string, price: number }>}
  */
-export function getTodaysHalfHourPrices(results, tz = 'UTC') {
+export function getDayHalfHourPrices(results, tz, yesterday = false) {
   // --- 1. Pre-process API rows into { price, from, to } with Temporal.Instants ----
   const apiIntervals = results.map(r => ({
     price : r.value_inc_vat,                                   // or value_exc_vat
@@ -86,7 +88,10 @@ export function getTodaysHalfHourPrices(results, tz = 'UTC') {
 
   // --- 2. Establish the user’s “today” in their time-zone -------------------------
   const nowZD   = Temporal.Now.zonedDateTimeISO(tz);           // e.g. 2025-06-04T13:17 …
-  const dayZD   = nowZD.startOfDay();                          // 00:00 local
+  let dayZD   = nowZD.startOfDay();                          // 00:00 local
+  if (yesterday) {
+    dayZD = dayZD.subtract({ days: 1 });                       // 00:00 local yesterday
+  }
   const slots   = [];
 
   // --- 3. Walk the 48 half-hour boundaries ---------------------------------------
@@ -98,6 +103,10 @@ export function getTodaysHalfHourPrices(results, tz = 'UTC') {
       Temporal.Instant.compare(slotUT, from) >= 0 && 
       Temporal.Instant.compare(slotUT, to) < 0
     );
+
+    if (!found) {
+      console.warn(`No price found for slot ${slotZD.toString()}`);
+    }
 
     slots.push({
       time : slotZD.toString({ smallestUnit: 'minute', timeZoneName: 'never' }), // ISO wo/ zone, no seconds

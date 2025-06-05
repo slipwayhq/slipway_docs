@@ -14,15 +14,25 @@
   },
   "output": {
     "properties": {
-      "prices": {
+      "today": {
         "elements": {
-          "properties": {
-            "time": {
-              "type": "string"
-            },
-            "price": {
-              "type": "float64"
-            }
+          "ref": "price"
+        }
+      },
+      "yesterday": {
+        "elements": {
+          "ref": "price"
+        }
+      }
+    },
+    "definitions": {
+      "price": {
+        "properties": {
+          "time": {
+            "type": "string"
+          },
+          "price": {
+            "type": "float64"
           }
         }
       }
