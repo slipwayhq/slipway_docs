@@ -2,6 +2,51 @@
   "publisher": "jamesthurley",
   "name": "energy_dashboard__tariff_rate_graph",
   "version": "1.0.0",
-  "input": {},
-  "output": {}
+  "input": {
+    "properties": {
+      "width": {
+        "type": "uint32"
+      },
+      "height": {
+        "type": "uint32"
+      },
+      "prices": {
+        "elements": {
+          "properties": {
+            "time": {
+              "type": "string"
+            },
+            "price": {
+              "type": "float64"
+            }
+          }
+        }
+      }
+    },
+    "optionalProperties": {
+      "theme": {
+        "optionalProperties": {
+          "bar_high_color": { "type": "string" },
+          "bar_low_color": { "type": "string" },
+          "axis_color": { "type": "string" }
+        }
+      }
+    }
+  },
+  "output": "canvas",
+  "rigging": {
+    "output": {
+      "component": "slipwayhq.echarts.0.5.4",
+      "allow": [
+        { "permission": "fonts" },
+        { "permission": "registry_components", "publisher": "slipwayhq" }
+      ],
+      "input": {
+        "width": "$$.input.width",
+        "height": "$$.input.height",
+        "chart": "$$.input.run.chart",
+        "apply": "$$.input.run.apply"
+      }
+    }
+  }
 }

@@ -14,6 +14,20 @@
       ],
       "input": {}
     },
+    "octopus_tariff": {
+      "component": "jamesthurley.energy_dashboard__octopus_tariff.1.0.0",
+      "allow": [
+        {
+          "permission": "env",
+          "prefix": "OCTOPUS_"
+        },
+        {
+          "permission": "http",
+          "prefix": "https://api.octopus.energy/"
+        }
+      ],
+      "input": {}
+    },
     "render": {
       "component": "slipwayhq.render.0.7.0",
       "allow": [
@@ -32,7 +46,7 @@
             { "permission": "registry_components" }
           ]
         },
-        "energy_dashboard": {
+        "energy_graph": {
           "component": "slipwayhq.energy_dashboard__energy_graph.1.0.0",
           "allow": [
             { "permission": "fonts" },
@@ -41,6 +55,13 @@
         },
         "energy_lifetime": {
           "component": "slipwayhq.energy_dashboard__energy_lifetime.1.0.0",
+          "allow": [
+            { "permission": "fonts" },
+            { "permission": "registry_components" }
+          ]
+        },
+        "tariff_rate_graph": {
+          "component": "slipwayhq.energy_dashboard__tariff_rate_graph.1.0.0",
           "allow": [
             { "permission": "fonts" },
             { "permission": "registry_components" }
@@ -95,7 +116,7 @@
                 {
                   "type": "Image",
                   "height": "stretch",
-                  "url": "component://energy_dashboard?width=$width&height=$height",
+                  "url": "component://energy_graph?width=$width&height=$height",
                   "body": {
                     "power": "$$.givenergy.today.power"
                   }
@@ -104,7 +125,6 @@
             },
             {
               "type": "ColumnSet",
-              "height": "stretch",
               "columns": [
                 {
                   "type": "Column",
@@ -112,7 +132,17 @@
                   "items": [
                     {
                       "type": "TextBlock",
-                      "text": "Energy rates here"
+                      "size": "large",
+                      "text": "Today's Rates"
+                    },
+                    {
+                      "type": "Image",
+                      "height": "100px",
+                      "spacing": "small",
+                      "url": "component://tariff_rate_graph?width=$width&height=$height",
+                      "body": {
+                        "prices": "$$.octopus_tariff.prices"
+                      }
                     }
                   ]
                 },
@@ -121,7 +151,8 @@
                   "items": [
                     {
                       "type": "TextBlock",
-                      "text": "Yesterday's costs"
+                      "size": "large",
+                      "text": "Yesterday"
                     }
                   ]
                 }
