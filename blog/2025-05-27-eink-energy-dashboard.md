@@ -275,7 +275,7 @@ I'm going to create the following Components:
 ### Data Fetching Components
 
 - `givenergy`: This will fetch my solar, battery and power data from the GivEnergy servers and output it to be fed into other Components.
-- `octopus`: This will fetch my Octopus tariff data and output it to be fed into other Components.
+- `octopus_tariff`: This will fetch my Octopus tariff data and output it to be fed into other Components.
 
 If other people want to use this dashboard and have other data providers, they can simply swap out these Components for their own ones.
 
@@ -649,3 +649,30 @@ And this is what the JSX looks like:
   <summary>Show `lifetime.jsx`</summary>
 ::insert{file=slipway_energy_dashboard/components/energy_lifetime/lifetime.jsx}
 </details>
+
+## The `octopus_tariff` Component
+
+This is another fairly straightforward data fetching Component.
+
+It takes the user's API token and account number, and returns a structure with half-hourly
+prices for the current day, taking the user's time zone into account.
+
+Depending on what tariff you're on, Octopus will either return quite course-grained data 
+(for the Go tariff, only two sections per day) or
+quite fine-grained (30 minute sections for the Agile tariff).
+
+I wanted to turn this into a standard format: a list of 48 prices in 30 minute slots, to
+cover the user's current day. AI is perfect for this kind of data wrangling, so I just asked
+ChatGPT to generate the function for me.
+
+
+<details>
+  <summary>Show `slipway_component.json`</summary>
+::insert{file=slipway_energy_dashboard/components/octopus_tariff/slipway_component.json}
+</details>
+
+<details>
+  <summary>Show `run.js`</summary>
+::insert{file=slipway_energy_dashboard/components/octopus_tariff/run.js}
+</details>
+

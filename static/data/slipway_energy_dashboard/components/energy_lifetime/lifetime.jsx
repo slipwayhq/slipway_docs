@@ -19,7 +19,7 @@
         </g>
     </svg>
     <span style={{ fontSize: "1.5rem", marginLeft: 1 }}>
-      {data.solar.toPrecision(4)}
+      {data.solar.toPrecision(3)}
     </span>
     <span style={{ fontSize: "0.9rem" }}>
       {data.solarUnits}
@@ -31,7 +31,7 @@
         <path fill="#ff0000fe" d="M1.45 0h1.94a.38.38 0 0 1 .36.5l-.66 2a.38.38 0 0 0 .36.5h1.94a.33.33 0 0 1 .3.47l-3.53 7.06a.12.12 0 0 1-.24-.06V6.53A.53.53 0 0 0 1.39 6H.45A.45.45 0 0 1 0 5.48L.83.52A.62.62 0 0 1 1.45 0Z"/>
     </svg>
     <span style={{ fontSize: "1.5rem", marginLeft: 1 }}>
-      {data.gridExport.toPrecision(4)}
+      {data.gridExport.toPrecision(3)}
     </span>
     <span style={{ fontSize: "0.9rem" }}>
       {data.gridExportUnits} export

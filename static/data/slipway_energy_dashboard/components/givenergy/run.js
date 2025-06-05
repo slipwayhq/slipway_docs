@@ -22,17 +22,17 @@ export async function run(input) {
   };
 
   const tz = process.env.TZ;
-  console.log(`Timezone: ${tz}`);
-  console.log(`Now: ${Temporal.Now.plainDateTimeISO(tz).toString()}`);
+  console.trace(`Timezone: ${tz}`);
+  console.trace(`Now: ${Temporal.Now.plainDateTimeISO(tz).toString()}`);
   
   // Prepare day strings (yesterday & today) in YYYY-MM-DD
   const todayStr = Temporal.Now.plainDateISO(tz).toString();
-  console.log(`Today: ${todayStr}`);
+  console.trace(`Today: ${todayStr}`);
 
   const yesterdayStr = Temporal.Now.plainDateISO(tz)
     .subtract({ days: 1 })
     .toString();
-    console.log(`Yesterday: ${yesterdayStr}`);
+    console.trace(`Yesterday: ${yesterdayStr}`);
 
   // Fetch both days' data in parallel
   const [yesterdayData, todayData] = await Promise.all([
@@ -50,7 +50,7 @@ export async function run(input) {
 async function gatherDayData(dayStr, inverterId, requestOptions) {
   // Fetch page 1 first so we know how many pages there are
   const page1Url = `https://api.givenergy.cloud/v1/inverter/${inverterId}/data-points/${dayStr}?page=1`;
-  console.log(`Calling: ${page1Url}`);
+  // console.log(`Calling: ${page1Url}`);
   const page1Result = await slipway_host.fetch_text(page1Url, requestOptions);
   const page1Body = JSON.parse(page1Result.body);
 
@@ -100,7 +100,7 @@ async function gatherDayData(dayStr, inverterId, requestOptions) {
 // Helper to fetch a specific page, returning { page, body }
 function fetchPage(path, requestOptions, page) {
   const url = `${path}?page=${page}`;
-  console.log(`Calling: ${url}`);
+  // console.log(`Calling: ${url}`);
   return slipway_host.fetch_text(url, requestOptions).then(result => {
     return {
       page,

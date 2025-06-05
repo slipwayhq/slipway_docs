@@ -1,0 +1,31 @@
+{
+  "publisher": "jamesthurley",
+  "name": "energy_dashboard__octopus_tariff",
+  "version": "1.0.0",
+  "input": {
+    "optionalProperties": {
+      "account_number": {
+        "type": "string"
+      },
+      "api_token": {
+        "type": "string"
+      }
+    }
+  },
+  "output": {
+    "properties": {
+      "prices": {
+        "elements": {
+          "properties": {
+            "time": {
+              "type": "string"
+            },
+            "price": {
+              "type": "float64"
+            }
+          }
+        }
+      }
+    }
+  }
+}
