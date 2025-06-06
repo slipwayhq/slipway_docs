@@ -44,7 +44,7 @@
   "output": "canvas",
   "rigging": {
     "output": {
-      "component": "slipwayhq.jsx.0.5.3",
+      "component": "slipwayhq.jsx.0.6.0",
       "allow": [
         { "permission": "fonts" },
         { "permission": "registry_components", "publisher": "slipwayhq" }
