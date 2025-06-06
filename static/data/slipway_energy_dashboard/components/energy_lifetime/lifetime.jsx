@@ -5,6 +5,7 @@
     justifyContent: "center",
     height: "100%",
     width: "100%",
+    color: "#000000fe"
   }}
 >
   <span style={{ fontSize: "0.9rem", marginRight: 16 }}>

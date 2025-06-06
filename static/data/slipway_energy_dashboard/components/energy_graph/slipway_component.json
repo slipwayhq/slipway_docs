@@ -20,10 +20,11 @@
       "theme": {
         "optionalProperties": {
           "solar_color": { "type": "string" },
-          "grid_color": { "type": "string" },
+          "grid_import_color": { "type": "string" },
           "battery_color": { "type": "string" },
-          "axis_color": { "type": "string" }
-        }
+          "foreground_color": { "type": "string" }
+        },
+        "additionalProperties": true
       }
     },
     "definitions": {

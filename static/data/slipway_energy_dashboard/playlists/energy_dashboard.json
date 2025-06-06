@@ -1,0 +1,10 @@
+{
+  "schedule": [
+    {
+      "refresh": {
+        "minutes": 5
+      },
+      "rig": "energy_dashboard"
+    }
+  ]
+}

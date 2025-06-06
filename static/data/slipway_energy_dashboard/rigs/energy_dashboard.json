@@ -1,7 +1,27 @@
 {
+  "context": {
+    "device": {
+      "width": 480,
+      "height": 800,
+      "theme": {
+        "solar_color": "rgb(230, 150, 0)",
+        "grid_export_color": "rgb(230, 150, 0)",
+        "tariff_bar_low_color": "rgb(230, 150, 0)",
+        "grid_import_color": "rgb(125, 0, 0)",
+        "tariff_bar_high_color": "rgb(125, 0, 0)",
+        "power_used_color": "rgb(255, 255, 255)",
+        "battery_color": "rgb(0, 0, 0)",
+        "background_color": "rgb(255, 255, 255)",
+        "foreground_color": "rgb(0, 0, 0)",
+        "header_background_color": "rgb(230, 150, 0)",
+        "header_foreground_color": "rgb(0, 0, 0)",
+        "cash_flow_line_padding": 30
+      }
+    }
+  },
   "rigging": {
-    "now": {
-      "component": "jamesthurley.energy_dashboard__current_time.1.0.0",
+    "utils": {
+      "component": "jamesthurley.energy_dashboard__utils.1.0.0",
       "input": {}
     },
     "givenergy": {
@@ -81,29 +101,50 @@
       },
       "input": {
         "debug": false,
+        "host_config": {
+          "containerStyles": {
+            "default": {
+              "backgroundColor": "$.context.device.theme.background_color",
+              "foregroundColors": {
+                "default": {
+                  "default": "$.context.device.theme.foreground_color"
+                }
+              }
+            },
+            "attention": {
+              "backgroundColor": "$.context.device.theme.header_background_color",
+              "borderThickness": 0,
+              "foregroundColors": {
+                "default": {
+                  "default": "$.context.device.theme.header_foreground_color"
+                }
+              }
+            }
+          }
+        },
         "canvas": {
-          "width": 480,
-          "height": 800
+          "width": "$.context.device.width",
+          "height": "$.context.device.height"
         },
         "card": {
           "type": "AdaptiveCard",
           "body": [
             {
               "type": "Container",
-              "style": "warning",
+              "style": "attention",
               "bleed": true,
               "items": [
                 {
                   "type": "TextBlock",
                   "size": "extraLarge",
-                  "text": "$$.now.formatted_date",
+                  "text": "$$.utils.formatted_date",
                   "wrap": true
                 },
                 {
                   "type": "TextBlock",
                   "spacing": "small",
                   "size": "medium",
-                  "text": "$$.now.formatted_time",
+                  "text": "$$.utils.formatted_time",
                   "wrap": true
                 }
               ]
@@ -114,7 +155,8 @@
               "spacing": "large",
               "url": "component://energy_flow_chart?width=$width&height=$height",
               "body": {
-                "data": "$$.givenergy.today.day"
+                "data": "$$.givenergy.today.day",
+                "theme": "$.context.device.theme"
               }
             },
             {
@@ -128,7 +170,8 @@
                   "height": "stretch",
                   "url": "component://energy_graph?width=$width&height=$height",
                   "body": {
-                    "power": "$$.givenergy.today.power"
+                    "power": "$$.givenergy.today.power",
+                    "theme": "$.context.device.theme"
                   }
                 }
               ]
@@ -151,7 +194,8 @@
                       "spacing": "small",
                       "url": "component://tariff_rate_graph?width=$width&height=$height",
                       "body": {
-                        "prices": "$$.octopus_tariff.today"
+                        "prices": "$$.octopus_tariff.today",
+                        "theme": "$.context.device.theme"
                       }
                     }
                   ]
@@ -175,10 +219,8 @@
                         "power": "$$.givenergy.yesterday.power",
                         "day": "$$.givenergy.yesterday.day",
                         "prices": "$$.octopus_tariff.yesterday",
-                        "generation_price": 25.84,
-                        "theme": {
-                          "line_padding": 30
-                        }
+                        "generation_rate": "$$.utils.generation_rate",
+                        "theme": "$.context.device.theme"
                       }
                     }
                   ]
@@ -190,7 +232,8 @@
               "height": "40px",
               "url": "component://energy_lifetime?width=$width&height=$height",
               "body": {
-                "data": "$$.givenergy.today.total"
+                "data": "$$.givenergy.today.total",
+                "theme": "$.context.device.theme"
               }
             }
           ]

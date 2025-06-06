@@ -34,8 +34,10 @@
       "theme": {
         "optionalProperties": {
           "solar_color": { "type": "string" },
-          "grid_export_color": { "type": "string" }
-        }
+          "grid_export_color": { "type": "string" },
+          "foreground_color": { "type": "string" }
+        },
+        "additionalProperties": true
       }
     }
   },

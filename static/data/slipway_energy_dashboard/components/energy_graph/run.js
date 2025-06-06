@@ -12,9 +12,9 @@ export async function run(input) {
 function buildChart(data, theme) {
 
   let solarColor = theme.solar_color || 'rgba(230, 150, 0, 1)';
-  let gridColor = theme.grid_color || 'rgba(125, 0, 0, 1)';
+  let gridColor = theme.grid_import_color || 'rgba(125, 0, 0, 1)';
   let batteryColor = theme.battery_color || 'rgba(0, 0, 0, 1)';
-  let axisColor = theme.grid_color || 'rgba(0, 0, 0, 1)';
+  let foregroundColor = theme.foreground_color || 'rgba(0, 0, 0, 1)';
 
   const times = data.map(d => new Date(d.time).getTime());
   const solar = data.map(d => d.solar/1000);
@@ -55,22 +55,22 @@ function buildChart(data, theme) {
       min: dayStart.getTime(),
       max: dayEnd.getTime(),
       axisLabel: {
-        color: axisColor // Formatter set by apply.js.
+        color: foregroundColor // Formatter set by apply.js.
       },
       splitNumber: 3,
       axisTick: {
         show: true,
-        lineStyle: { width: 1, length: 5, color: axisColor }
+        lineStyle: { width: 1, length: 5, color: foregroundColor }
       },
       minorTick: {
         show: true,
-        lineStyle: { width: 1, length: 2, color: axisColor },
+        lineStyle: { width: 1, length: 2, color: foregroundColor },
         splitNumber: 6
       },
       splitLine: { show: false },
       minorSplitLine: { show: false },
       axisLine: {
-        lineStyle: { color: axisColor }
+        lineStyle: { color: foregroundColor }
       },
     },
     yAxis: [
@@ -79,15 +79,15 @@ function buildChart(data, theme) {
         min: 0,
         max: power_axis_max,
         name: `${power_axis_max}kW`,
-        nameTextStyle: { color: axisColor },
+        nameTextStyle: { color: foregroundColor },
         nameGap: 2,
         axisLine: {
           show: true,
-          lineStyle: { color: axisColor }
+          lineStyle: { color: foregroundColor }
         },
         axisLabel: { show: false },
-        axisTick: { show: true, lineStyle: { width: 1, length: 2, color: axisColor } },
-        splitLine: { show: true, lineStyle: { color: axisColor, type: [1, 8] } }
+        axisTick: { show: true, lineStyle: { width: 1, length: 2, color: foregroundColor } },
+        splitLine: { show: true, lineStyle: { color: foregroundColor, type: [1, 8] } }
       },
       {
         type: "value",
@@ -113,6 +113,13 @@ function buildChart(data, theme) {
         data: times.map((t, i) => [t, consumption[i]]),
         lineStyle: { width: 0 },
         areaStyle: { color: gridColor, opacity: 1.0 }
+      },
+      {
+        name: "Solar Peek",
+        type: "line",
+        showSymbol: false,
+        data: times.map((t, i) => [t, solar[i]]),
+        lineStyle: { width: 1, color: solarColor },
       },
       {
         name: "Battery %",

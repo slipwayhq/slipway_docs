@@ -7,15 +7,15 @@
   </defs>
   <!-- <rect width="100%" height="100%" fill="#ffc"/> -->
   <g transform="translate(75 14)">
-    <path id="house" d="M-24 41.47V6.59a2.05 2.05 117.34 0 1 .86-1.67L-0.86-10.86a1.5 1.5 0 0 1 1.72 0L23.14 4.92a2.05 2.05 62.66 0 1 .86 1.67v34.88a1.06 1.06 135 0 1-1.06 1.06H-22.94a1.06 1.06 45 0 1-1.06-1.06z"/>
-    <rect id="solar-panel" width="23.83" height="1.2" x="0" y="0" fill="#ffcf00fe" rx=".5" ry=".5" transform="translate(-24, 3) rotate(-35.5)"/>
+    <path id="house" fill="#000000fe" d="M-24 41.47V6.59a2.05 2.05 117.34 0 1 .86-1.67L-0.86-10.86a1.5 1.5 0 0 1 1.72 0L23.14 4.92a2.05 2.05 62.66 0 1 .86 1.67v34.88a1.06 1.06 135 0 1-1.06 1.06H-22.94a1.06 1.06 45 0 1-1.06-1.06z"/>
+    <rect id="solar-panel" fill="#ffcf00fe" width="23.83" height="1.2" x="0" y="0" rx=".5" ry=".5" transform="translate(-24, 3) rotate(-35.5)"/>
   </g>
   <g fill="none" stroke="#000000fe" transform="translate(38,0)" stroke-linecap="round" stroke-width=".7" marker-end="url(#arrow-cap)">
     <path id="solar-arrow" d="m3.16 0.35 12 13"/>
     <path id="grid-arrow" d="M0 44.35h10"/>
     <path id="export-arrow" d="M64.16 36.35h10"/>
   </g>
-  <g id="solar-stats" transform="translate(0 9)" style="text-align:start" text-anchor="start">
+  <g id="solar-stats" fill="#000000fe" transform="translate(0 9)" style="text-align:start" text-anchor="start">
     <text x="0" y="0"><tspan font-size="12">{s}</tspan><tspan>kWh</tspan></text>
     <text x="9.5" y="6.24"><tspan >solar</tspan></text>
     <g fill="#ffcf00fe" stroke-width="1.7" transform="translate(4.5 5.24) scale(.58697)">
@@ -23,7 +23,7 @@
       <path d="M4.53-.5h.94a.53.53 0 0 1 .53.53.5.5 0 0 1-.53.47h-.94a.53.53 0 0 1-.53-.53.5.5 0 0 1 .53-.47zm-.97 3.35.66.66a.53.53 0 0 1 0 .75.5.5 0 0 1-.7-.04l-.67-.66a.53.53 0 0 1 0-.75.5.5 0 0 1 .7.04zm-.71-6.41.66-.66a.53.53 0 0 1 .75 0 .5.5 0 0 1-.04.7l-.66.67a.53.53 0 0 1-.75 0 .5.5 0 0 1 .04-.7zm-3.35-.97v-.94a.53.53 0 0 1 .53-.53.5.5 0 0 1 .47.53v.94a.53.53 0 0 1-.53.53.5.5 0 0 1-.47-.53zm-3.06 1.68-.66-.66a.53.53 0 0 1 0-.75.5.5 0 0 1 .7.04l.67.66a.53.53 0 0 1 0 .75.5.5 0 0 1-.7-.04zm4.06 7.38v.94a.53.53 0 0 1-.53.53.5.5 0 0 1-.47-.53v-.94a.53.53 0 0 1 .53-.53.5.5 0 0 1 .47.53zm-3.35-.97-.66.66a.53.53 0 0 1-.75 0 .5.5 0 0 1 .04-.7l.66-.67a.53.53 0 0 1 .75 0 .5.5 0 0 1-.04.7zm-1.68-3.06h-.94a.53.53 0 0 1-.53-.53.5.5 0 0 1 .53-.47h.94a.53.53 0 0 1 .53.53.5.5 0 0 1-.53.47z"/>
     </g>
   </g>
-  <g id="grid-stats" transform="translate(0 50)" style="text-align:start" text-anchor="start">
+  <g id="grid-stats" fill="#000000fe" transform="translate(0 50)" style="text-align:start" text-anchor="start">
     <text x="0" y="0"><tspan font-size="12">{g}</tspan><tspan>kWh</tspan></text>
     <text x="6.5" y="6.24"><tspan>grid</tspan></text>
     <use x="2" y="3" href="#lightning" fill="#ff0000fe"/>
@@ -32,7 +32,7 @@
     <text x="0" y="0"><tspan font-size="12">{u}</tspan><tspan>kWh</tspan></text>
     <text x="0" y="6.24"><tspan>used</tspan></text>
   </g>
-  <g id="export-stats" transform="translate(150 37)" style="text-align:end" text-anchor="end">
+  <g id="export-stats" fill="#000000fe" transform="translate(150 37)" style="text-align:end" text-anchor="end">
     <text x="0" y="0"><tspan font-size="12">{e}</tspan><tspan>kWh</tspan></text>
     <text x="0" y="6.24"><tspan>export</tspan></text>
     <use x="-18" y="3" href="#lightning" fill="#00ff00fe"/>

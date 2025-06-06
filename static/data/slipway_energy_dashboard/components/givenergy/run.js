@@ -32,7 +32,7 @@ export async function run(input) {
   const yesterdayStr = Temporal.Now.plainDateISO(tz)
     .subtract({ days: 1 })
     .toString();
-    console.trace(`Yesterday: ${yesterdayStr}`);
+  console.trace(`Yesterday: ${yesterdayStr}`);
 
   // Fetch both days' data in parallel
   const [yesterdayData, todayData] = await Promise.all([
