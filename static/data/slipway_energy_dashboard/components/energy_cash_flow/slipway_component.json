@@ -50,27 +50,28 @@
       }
     },
     "optionalProperties": {
-      "export_price": {
+      "export_rate": {
         "type": "float64"
       },
-      "generation_price": {
+      "generation_rate": {
         "type": "float64"
       },
       "theme": {
         "optionalProperties": {
-          "import_color": {
+          "grid_import_color": {
             "type": "string"
           },
-          "export_color": {
+          "grid_export_color": {
             "type": "string"
           },
-          "generation_color": {
+          "solar_color": {
             "type": "string"
           },
-          "line_padding": {
+          "cash_flow_line_padding": {
             "type": "uint32"
           }
-        }
+        },
+        "additionalProperties": true
       }
     }
   },

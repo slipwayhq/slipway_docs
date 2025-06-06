@@ -1,6 +1,6 @@
 {
   "publisher": "jamesthurley",
-  "name": "energy_dashboard__current_time",
+  "name": "energy_dashboard__utils",
   "version": "1.0.0",
   "input": {},
   "output": {
@@ -10,6 +10,9 @@
       },
       "formatted_time": {
         "type": "string"
+      },
+      "generation_rate": {
+        "type": "float64"
       }
     }
   }

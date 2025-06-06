@@ -20,12 +20,14 @@ export async function run(input) {
   let theme = input.theme || {};
   let solarColor = theme.solar_color || 'rgba(230, 150, 0, 1)';
   let gridExportColor = theme.grid_export_color || solarColor;
+  let foregroundColor = theme.foreground_color || 'rgba(0, 0, 0, 1)';
 
   let jsx = await slipway_host.load_text('', 'lifetime.jsx');
 
   jsx = jsx
     .replace(/#ffcf00fe/g, solarColor)
-    .replace(/#ff0000fe/g, gridExportColor);
+    .replace(/#ff0000fe/g, gridExportColor)
+    .replace(/#000000fe/g, foregroundColor);
 
   const data = {
     title,

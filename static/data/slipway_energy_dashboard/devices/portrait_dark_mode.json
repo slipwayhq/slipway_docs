@@ -1,0 +1,21 @@
+{
+  "playlist": "energy_dashboard",
+  "context": {
+    "width": 480,
+    "height": 800,
+    "theme": {
+      "solar_color": "rgb(230, 150, 0)",
+      "grid_export_color": "rgb(230, 150, 0)",
+      "tariff_bar_low_color": "rgb(230, 150, 0)",
+      "grid_import_color": "rgb(125, 0, 0)",
+      "tariff_bar_high_color": "rgb(125, 0, 0)",
+      "power_used_color": "rgb(0, 0, 0)",
+      "battery_color": "rgb(255, 255, 255)",
+      "background_color": "rgb(0, 0, 0)",
+      "foreground_color": "rgb(255, 255, 255)",
+      "header_background_color": "rgb(230, 150, 0)",
+      "header_foreground_color": "rgb(0, 0, 0)",
+      "cash_flow_line_padding": 30
+    }
+  }
+}

@@ -11,9 +11,9 @@ export async function run(input) {
 
 function buildChart(data, theme) {
 
-  let barHighColor = theme.bar_color || 'rgba(125, 0, 0, 1)';
-  let barLowColor = theme.bar_color || 'rgba(230, 150, 0, 1)';
-  let axisColor = theme.grid_color || 'rgba(0, 0, 0, 1)';
+  let barHighColor = theme.tariff_bar_high_color || 'rgba(125, 0, 0, 1)';
+  let barLowColor = theme.tariff_bar_low_color || 'rgba(230, 150, 0, 1)';
+  let foregroundColor = theme.foreground_color || 'rgba(0, 0, 0, 1)';
 
   const times = data.map(d => d.time);
   const prices = data.map(d => d.price);
@@ -34,21 +34,21 @@ function buildChart(data, theme) {
       axisLabel: {
         show: true,
         interval: 11,
-        color: axisColor // Formatter set by apply.js.
+        color: foregroundColor // Formatter set by apply.js.
       },
       axisTick: {
         show: true,
         alignWithLabel: true,
-        lineStyle: { width: 1, length: 5, color: axisColor }
+        lineStyle: { width: 1, length: 5, color: foregroundColor }
       },
       minorTick: {
         show: true,
-        lineStyle: { width: 1, length: 2, color: axisColor },
+        lineStyle: { width: 1, length: 2, color: foregroundColor },
       },
       splitLine: { show: false },
       minorSplitLine: { show: false },
       axisLine: {
-        lineStyle: { color: axisColor }
+        lineStyle: { color: foregroundColor }
       },
     },
     yAxis: {
@@ -56,11 +56,11 @@ function buildChart(data, theme) {
       min: 0,
       axisLine: {
         show: false,
-        lineStyle: { color: axisColor }
+        lineStyle: { color: foregroundColor }
       },
-      axisLabel: { show: false, formatter: '{value}p', color: axisColor },
-      axisTick: { show: false, lineStyle: { width: 1, length: 2, color: axisColor } },
-      splitLine: { show: false, lineStyle: { color: axisColor, type: [1, 8] } }
+      axisLabel: { show: false, formatter: '{value}p', color: foregroundColor },
+      axisTick: { show: false, lineStyle: { width: 1, length: 2, color: foregroundColor } },
+      splitLine: { show: false, lineStyle: { color: foregroundColor, type: [1, 8] } }
     },
     series: [
       {
@@ -82,7 +82,7 @@ function buildChart(data, theme) {
               symbolOffset: [0, '50%'],
               symbolSize: 7,
               itemStyle: {
-                color: axisColor
+                color: foregroundColor
               },
               label: {
                 show: false,
@@ -94,7 +94,7 @@ function buildChart(data, theme) {
           label: {
             show: true,
             position: [0, -12],
-            color: axisColor,
+            color: foregroundColor,
             textBorderWidth: 0,
             // Formatter set by apply.js.
           }

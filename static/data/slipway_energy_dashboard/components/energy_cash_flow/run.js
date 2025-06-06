@@ -1,12 +1,12 @@
 export async function run(input) {
 
-  const exportPrice = input.export_price || 0;
-  const generationPrice = input.generation_price || 0;
+  const exportRate = input.export_rate || 0;
+  const generationRate = input.generation_rate || 0;
 
   const theme = input.theme || {};
-  const gridImportColor = theme.import_color || 'rgba(125, 0, 0, 1)';
-  const gridExportColor = theme.export_color || 'rgba(230, 150, 0, 1)';
-  const gridGenerationColor = theme.generation_color || 'rgba(230, 150, 0, 1)';
+  const gridImportColor = theme.grid_import_color || 'rgba(125, 0, 0, 1)';
+  const gridExportColor = theme.grid_export_color || 'rgba(230, 150, 0, 1)';
+  const gridGenerationColor = theme.solar_color || 'rgba(230, 150, 0, 1)';
 
   const tz = process.env.TZ;
   const prices = input.prices || [];
@@ -16,13 +16,13 @@ export async function run(input) {
   const totalGenerated = input.day.solar || 0;
 
   const importCost = calculateImportCost(prices, power, tz);
-  const exportCost = totalExported * exportPrice;
-  const generationCost = totalGenerated * generationPrice;
+  const exportCost = totalExported * exportRate;
+  const generationCost = totalGenerated * generationRate;
 
   const dimensions = {
     xPadding: 0,
     yPadding: 10,
-    linePadding: theme.line_padding || 20,
+    linePadding: theme.cash_flow_line_padding || 30,
     lineHeight: 30,
   };
 

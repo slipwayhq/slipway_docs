@@ -1,9 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="200" height="140" viewBox="0 0 200 140" font-family="sans-serif" font-size="20">
-  <rect width="100%" height="100%" fill="#ffc"/>
-  <g id="solar-stats" transform="translate(0 50)" style="text-align:start" text-anchor="start">
-    <text x="0" y="0" fill="#ff0000fe"><tspan font-size="48">{us}{s}{su}</tspan><tspan> import</tspan></text>
-  </g>
-  <g id="export-stats" transform="translate(0 115)" style="text-align:start" text-anchor="start">
-    <text x="0" y="0" fill="#ffcf00fe"><tspan font-size="48">{ue}{e}{eu}</tspan><tspan> export</tspan></text>
-  </g>
-</svg>

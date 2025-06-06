@@ -3,6 +3,7 @@ export async function run(input) {
   return {
     "formatted_date": formatDateInTimeZone(zoned),
     "formatted_time": `Updated at ${getCurrentTime24Hour(zoned)}`,
+    "generation_rate": 25.84
   }
 }
 

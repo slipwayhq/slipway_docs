@@ -736,3 +736,79 @@ chart.series[0].itemStyle.color = function (params) {
   return params.data.color || "black";
 };
 ```
+
+## The `energy_cash_flow` Component
+
+Another Component which looked simple but had some unexpected complexity.
+
+First of all I had to run through all the power data from GivEnergy, which is in 5 minute
+intervals, and match it to the price information from Octopus so that I could calculate
+what the day's electricity import had cost me. ChatGPT did most of this
+for me, which was nice.
+
+Then I realized the export isn't as simple as I thought either.
+
+For some people they will have a smart meter which measures exactly how much
+electricity they export during the day, and they will be paid based on that.
+
+For my particular contract they don't actually measure what I export, they
+just measure what my solar panels generate and assume I export 50% of it.
+
+Then, because of a government incentive scheme, they also pay me another rate
+for all solar I generate, irrespective of whether it is exported or used.
+
+I tried to make this Component handle all scenarios (an export rate, a generation rate,
+or both).
+
+Because of this I needed to dynamically generate the SVG, as it's size would depend on
+how many lines of information it was outputting.
+
+The result was, well, some lines of colored text:
+
+![Cash Flow](/img/blog/eink-energy-dashboard-cash-flow.png)
+
+<details>
+  <summary>Show `run.js`</summary>
+::insert{file=slipway_energy_dashboard/components/energy_cash_flow/run.js}
+</details>
+
+The `slipway_component.json` will look pretty familiar by now.
+It takes both the vector of power information, to calculate the import costs,
+and the day summary, to more easily calculate the export/generation costs,
+and the energy tariff data so it knows the prices.
+
+In addition there are optional `export_rate` and `generation_rate` fields, so you
+can set whichever apply to your setup.
+Plus some optional theming properties.
+
+<details>
+  <summary>Show `slipway_component.json`</summary>
+::insert{file=slipway_energy_dashboard/components/energy_cash_flow/slipway_component.json}
+</details>
+
+## The `utils` Component
+
+The last thing I needed to do was display the date and time at the top of the dashboard
+and have somewhere central that I could publish my solar generation rate.
+
+I wanted the solar generation rate published from one place, rather than hard-coded in the
+Rig, because I may have multiple Rigs for different devices using these Components.
+
+For all of these I decided to just create a trivial `utils` Component.
+
+I'll just publish this privately rather than as part of the set of energy dashboard Components,
+as it's specific to me.
+
+One minor complication was the Javascript runtime Slipway uses doesn't have the `toLocaleString`
+methods implemented on Temporal yet, or the formatters on Intl, so I had to generate the date
+a bit more manually. Or rather, ChatGPT did.
+
+<details>
+  <summary>Show `run.js`</summary>
+::insert{file=slipway_energy_dashboard/components/utils/run.js}
+</details>
+
+<details>
+  <summary>Show `slipway_component.json`</summary>
+::insert{file=slipway_energy_dashboard/components/utils/slipway_component.json}
+</details>

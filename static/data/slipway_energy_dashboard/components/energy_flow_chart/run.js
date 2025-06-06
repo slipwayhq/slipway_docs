@@ -8,8 +8,8 @@ export async function run(input) {
   let solarColor = theme.solar_color || 'rgba(230, 150, 0, 1)';
   let gridImportColor = theme.grid_import_color || 'rgba(125, 0, 0, 1)';
   let gridExportColor = theme.grid_export_color || solarColor;
-  let usedColor = theme.used_color || 'rgba(255, 255, 255, 1)';
-  let houseColor = theme.house_color || 'rgba(0, 0, 0, 1)';
+  let usedColor = theme.power_used_color || 'rgba(255, 255, 255, 1)';
+  let foregroundColor = theme.foreground_color || 'rgba(0, 0, 0, 1)';
 
   let flowSvg = await slipway_host.load_text('', 'flow.svg');  
 
@@ -18,7 +18,7 @@ export async function run(input) {
     .replace(/#ff0000fe/g, gridImportColor)
     .replace(/#00ff00fe/g, gridExportColor)
     .replace(/#fffffffe/g, usedColor)
-    .replace(/#000000fe/g, houseColor)
+    .replace(/#000000fe/g, foregroundColor)
     .replace("{s}", solar.toFixed(1))
     .replace("{g}", gridImport.toFixed(1))
     .replace("{e}", gridExport.toFixed(1))

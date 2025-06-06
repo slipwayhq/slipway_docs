@@ -38,9 +38,10 @@
           "solar_color": { "type": "string" },
           "grid_import_color": { "type": "string" },
           "grid_export_color": { "type": "string" },
-          "used_color": { "type": "string" },
-          "house_color": { "type": "string" }
-        }
+          "power_used_color": { "type": "string" },
+          "foreground_color": { "type": "string" }
+        },
+        "additionalProperties": true
       }
     }
   },

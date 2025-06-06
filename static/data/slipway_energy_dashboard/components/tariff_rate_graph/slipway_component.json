@@ -26,10 +26,12 @@
     "optionalProperties": {
       "theme": {
         "optionalProperties": {
-          "bar_high_color": { "type": "string" },
-          "bar_low_color": { "type": "string" },
-          "axis_color": { "type": "string" }
-        }
+          "tariff_bar_high_color": { "type": "string" },
+          "tariff_bar_low_color": { "type": "string" },
+          "axis_color": { "type": "string" },
+          "foreground_color": { "type": "string" }
+        },
+        "additionalProperties": true
       }
     }
   },
