@@ -61,7 +61,7 @@ The `init` command will produce a basic version of this file which will look som
   "timezone": "Europe/London",
   "locale": "en-GB",
   "rig_permissions": {},
-  "hashed_api_keys": {}
+  "api_keys": []
 }
 ```
 
@@ -134,18 +134,18 @@ See the [Permissions](/docs/basics/permissions) page for more detail about possi
 
 An optional port to serve on. Defaults to `8080`.
 
-### `hashed_api_keys`
+### `api_keys`
 
-A mapping of key names to hashed API keys.
+A list of hashed API keys with optional associations width specific devices.
 
-API keys provide security by requiring that all devices requesting dashboards provide an API key contained
+API keys provide security by requiring that all devices requesting dashboards provide an API key present
 in the `slipway_serve.json` file. Any requests which do not provide a valid key are rejected.
 
 You can easily add a new random API key by calling the `add-api-key` sub-command.
 
 For example:
 ```sh
-slipway serve . add-api-key --name my_new_key
+slipway serve . add-api-key --description "My new key"
 ```
 
 See the [API Keys](#api-keys) section below for more details.
@@ -463,13 +463,13 @@ New API keys can be easily added to the `slipway_serve.json` using the `add-api-
 
 For example:
 ```sh
-slipway serve . add-api-key --name my_new_key
+slipway serve . add-api-key --description "My new key"
 ```
 
 This command will generate a long and random key, and add the hashed version of the key to the `slipway_serve.json` file
-with the name `my_new_key`.
+with the description provided.
 
-This is secure, as it is computationally infeasible to work out the unhashed key from the
+This a is secure way to store the keys, as it is computationally infeasible to work out the unhashed key from the
 hashed key. The hashing algorithm used is SHA256.
 
 The `add-api-key` command will output the unhashed key in the console for you to save somewhere securely.
@@ -486,14 +486,23 @@ Anyone with access to an unhashed key is able to call your Slipway server endpoi
 
 Keys can be revoked simply by removing them from the `slipway_serve.json` and re-deploying the server.
 
-If you wish to add a custom key, rather than a randomly generated one, you can use the `slipway hash` command
-to generate the hash, and add the hashed key to the `slipway_serve.json` manually.
+If you wish to add a specific key, rather than a randomly generated one, you can use the `--key` argument
+to specify the key. You can also use the `--hashed-key` argument to specify a specific hashed key.
+
+If you want to associate a key with a device, you can use the `--device` argument to specify a device name.
+Associating a key with a device allows the [TRMNL endpoints](/docs/using-with-trmnl/slipway-for-trmnl-devices)
+to know which device configuration to use when the TRMNL device authenticates with an API key.
+
+You can also run `add-api-key` with the `--hashed-key` argument specifying a hashed key that already exists,
+and the settings for that key will be updated. This is useful to add a device association to an existing key
+(although you could also manually edit the JSON).
 
 You can add as many or as few keys as you like. So for example you could have one key for all devices,
 or one key per device, or anything in between.
 
 If some devices have to pass their API key as a query string parameter, rather than as a header,
-it may be worth using a separate key so it can be easily revoked if it leaks, without affecting other devices.
+it may be worth using a separate key for that device so it can be easily revoked if it leaks,
+without affecting other devices.
 
 ## Consolidate
 

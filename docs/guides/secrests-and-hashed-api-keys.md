@@ -45,9 +45,6 @@ This allows us to safely store the hashed API keys directly in the `slipway serv
 This does mean that __if you generate your own API keys you must ensure they are sufficiently long and random__.
 
 Using an API key of `hunter2` is a very bad idea.
-
-This is why the `slipway serve . add-api-key` command does not have the option of passing in an API
-key, and always generates a secure key for you.
 :::
 
 :::info
