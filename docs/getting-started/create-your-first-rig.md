@@ -279,7 +279,7 @@ There are just a couple of additions we need to make.
 First add an API key:
 
 ```sh
-slipway serve . add-api-key --name "example_key"
+slipway serve . add-api-key --description "Example key"
 ```
 
 This will add a hashed API key to the `slipway_serve.json` file, and output the unhashed key to the terminal.
