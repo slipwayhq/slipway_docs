@@ -39,26 +39,19 @@ It was everything that I didn't have the patience, or design chops, to create my
 Not only that, but it was the perfect example to show how you can use Slipway to build modular,
 reusable Components that can be assembled into beautiful dashboards.
 
-In this post I go through George's dashboard section by section and build a Slipway Component for each.
-The Slipway version is modular in the sense that you can plug in your own data providers,
-and also modular in the sense that you can pick and choose the components, move things around,
+In this post I go through George's dashboard section by section and build a Slipway Component for each bit.
+The Slipway version is going to be modular in the sense that:
+
+- You can plug in your own data providers. Not everyone is going to be with Octopus Energy, or have a GivEnergy battery, so I need to let people
+swap out those Components with ones relevant to them.
+
+- You can pick and choose the components, move things around,
 change the aspect ratio, theme, and supplement it with your own components.
 
 Here's a diagram showing each Component we're going to build, with the two data provider Components
-in the top left, and lines showing how the data flows from the data providers to the visualization:
+in the top left, and lines showing how the data flows from the data providers to the visualizations:
 
 ![Annotated Dashboard](/img/blog/eink-energy-dashboard-annotated.png)
-
-## The Plan
-
-As I mentioned, I'm not just going to do a mindless copy of George's dashboard. I'm going to make a few improvements:
-
-- I'm going to separate the data collection from the visualizations so that people can easily plug in their own data providers. Not everyone is going to be with Octopus Energy, or have a GivEnergy battery, so I need to let people
-swap out those Components with ones relevant to them.
-
-- I'm going to split the visualizations into independent Components
-so that people can mix and match the parts which interest them, 
-create their own layouts, and add more information if they need it.
 
 Like George, I have a house battery and solar panels, and an Octopus Energy tariff.
 
@@ -112,7 +105,7 @@ The first command creates a default configuration file called `slipway_serve.jso
 The second command updates the `slipway_serve.json` with a randomly generated hashed API key,
 and displays the unhashed key in the terminal output.
 I'll copy the unhashed version of the API key and save it somewhere secure for later,
-as it is what will authorize me to view the dashboard.
+as it is this key which will authorize me to view the dashboard in the browser.
 
 ```txt title="Filesystem" {2}
 slipway_energy_dashboard
@@ -132,7 +125,7 @@ saved to the `slipway_serve.json` configuration file.
 
 Slipway uses a deny-by-default permission system for Rigs and Components, but in the above command
 I specified [the `--allow-all` permission](/docs/basics/permissions) because I'm creating this Rig myself,
-and so I trust it. We will still have to give each Components explicit permissions, as we'll see later.
+and so I trust it. We will still have to give each Component explicit permissions, as we'll see later.
 
 ```txt title="Filesystem" {3-4}
 slipway_energy_dashboard
@@ -302,6 +295,8 @@ I'll come back to this Rig at the end, and show the final version.
 
 ## Creating the Components
 
+We can split the components into two categories: data sources and visualizations.
+
 ### Data Sources
 
 These Components will fetch data from external sources, and output raw JSON which can be fed into
@@ -329,7 +324,7 @@ This is how the Components correspond to the layout of the dashboard:
 
 ![Annotated Dashboard](/img/blog/eink-energy-dashboard-annotated.png)
 
-This is quite a lot of Components, but each one ends up being quite a small amount of code.
+This is quite a lot of Components, but each one ends up being a fairly small amount of code.
 
 To keep this post a reasonable length I'll just give a brief explanation and show the source
 code of each one. Don't feel you have to look at every line, the idea is just to give a general
@@ -337,9 +332,10 @@ idea of what is involved in creating each Component.
 
 ### Components Folder Structure
 
-Each Component will have a folder under a parent `components` folder, and
-is defined by a `slipway_component.json`.
-To quickly create the initial file for each Component I can run the following from inside the folder,
+Each Component will have its own folder under a parent `components` folder,
+and each Component folder will contain a `slipway_component.json` file which contains the Component metadata.
+
+To quickly create the initial `slipway_component.json` file for each Component I can run the following from inside the folder,
 replacing `<NAME>` with the name of the Component:
 
 ```sh
