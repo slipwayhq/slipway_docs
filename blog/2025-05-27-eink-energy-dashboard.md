@@ -26,7 +26,7 @@ use for their own home energy dashboards.
 
 ## Aspirations
 
-I actually already had a chart running on my eInk display (made by [TRMNL](https://usetrmnl.com/)) in the kitchen.
+I actually already had a chart running on my [eInk display](https://usetrmnl.com/) in the kitchen.
 You can see it here on the left, and also as a color iPhone widget on the right:
 
 ![The first energy chart on TRMNL](/img/blog/eink-energy-dashboard-original-chart.jpg)
