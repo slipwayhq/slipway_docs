@@ -6,7 +6,7 @@ tags: [examples]
 image: /img/blog/eink-energy-dashboard-hero.jpg
 ---
 
-![Energy Dashboard on eInk TRMNL](/img/blog/eink-energy-dashboard-hero.jpg)
+![How to create an Energy Dashboard for an eInk TRMNL display](/img/blog/eink-energy-dashboard-hero.jpg)
 
 This article is about how I took the fantastic home energy dashboard 
 [designed by George Cave](https://interactionmagic.com/Octopus-solar-energy-dashboards) and re-implemented it
