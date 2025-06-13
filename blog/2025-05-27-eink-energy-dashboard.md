@@ -3,6 +3,7 @@ slug: eink-energy-dashboard
 title: Modularizing George Cave's eInk Energy Dashboard
 authors: [jamesthurley]
 tags: [examples]
+image: /img/blog/eink-energy-dashboard-hero.jpg
 ---
 
 ![Energy Dashboard on eInk TRMNL](/img/blog/eink-energy-dashboard-hero.jpg)
