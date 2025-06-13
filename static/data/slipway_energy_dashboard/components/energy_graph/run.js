@@ -31,11 +31,17 @@ function buildChart(data, theme) {
   let hourOfDay = 0;
   if (times.length > 0) {
     // Find the start and end of the day based on the first time
-    dayStart = new Date(times[0]);
-    dayStart.setHours(0, 0, 0, 0);
+    const zdt = Temporal.Instant
+      .fromEpochMilliseconds(Number(times[0]))
+      .toZonedDateTimeISO(process.env.TZ);
 
-    dayEnd = new Date(dayStart);
-    dayEnd.setHours(23, 59, 59, 999);
+    const zdtStart = zdt.startOfDay();
+    dayStart = zdtStart.epochMilliseconds;
+
+    dayEnd = zdtStart
+      .add({ days: 1 })
+      .subtract({ milliseconds: 1 })
+      .epochMilliseconds;
 
     lastPercentIndex = batteryPercent.length - 1;
     lastPercent = batteryPercent[lastPercentIndex];
@@ -52,8 +58,8 @@ function buildChart(data, theme) {
     grid: { top: 20, bottom: 25, left: 30, right: 30 },
     xAxis: {
       type: "time",
-      min: dayStart.getTime(),
-      max: dayEnd.getTime(),
+      min: dayStart,
+      max: dayEnd,
       axisLabel: {
         color: foregroundColor // Formatter set by apply.js.
       },

@@ -300,7 +300,7 @@ Internally the rigging is defined as follows:
       }
     },
     "output": {
-      "component": "slipwayhq.svg.0.6.1",
+      "component": "slipwayhq.svg.0.6.2",
       "allow": [
         { "permission": "fonts" }
       ],

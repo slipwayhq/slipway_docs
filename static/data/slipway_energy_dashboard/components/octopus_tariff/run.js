@@ -25,8 +25,6 @@ export async function run(input) {
   const accountResponse = await slipway_host.fetch_text(`https://api.octopus.energy/v1/accounts/${accountNumber}`, requestOptions);
   const accountData = JSON.parse(accountResponse.body);
 
-  console.trace(`Account data: ${JSON.stringify(accountData, null, 2)}`);
-
   const properties = accountData?.properties;
   if (!properties || !properties.length) {
     throw new Error("No properties found for the given account number.");

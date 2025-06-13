@@ -1,6 +1,9 @@
 chart.xAxis.axisLabel.formatter = function (value) {
-  const date = new Date(value);
-  let hours = date.getHours();
+  const zdt = Temporal.Instant
+    .fromEpochMilliseconds(value)
+    .toZonedDateTimeISO(process.env.TZ);
+
+  let hours = zdt.hour;
 
   if (hours !== 6 && hours !== 12 && hours !== 18) {
     return '';

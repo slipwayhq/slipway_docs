@@ -1,0 +1,175 @@
+{
+  "context": {
+    "device": {
+      "width": 450,
+      "height": 200,
+      "energy_dashboard_theme": {
+        "solar_color": "rgb(218, 133, 0)",
+        "grid_export_color": "rgb(218, 133, 0)",
+        "tariff_bar_low_color": "rgb(218, 133, 0)",
+        "grid_import_color": "rgb(222, 21, 0)",
+        "tariff_bar_high_color": "rgb(222, 21, 0)",
+        "power_used_color": "rgb(255, 255, 255)",
+        "battery_color": "rgb(18, 224, 222)",
+        "background_color": "rgb(0, 0, 0)",
+        "foreground_color": "rgb(255, 255, 255)",
+        "header_background_color": "rgb(218, 133, 0)",
+        "header_foreground_color": "rgb(0, 0, 0)",
+        "cash_flow_line_padding": 30
+      }
+    }
+  },
+  "rigging": {
+    "utils": {
+      "component": "jamesthurley.energy_dashboard__utils.1.0.1",
+      "input": {}
+    },
+    "givenergy": {
+      "component": "jamesthurley.energy_dashboard__givenergy.1.0.1",
+      "allow": [
+        {
+          "permission": "env",
+          "prefix": "GIVENERGY_"
+        },
+        {
+          "permission": "http",
+          "prefix": "https://api.givenergy.cloud/"
+        }
+      ],
+      "input": {}
+    },
+    "octopus_tariff": {
+      "component": "jamesthurley.energy_dashboard__octopus_tariff.1.0.1",
+      "allow": [
+        {
+          "permission": "env",
+          "prefix": "OCTOPUS_"
+        },
+        {
+          "permission": "http",
+          "prefix": "https://api.octopus.energy/"
+        }
+      ],
+      "input": {}
+    },
+    "render": {
+      "component": "slipwayhq.render.0.7.0",
+      "allow": [
+        {
+          "permission": "fonts"
+        },
+        {
+          "permission": "registry_components"
+        }
+      ],
+      "callouts": {
+        "energy_graph": {
+          "component": "jamesthurley.energy_dashboard__energy_graph.1.0.1",
+          "allow": [
+            { "permission": "fonts" },
+            { "permission": "registry_components" }
+          ]
+        },
+        "energy_cash_flow": {
+          "component": "jamesthurley.energy_dashboard__energy_cash_flow.1.0.1",
+          "allow": [
+            { "permission": "fonts" },
+            { "permission": "registry_components" }
+          ]
+        }
+      },
+      "input": {
+        "debug": false,
+        "host_config": {
+          "containerStyles": {
+            "default": {
+              "backgroundColor": "$.context.device.energy_dashboard_theme.background_color",
+              "foregroundColors": {
+                "default": {
+                  "default": "$.context.device.energy_dashboard_theme.foreground_color"
+                }
+              }
+            },
+            "attention": {
+              "backgroundColor": "$.context.device.energy_dashboard_theme.header_background_color",
+              "borderThickness": 0,
+              "foregroundColors": {
+                "default": {
+                  "default": "$.context.device.energy_dashboard_theme.header_foreground_color"
+                }
+              }
+            }
+          }
+        },
+        "canvas": {
+          "width": "$.context.device.width",
+          "height": "$.context.device.height"
+        },
+        "card": {
+          "type": "AdaptiveCard",
+          "body": [
+            {
+              "type": "ColumnSet",
+              "bleed": true,
+              "height": "stretch",
+              "columns": [
+                {
+                  "type": "Column",
+                  "width": "stretch",
+                  "items": [
+                    {
+                      "type": "Image",
+                      "height": "stretch",
+                      "url": "component://energy_graph?width=$width&height=$height",
+                      "body": {
+                        "power": "$$.givenergy.today.power",
+                        "theme": "$.context.device.energy_dashboard_theme"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "Column",
+                  "width": "110px",
+                  "spacing": "none",
+                  "verticalContentAlignment": "bottom",
+                  "items": [
+                    {
+                      "type": "Container",
+                      "height": "stretch",
+                      "items": []
+                    },
+                    {
+                      "type": "TextBlock",
+                      "height": "auto",
+                      "size": "large",
+                      "text": "Yesterday"
+                    },
+                    {
+                      "type": "Image",
+                      "height": "50px",
+                      "spacing": "small",
+                      "url": "component://energy_cash_flow?width=$width&height=50",
+                      "body": {
+                        "power": "$$.givenergy.yesterday.power",
+                        "day": "$$.givenergy.yesterday.day",
+                        "prices": "$$.octopus_tariff.yesterday",
+                        "generation_rate": 25.84,
+                        "theme": "$.context.device.energy_dashboard_theme"
+                      }
+                    },
+                    {
+                      "type": "Container",
+                      "height": "stretch",
+                      "items": []
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      }
+    }
+  }
+}

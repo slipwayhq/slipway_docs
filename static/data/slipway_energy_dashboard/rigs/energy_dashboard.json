@@ -21,11 +21,11 @@
   },
   "rigging": {
     "utils": {
-      "component": "jamesthurley.energy_dashboard__utils.1.0.0",
+      "component": "jamesthurley.energy_dashboard__utils.1.0.1",
       "input": {}
     },
     "givenergy": {
-      "component": "jamesthurley.energy_dashboard__givenergy.1.0.0",
+      "component": "jamesthurley.energy_dashboard__givenergy.1.0.1",
       "allow": [
         {
           "permission": "env",
@@ -39,7 +39,7 @@
       "input": {}
     },
     "octopus_tariff": {
-      "component": "jamesthurley.energy_dashboard__octopus_tariff.1.0.0",
+      "component": "jamesthurley.energy_dashboard__octopus_tariff.1.0.1",
       "allow": [
         {
           "permission": "env",
@@ -64,35 +64,35 @@
       ],
       "callouts": {
         "energy_flow_chart": {
-          "component": "slipwayhq.energy_dashboard__energy_flow_chart.1.0.0",
+          "component": "jamesthurley.energy_dashboard__energy_flow_chart.1.0.1",
           "allow": [
             { "permission": "fonts" },
             { "permission": "registry_components" }
           ]
         },
         "energy_graph": {
-          "component": "slipwayhq.energy_dashboard__energy_graph.1.0.0",
+          "component": "jamesthurley.energy_dashboard__energy_graph.1.0.1",
           "allow": [
             { "permission": "fonts" },
             { "permission": "registry_components" }
           ]
         },
         "energy_lifetime": {
-          "component": "slipwayhq.energy_dashboard__energy_lifetime.1.0.0",
+          "component": "jamesthurley.energy_dashboard__energy_lifetime.1.0.1",
           "allow": [
             { "permission": "fonts" },
             { "permission": "registry_components" }
           ]
         },
         "tariff_rate_graph": {
-          "component": "slipwayhq.energy_dashboard__tariff_rate_graph.1.0.0",
+          "component": "jamesthurley.energy_dashboard__tariff_rate_graph.1.0.1",
           "allow": [
             { "permission": "fonts" },
             { "permission": "registry_components" }
           ]
         },
         "energy_cash_flow": {
-          "component": "slipwayhq.energy_dashboard__energy_cash_flow.1.0.0",
+          "component": "jamesthurley.energy_dashboard__energy_cash_flow.1.0.1",
           "allow": [
             { "permission": "fonts" },
             { "permission": "registry_components" }
@@ -100,7 +100,6 @@
         }
       },
       "input": {
-        "debug": false,
         "host_config": {
           "containerStyles": {
             "default": {
@@ -219,7 +218,7 @@
                         "power": "$$.givenergy.yesterday.power",
                         "day": "$$.givenergy.yesterday.day",
                         "prices": "$$.octopus_tariff.yesterday",
-                        "generation_rate": "$$.utils.generation_rate",
+                        "generation_rate": 25.84,
                         "theme": "$.context.device.theme"
                       }
                     }

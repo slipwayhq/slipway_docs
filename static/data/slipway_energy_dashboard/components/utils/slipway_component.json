@@ -10,9 +10,6 @@
       },
       "formatted_time": {
         "type": "string"
-      },
-      "generation_rate": {
-        "type": "float64"
       }
     }
   }

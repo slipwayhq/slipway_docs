@@ -1,7 +1,11 @@
 chart.xAxis.axisLabel.formatter = function (value, index) {
-  const date = new Date(value);
-  let hours = date.getHours();
-  const minutes = date.getMinutes();
+
+  const zdt = Temporal.Instant
+    .fromEpochMilliseconds(new Date(value).getTime())
+    .toZonedDateTimeISO(process.env.TZ);
+
+  let hours = zdt.hour;
+  const minutes = zdt.minute;
   
   if (minutes !== 0) {
     return '';
