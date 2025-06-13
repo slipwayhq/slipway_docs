@@ -66,18 +66,3 @@ http://localhost:8080/playlists/bar?format=html&authorization=<YOUR_API_KEY>
 
 When the interval elapses, the browser should automatically refresh the page, requesting a new screen.
 
-The problem with `format=html` is that first the HTML loads, giving a white screen, then the `<img>` tag
-is requested, which generates the Rig. When automatically refreshing, this causes the page to be momentarily
-blank during a refresh.
-
-Instead you can request that Slipway uses an embedded image (using a `data://` URL) using `format=html_embed`.
-This means that the entire Rig is fetched at the same time as the HTML.
-
-Now when the browser refreshes, you shouldn't see a blank page during the refresh because
-it continues to display the old page until the new page is ready, and the new page already contains all
-the data to display the Rig.
-
-```url title="Playlist with format=html_embed"
-http://localhost:8080/playlists/bar?format=html_embed&authorization=<YOUR_API_KEY>
-```
-

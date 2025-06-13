@@ -2,8 +2,7 @@ export async function run(input) {
   const zoned = Temporal.Now.zonedDateTimeISO(process.env.TZ);
   return {
     "formatted_date": formatDateInTimeZone(zoned),
-    "formatted_time": `Updated at ${getCurrentTime24Hour(zoned)}`,
-    "generation_rate": 25.84
+    "formatted_time": `Updated at ${getCurrentTime24Hour(zoned)}`
   }
 }
 

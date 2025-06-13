@@ -22,17 +22,13 @@ export async function run(input) {
   };
 
   const tz = process.env.TZ;
-  console.trace(`Timezone: ${tz}`);
-  console.trace(`Now: ${Temporal.Now.plainDateTimeISO(tz).toString()}`);
   
   // Prepare day strings (yesterday & today) in YYYY-MM-DD
   const todayStr = Temporal.Now.plainDateISO(tz).toString();
-  console.trace(`Today: ${todayStr}`);
 
   const yesterdayStr = Temporal.Now.plainDateISO(tz)
     .subtract({ days: 1 })
     .toString();
-  console.trace(`Yesterday: ${yesterdayStr}`);
 
   // Fetch both days' data in parallel
   const [yesterdayData, todayData] = await Promise.all([

@@ -132,6 +132,10 @@ const config: Config = {
               label: 'Zulip',
               href: 'https://slipway.zulipchat.com',
             },
+            {
+              label: 'Instagram',
+              href: 'https://www.instagram.com/slipwayhq/',
+            },
           ],
         },
         {

@@ -376,11 +376,11 @@ slipway serve .
 But this time navigate to the following URL:
 
 ```
-http://localhost:8080/playlists/every_so_often?format=html_embed&authorization=<YOUR_API_KEY>
+http://localhost:8080/playlists/every_so_often?format=html&authorization=<YOUR_API_KEY>
 ```
 
 Note that we're now navigating to `/playlists/every_so_often`, and we've added the
-`format=html_embed` query string parameter which tells the server to return an HTML page
+`format=html` query string parameter which tells the server to return an HTML page
 with an embedded image, rather than just returning the image directly.
 
 Now the page will automatically refresh itself every 10 seconds, thanks to the following
